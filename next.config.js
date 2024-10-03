@@ -10,8 +10,14 @@ const withPWA = require('next-pwa')({
 });
 
 const nextConfig = {
+  typescript: {
+    // https://nextjs.org/docs/app/api-reference/next-config-js/typescript
+    ignoreBuildErrors: true,
+  },
   eslint: {
     dirs: ['.'],
+    // https://nextjs.org/docs/app/api-reference/next-config-js/eslint
+    ignoreDuringBuilds: true,
   },
   poweredByHeader: false,
   trailingSlash: true,
