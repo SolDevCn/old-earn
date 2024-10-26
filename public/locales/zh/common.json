@@ -1137,5 +1137,9 @@
   "useSponsorNameValidation": {
     "companyNameExists": "公司名称已存在",
     "errorCheckingAvailability": "检查赞助商名称可用性时发生错误。"
+  },
+  "newSponsor": {
+    "contactAdmin": "向管理员发送邮件或者IM, 开通相应权限",
+    "contactAdminDetail": "发送邮件至 <1>{{godEmail}}</1>, 或者telegram <3>@{{godTelegram}}</3> 联系管理员"
   }
 }
