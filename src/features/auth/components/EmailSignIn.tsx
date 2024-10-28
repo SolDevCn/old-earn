@@ -10,7 +10,6 @@ import { validateEmailRegex } from '../utils/email';
 export const EmailSignIn = () => {
   const [email, setEmail] = useState('');
   const [isEmailValid, setIsEmailValid] = useState(false);
-  const [hasAttemptedSubmit, setHasAttemptedSubmit] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [emailError, setEmailError] = useState('');
 
@@ -21,31 +20,20 @@ export const EmailSignIn = () => {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const emailInput = e.target.value.trim();
     setEmail(emailInput);
-    setIsEmailValid(validateEmailRegex(emailInput));
+    const isValid = validateEmailRegex(emailInput);
+    setIsEmailValid(isValid);
     setEmailError('');
   };
 
   const handleEmailSignIn = async () => {
-    setIsLoading(true);
-    setHasAttemptedSubmit(true);
-    setEmailError('');
-
     if (isEmailValid) {
       try {
-        // const isValidEmail = await checkEmailValidity(email);
-        const isValidEmail = true;
-
-        if (isValidEmail) {
-          posthog.capture('email OTP_auth');
-          localStorage.setItem('emailForSignIn', email);
-          signIn('email', {
-            email,
-            callbackUrl: `${router.asPath}?loginState=signedIn`,
-          });
-        } else {
-          setIsLoading(false);
-          setEmailError(t('emailSignIn.emailValidationError'));
-        }
+        posthog.capture('email OTP_auth');
+        localStorage.setItem('emailForSignIn', email);
+        signIn('email', {
+          email,
+          callbackUrl: `${router.asPath}?loginState=signedIn`,
+        });
       } catch (error) {
         setIsLoading(false);
         console.error('Error during email validation:', error);
@@ -64,7 +52,7 @@ export const EmailSignIn = () => {
     }
   };
 
-  const isError = hasAttemptedSubmit && !isEmailValid;
+  const isError = !isEmailValid && email.length > 0;
 
   return (
     <>

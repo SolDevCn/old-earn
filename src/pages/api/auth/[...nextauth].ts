@@ -2,63 +2,15 @@ import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import NextAuth, { type NextAuthOptions } from 'next-auth';
 import type { Adapter } from 'next-auth/adapters';
 import EmailProvider from 'next-auth/providers/email';
-import GoogleProvider from 'next-auth/providers/google';
 
-import {
-  kashEmail,
-  OTPTemplate,
-  replyToEmail,
-  resend,
-} from '@/features/emails';
 import { prisma } from '@/prisma';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma) as Adapter,
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_ID as string,
-      clientSecret: process.env.GOOGLE_SECRET as string,
-      allowDangerousEmailAccountLinking: true,
-      profile(profile) {
-        return {
-          id: Number(profile.sub),
-          firstName: profile.given_name,
-          lastName: profile.family_name,
-          email: profile.email,
-          emailVerified: profile.emailVerified,
-          photo: profile.picture,
-        } as any;
-      },
-    }),
     EmailProvider({
-      async generateVerificationToken() {
-        const digits = '0123456789';
-        let verificationCode = '';
-        for (let i = 0; i < 6; i++) {
-          const randomIndex = Math.floor(Math.random() * digits.length);
-          verificationCode += digits.charAt(randomIndex);
-        }
-        return verificationCode;
-      },
-      server: {
-        host: process.env.EMAIL_SERVER_HOST,
-        port: process.env.EMAIL_SERVER_PORT,
-        auth: {
-          user: process.env.EMAIL_SERVER_USER,
-          pass: process.env.RESEND_API_KEY,
-        },
-      },
-      from: process.env.RESEND_EMAIL,
-      sendVerificationRequest: async ({ identifier, token }) => {
-        await resend.emails.send({
-          from: kashEmail,
-          to: [identifier],
-          subject: 'Log in to Solar Earn',
-          react: OTPTemplate({ token }),
-          reply_to: replyToEmail,
-        });
-      },
-      maxAge: 30 * 60,
+      server: process.env.EMAIL_SERVER,
+      from: process.env.EMAIL_FROM,
     }),
   ],
   session: {
