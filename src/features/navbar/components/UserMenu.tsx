@@ -22,7 +22,7 @@ import { useEffect } from 'react';
 import { EarnAvatar, EmailSettingsModal } from '@/features/talent';
 import { useLogout, useUser } from '@/store/user';
 
-export function UserMenu({}) {
+export function UserMenu({ }) {
   const router = useRouter();
   const posthog = usePostHog();
   const { t } = useTranslation('common');
@@ -182,6 +182,15 @@ export function UserMenu({}) {
                   href={'/new/sponsor'}
                 >
                   {t('userMenu.createNewSponsor')}
+                </MenuItem>
+                <MenuItem
+                  as={NextLink}
+                  color="brand.slate.500"
+                  fontSize="sm"
+                  fontWeight={600}
+                  href={'/admin/sponsors'}
+                >
+                  {t('userMenu.bountyDashboard')}
                 </MenuItem>
               </MenuGroup>
               <MenuDivider />

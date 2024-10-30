@@ -14,12 +14,17 @@ async function handler(req: NextApiRequestWithSponsor, res: NextApiResponse) {
 
     const sponsor = await prisma.sponsors.findUnique({
       where: { id: userSponsorId },
-      select: { createdAt: true },
+      select: { createdAt: true, isActive: true },
     });
 
     if (!sponsor) {
       return res.status(404).json({ error: 'Sponsor not found' });
     }
+    if (!sponsor.isActive) {
+      return res.status(403).json({ error: 'Sponsor is not active' });
+    }
+
+    console.log('sponsor', sponsor);
 
     const yearOnPlatform = sponsor.createdAt.getFullYear();
 
