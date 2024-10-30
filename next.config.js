@@ -98,4 +98,8 @@ module.exports = withSentryConfig(combinedConfig, {
   disableLogger: true,
   autoInstrumentServerFunctions: false,
   autoInstrumentMiddleware: false,
+  env: {
+    NEXT_PUBLIC_EARN_GOD_EMAIL: process.env.NEXT_PUBLIC_EARN_GOD_EMAIL,
+    NEXT_PUBLIC_EARN_GOD_TELEGRAM: process.env.NEXT_PUBLIC_EARN_GOD_TELEGRAM,
+  },
 });
