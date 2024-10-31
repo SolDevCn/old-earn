@@ -1,5 +1,5 @@
 import { AddIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Icon, Text, useDisclosure } from '@chakra-ui/react';
+import { Box, Button, Flex, Icon, Link, Text, useDisclosure } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -37,6 +37,7 @@ import {
 import { Default } from '@/layouts/Default';
 import { Meta } from '@/layouts/Meta';
 import { useUpdateUser, useUser } from '@/store/user';
+import { Trans } from 'react-i18next';
 
 interface LinkItemProps {
   name: string;
@@ -90,9 +91,15 @@ export function SponsorLayout({
   }, [open]);
 
   const {
-    data: isCreateListingAllowed,
+    data: isCreateListingAllowedResponse,
     refetch: isCreateListingAllowedRefetch,
   } = useQuery(isCreateListingAllowedQuery);
+
+  const isCreateListingAllowed = isCreateListingAllowedResponse?.allowed;
+  const isSponsorActive = isCreateListingAllowedResponse?.isActive;
+
+  console.log('isCreateListingAllowed', isCreateListingAllowed);
+  console.log('isSponsorActive', isSponsorActive);
 
   const {
     isOpen: isSponsorInfoModalOpen,
@@ -204,6 +211,10 @@ export function SponsorLayout({
   const showContent = isHackathonRoute
     ? user?.hackathonId || session?.user?.role === 'GOD'
     : user?.currentSponsor?.id;
+  // 从环境变量EARN_GOD_EMAIL 获取管理员邮件地址
+  const godEmail = process.env.NEXT_PUBLIC_EARN_GOD_EMAIL;
+  const godTelegram = process.env.NEXT_PUBLIC_EARN_GOD_TELEGRAM;
+  const godTelegramLink = `https://t.me/${godTelegram}`;
 
   return (
     <Default
@@ -276,7 +287,16 @@ export function SponsorLayout({
                   isCreateListingAllowed !== undefined &&
                     isCreateListingAllowed === false &&
                     session?.user.role !== 'GOD'
-                    ? 'Creating a new listing has been temporarily locked for you since you have 5 listings which are “Rolling” or “In Review”. Please announce the winners for such listings to create new listings.'
+                    ? isSponsorActive
+                      ? 'Creating a new listing has been temporarily locked for you since you have 5 listings which are “Rolling” or “In Review”. Please announce the winners for such listings to create new listings.'
+                      : <Trans
+                        i18nKey="newSponsor.contactAdminDetail"
+                        values={{ godEmail, godTelegram }}
+                        components={{
+                          1: <Link href={`mailto:${godEmail}`} />,
+                          3: <Link href={godTelegramLink} isExternal />,
+                        }}
+                      />
                     : ''
                 }
               >
