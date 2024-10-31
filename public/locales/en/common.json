@@ -1147,6 +1147,6 @@
   },
   "newSponsor": {
     "contactAdmin": "Send an email or IM to the administrator to enable the appropriate permissions.",
-    "contactAdminDetail": "Send an email to <1>{{godEmail}}</1>, or contact the administrator on Telegram <3>@{{godTelegram}}</3>"
+    "contactAdminDetail": "Send an email to <1>{{godEmail}}</1>, or contact the administrator on Telegram <3>@{{godTelegram}}</3> to activate the appropriate privileges."
   }
 }

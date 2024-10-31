@@ -1146,6 +1146,6 @@
   },
   "newSponsor": {
     "contactAdmin": "向管理员发送邮件或者IM, 开通相应权限",
-    "contactAdminDetail": "发送邮件至 <1>{{godEmail}}</1>, 或者telegram <3>@{{godTelegram}}</3> 联系管理员"
+    "contactAdminDetail": "发送邮件至 <1>{{godEmail}}</1>, 或者telegram <3>@{{godTelegram}}</3> 联系管理员，开通相应权限"
   }
 }

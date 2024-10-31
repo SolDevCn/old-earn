@@ -21,8 +21,6 @@ async function handler(req: NextApiRequestWithSponsor, res: NextApiResponse) {
       return res.status(404).json({ error: 'Sponsor not found' });
     }
 
-    console.log('sponsor', sponsor);
-
     const yearOnPlatform = sponsor.createdAt.getFullYear();
 
     const [

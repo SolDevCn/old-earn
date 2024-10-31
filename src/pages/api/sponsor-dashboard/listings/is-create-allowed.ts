@@ -15,7 +15,6 @@ async function handler(req: NextApiRequestWithSponsor, res: NextApiResponse) {
       where: { id: userSponsorId },
       select: { isActive: true },
     });
-    console.log('sponsor', sponsor);
     if (!sponsor || !sponsor.isActive) {
       return res.status(200).json({ allowed: false, isActive: false });
     }

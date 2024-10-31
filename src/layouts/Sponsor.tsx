@@ -1,4 +1,4 @@
-import { AddIcon } from '@chakra-ui/icons';
+import { AddIcon, CheckIcon } from '@chakra-ui/icons';
 import { Box, Button, Flex, Icon, Link, Text, useDisclosure } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import NextLink from 'next/link';
@@ -38,6 +38,7 @@ import { Default } from '@/layouts/Default';
 import { Meta } from '@/layouts/Meta';
 import { useUpdateUser, useUser } from '@/store/user';
 import { Trans } from 'react-i18next';
+import axios from 'axios';
 
 interface LinkItemProps {
   name: string;
@@ -57,6 +58,7 @@ export function SponsorLayout({
   const { user } = useUser();
   const updateUser = useUpdateUser();
   const { data: session, status } = useSession();
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const posthog = usePostHog();
@@ -96,10 +98,14 @@ export function SponsorLayout({
   } = useQuery(isCreateListingAllowedQuery);
 
   const isCreateListingAllowed = isCreateListingAllowedResponse?.allowed;
-  const isSponsorActive = isCreateListingAllowedResponse?.isActive;
-
-  console.log('isCreateListingAllowed', isCreateListingAllowed);
-  console.log('isSponsorActive', isSponsorActive);
+  const [isSponsorActive, setIsSponsorActive] = useState(false);
+  useEffect(() => {
+    if (isCreateListingAllowedResponse?.isActive === true) {
+      setIsSponsorActive(true);
+    } else {
+      setIsSponsorActive(false);
+    }
+  }, [isCreateListingAllowedResponse]);
 
   const {
     isOpen: isSponsorInfoModalOpen,
@@ -215,6 +221,23 @@ export function SponsorLayout({
   const godEmail = process.env.NEXT_PUBLIC_EARN_GOD_EMAIL;
   const godTelegram = process.env.NEXT_PUBLIC_EARN_GOD_TELEGRAM;
   const godTelegramLink = `https://t.me/${godTelegram}`;
+
+  // activate sponsor
+  const activateSponsor = async () => {
+    setIsLoading(true);
+    try {
+      await axios.post('/api/sponsors/activate', {
+        userId: session?.user.id,
+        sponsorId: user?.currentSponsorId,
+      });
+      // isSponsorActive = true;
+      setIsSponsorActive(true);
+    } catch (error: any) {
+      console.error('Error activating sponsor:', error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
 
   const cannotCreateNewListing = isCreateListingAllowed !== undefined &&
     isCreateListingAllowed === false &&
@@ -351,6 +374,35 @@ export function SponsorLayout({
               </Button>
             )}
           </Flex>
+          {session?.user.role === 'GOD' && (
+            <Flex align="center" justify="space-between" px={4} pb={6}>
+              <Button
+                className="ph-no-capture"
+                gap={2}
+                w="full"
+                py={'22px'}
+                fontSize="md"
+                // onClick={() => alert('Activate Sponsor')}
+                onClick={activateSponsor}
+                isDisabled={isSponsorActive === true || isLoading}
+                isLoading={isLoading}
+                loadingText="Activating..."
+                variant="solid"
+              >
+                <CheckIcon w={3} h={3} />
+                <Text
+                  className="nav-item-text"
+                  pos={isExpanded ? 'static' : 'absolute'}
+                  ml={isExpanded ? 0 : '-9999px'}
+                  opacity={isExpanded ? 1 : 0}
+                  transition="all 0.2s ease-in-out"
+                >
+                  Activate Sponsor
+                </Text>
+              </Button>
+            </Flex>
+          )}
+
           {LinkItems.map((link) => (
             <NavItem
               onClick={() => {

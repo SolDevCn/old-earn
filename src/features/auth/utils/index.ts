@@ -3,3 +3,4 @@ export * from './checkListingSponsorAuth';
 export * from './handleInvite';
 export * from './withAuth';
 export * from './withSponsorAuth';
+export * from './withGodAuth';

@@ -183,7 +183,7 @@ export function UserMenu({ }) {
                 >
                   {t('userMenu.createNewSponsor')}
                 </MenuItem>
-                <MenuItem
+                {/* <MenuItem
                   as={NextLink}
                   color="brand.slate.500"
                   fontSize="sm"
@@ -191,7 +191,7 @@ export function UserMenu({ }) {
                   href={'/admin/sponsors'}
                 >
                   {t('userMenu.bountyDashboard')}
-                </MenuItem>
+                </MenuItem> */}
               </MenuGroup>
               <MenuDivider />
             </Box>
