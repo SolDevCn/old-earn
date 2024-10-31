@@ -890,7 +890,8 @@
     "becomeASponsor": "成为赞助商",
     "login": "登录",
     "signUp": "注册",
-    "createListing": "创建列表"
+    "createListing": "创建列表",
+    "getStarted": "开始使用"
   },
   "footer": {
     "description": "在一个地方发现来自最佳 Solana 公司的高薪加密货币悬赏、项目和资助，并使用单一个人资料申请它们。",

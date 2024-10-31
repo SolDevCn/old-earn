@@ -216,6 +216,10 @@ export function SponsorLayout({
   const godTelegram = process.env.NEXT_PUBLIC_EARN_GOD_TELEGRAM;
   const godTelegramLink = `https://t.me/${godTelegram}`;
 
+  const cannotCreateNewListing = isCreateListingAllowed !== undefined &&
+    isCreateListingAllowed === false &&
+    session?.user.role !== 'GOD';
+
   return (
     <Default
       className="bg-white"
@@ -279,14 +283,12 @@ export function SponsorLayout({
               )}
             </Box>
           )}
-          <CreateListingModal isOpen={isOpen} onClose={onClose} />
+          <CreateListingModal isOpen={isOpen} onClose={onClose} cannotCreateNewListing={cannotCreateNewListing} />
           <Flex align="center" justify="space-between" px={4} pb={6}>
             {!isHackathonRoute ? (
               <Tooltip
                 label={
-                  isCreateListingAllowed !== undefined &&
-                    isCreateListingAllowed === false &&
-                    session?.user.role !== 'GOD'
+                  cannotCreateNewListing
                     ? isSponsorActive
                       ? 'Creating a new listing has been temporarily locked for you since you have 5 listings which are “Rolling” or “In Review”. Please announce the winners for such listings to create new listings.'
                       : <Trans
@@ -306,11 +308,7 @@ export function SponsorLayout({
                   w="full"
                   py={'22px'}
                   fontSize="md"
-                  isDisabled={
-                    isCreateListingAllowed !== undefined &&
-                    isCreateListingAllowed === false &&
-                    session?.user.role !== 'GOD'
-                  }
+                  isDisabled={cannotCreateNewListing}
                   onClick={() => {
                     posthog.capture('create new listing_sponsor');
                     onOpen();
@@ -327,9 +325,7 @@ export function SponsorLayout({
                   >
                     Create New Listing
                   </Text>
-                  {isCreateListingAllowed !== undefined &&
-                    isCreateListingAllowed === false &&
-                    session?.user.role !== 'GOD' && <Icon as={LuLock} />}
+                  {cannotCreateNewListing && <Icon as={LuLock} />}
                 </Button>
               </Tooltip>
             ) : (

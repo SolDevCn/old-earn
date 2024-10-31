@@ -890,7 +890,8 @@
     "becomeASponsor": "Become a Sponsor",
     "login": "Login",
     "signUp": "Sign Up",
-    "createListing": "Create a Listing"
+    "createListing": "Create a Listing",
+    "getStarted": "Get Started"
   },
   "footer": {
     "logoAlt": "Solar Earn",

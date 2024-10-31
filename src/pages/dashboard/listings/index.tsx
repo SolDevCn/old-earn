@@ -12,6 +12,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Link,
   Menu,
   MenuButton,
   MenuItem,
@@ -24,6 +25,7 @@ import {
   Tag,
   TagLabel,
   Text,
+  Tooltip,
   useDisclosure,
 } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
@@ -52,17 +54,32 @@ import {
 } from '@/features/sponsor-dashboard';
 import { SponsorLayout } from '@/layouts/Sponsor';
 import { useUser } from '@/store/user';
+import { isCreateListingAllowedQuery } from '@/features/listing-builder';
+import { useSession } from 'next-auth/react';
+import { Trans } from 'react-i18next';
 
 const MemoizedListingTable = React.memo(ListingTable);
 
 export default function SponsorListings() {
   const { user } = useUser();
+  const { data: session, status } = useSession();
   const [searchText, setSearchText] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const [selectedTab, setSelectedTab] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState<string | null>(null);
   const listingsPerPage = 15;
 
+  const {
+    data: isCreateListingAllowedResponse,
+    refetch: isCreateListingAllowedRefetch,
+  } = useQuery(isCreateListingAllowedQuery);
+
+  const isCreateListingAllowed = isCreateListingAllowedResponse?.allowed;
+  const isSponsorActive = isCreateListingAllowedResponse?.isActive;
+
+  const cannotCreateNewListing = isCreateListingAllowed !== undefined &&
+    isCreateListingAllowed === false &&
+    session?.user.role !== 'GOD';
   const { data: sponsorStats, isLoading: isStatsLoading } = useQuery(
     sponsorStatsQuery(user?.currentSponsorId),
   );
@@ -169,6 +186,9 @@ export default function SponsorListings() {
     },
     [hasGrants],
   );
+  const godEmail = process.env.NEXT_PUBLIC_EARN_GOD_EMAIL;
+  const godTelegram = process.env.NEXT_PUBLIC_EARN_GOD_TELEGRAM;
+  const godTelegramLink = `https://t.me/${godTelegram}`;
 
   return (
     <SponsorLayout>
@@ -358,6 +378,7 @@ export default function SponsorListings() {
           <CreateListingModal
             isOpen={isOpenCreateListing}
             onClose={onCloseCreateListing}
+            cannotCreateNewListing={cannotCreateNewListing}
           />
           {!!paginatedListings?.length && (
             <Flex align="center" justify="end" mt={6}>
@@ -430,19 +451,37 @@ export default function SponsorListings() {
           >
             and start getting contributions
           </Text>
-          <Button
-            display="block"
-            w={'200px'}
-            mx="auto"
-            mt={6}
-            mb={48}
-            fontSize="md"
-            leftIcon={<AddIcon w={3} h={3} />}
-            onClick={onOpenCreateListing}
-            variant="solid"
+          <Tooltip
+            label={
+              cannotCreateNewListing
+                ? isSponsorActive
+                  ? 'Creating a new listing has been temporarily locked for you since you have 5 listings which are “Rolling” or “In Review”. Please announce the winners for such listings to create new listings.'
+                  : <Trans
+                    i18nKey="newSponsor.contactAdminDetail"
+                    values={{ godEmail, godTelegram }}
+                    components={{
+                      1: <Link href={`mailto:${godEmail}`} />,
+                      3: <Link href={godTelegramLink} isExternal />,
+                    }}
+                  />
+                : ''
+            }
           >
-            Create New Listing
-          </Button>
+            <Button
+              display="block"
+              w={'200px'}
+              mx="auto"
+              mt={6}
+              mb={48}
+              fontSize="md"
+              leftIcon={<AddIcon w={3} h={3} />}
+              isDisabled={cannotCreateNewListing}
+              onClick={onOpenCreateListing}
+              variant="solid"
+            >
+              Create New Listing
+            </Button>
+          </Tooltip>
         </>
       )}
       {!isListingsLoading &&
