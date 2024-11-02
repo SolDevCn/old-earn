@@ -10,6 +10,7 @@ import {
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -56,15 +57,17 @@ export default function SignupPage() {
     }
   }, [error]);
 
+  const { t } = useTranslation();
+
   if (error) {
     return (
       <Container centerContent>
         <VStack mt={10} spacing={4}>
-          <Heading>Invitation Error</Heading>
-          <Text>
-            {error instanceof Error ? error.message : 'An error occurred'}
-          </Text>
-          <Button onClick={() => router.push('/')}>Go to Homepage</Button>
+          <Heading>{t('signup.invitationError')}</Heading>
+          <Text>{t('signup.errorOccurred')}</Text>
+          <Button onClick={() => router.push('/')}>
+            {t('signup.goToHomepage')}
+          </Button>
         </VStack>
       </Container>
     );
@@ -91,10 +94,10 @@ export default function SignupPage() {
             fontWeight={500}
             textAlign="center"
           >
-            Welcome to Superteam Earn
+            {t('signup.welcome')}
           </Text>
           <Text color="brand.slate.600" fontSize="lg" textAlign="center">
-            Start your journey to access top global talent!
+            {t('signup.startJourney')}
           </Text>
           <Image
             w={20}
@@ -112,8 +115,10 @@ export default function SignupPage() {
             lineHeight="24px"
             textAlign="center"
           >
-            {inviteDetails?.senderName} has invited you to join <br />
-            {inviteDetails?.sponsorName}
+            {t('signup.inviteMessage', {
+              senderName: inviteDetails?.senderName,
+              sponsorName: inviteDetails?.sponsorName,
+            })}
           </Text>
           {!session ? (
             <Box w="full" mt={12}>
@@ -123,7 +128,7 @@ export default function SignupPage() {
                 fontWeight={500}
                 textAlign="center"
               >
-                Please sign in to accept the invitation:
+                {t('signup.signInMessage')}
               </Text>
               <SignIn loginStep={loginStep} setLoginStep={setLoginStep} />
             </Box>
@@ -136,7 +141,7 @@ export default function SignupPage() {
               size="lg"
               variant={'outline'}
             >
-              Accept Invite
+              {t('signup.acceptInvite')}
             </Button>
           )}
         </VStack>

@@ -1,6 +1,7 @@
 import { Text, VStack } from '@chakra-ui/react';
 import * as Sentry from '@sentry/nextjs';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useEffect } from 'react';
 
 import { Default } from '@/layouts/Default';
@@ -8,6 +9,7 @@ import { Meta } from '@/layouts/Meta';
 
 export default function Unauthorized() {
   const router = useRouter();
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -25,8 +27,8 @@ export default function Unauthorized() {
       <Default
         meta={
           <Meta
-            title="Unauthorized | Superteam Earn"
-            description="401 - Unauthorized"
+            title={t('unauthorized.metaTitle')}
+            description={t('unauthorized.metaDescription')}
           />
         }
       >
@@ -37,9 +39,8 @@ export default function Unauthorized() {
           minH={'100vh'}
           mt={20}
         >
-          {/* <Image alt="Unauthorized page" src="/assets/bg/unauthorized.svg" /> */}
           <Text color="black" fontSize={'xl'} fontWeight={500}>
-            Unauthorized Access
+            {t('unauthorized.title')}
           </Text>
           <Text
             maxW={'2xl'}
@@ -48,14 +49,8 @@ export default function Unauthorized() {
             fontWeight={400}
             textAlign={'center'}
           >
-            Sorry, you do not have permission to view this page. Please contact
-            the administrator if you believe this is an error.
+            {t('unauthorized.message')}
           </Text>
-          {/* <Image
-            w={['20rem', '20rem', '30rem', '30rem']}
-            alt="lock image"
-            src="/assets/bg/lock.svg"
-          /> */}
         </VStack>
       </Default>
     </>

@@ -16,6 +16,7 @@ import axios from 'axios';
 import type { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -122,6 +123,8 @@ export default function EditProfilePage({ slug }: { slug: string }) {
   const { setUsername, isInvalid, validationErrorMessage } =
     useUsernameValidation();
 
+  const { t } = useTranslation('talentEdit');
+
   useEffect(() => {
     if (user) {
       editableFields.forEach((field) => {
@@ -218,9 +221,7 @@ export default function EditProfilePage({ slug }: { slug: string }) {
     );
 
     if (filledSocials.length === 0) {
-      toast.error(
-        'At least one additional social link (apart from Discord) is required',
-      );
+      toast.error(t('errors.socialRequired'));
       return;
     }
 
@@ -285,9 +286,9 @@ export default function EditProfilePage({ slug }: { slug: string }) {
           }, 500);
         },
         {
-          loading: 'Updating your profile...',
-          success: 'Your profile has been updated successfully!',
-          error: 'Failed to update profile.',
+          loading: t('toasts.updating'),
+          success: t('toasts.updateSuccess'),
+          error: t('toasts.updateError'),
         },
       );
     } catch (error: any) {
@@ -309,16 +310,13 @@ export default function EditProfilePage({ slug }: { slug: string }) {
     <>
       <Default
         meta={
-          <Meta
-            title="Superteam Earn"
-            description="Every Solana opportunity in one place!"
-          />
+          <Meta title={t('meta.title')} description={t('meta.description')} />
         }
       >
         <Box bg="#fff">
           <Box maxW="600px" mx="auto" p={{ base: 3, md: 5 }}>
             <Heading mt={3} mb={5}>
-              Edit Profile
+              {t('editProfile')}
             </Heading>
             <form onSubmit={handleSubmit(onSubmit)}>
               <FormControl>
@@ -330,7 +328,7 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                   fontWeight={600}
                   letterSpacing={0.4}
                 >
-                  PERSONAL INFO
+                  {t('personalInfo')}
                 </Text>
                 <Box mb={4}>
                   <FormLabel
@@ -339,7 +337,7 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                     color={'brand.slate.500'}
                     requiredIndicator={<></>}
                   >
-                    Profile Picture
+                    {t('profilePicture')}
                   </FormLabel>
                   {isPhotoLoading ? (
                     <></>
@@ -373,8 +371,8 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                   )}
                 </Box>
                 <InputField
-                  label="Username"
-                  placeholder="Username"
+                  label={t('form.username')}
+                  placeholder={t('form.username')}
                   name="username"
                   register={register}
                   isRequired
@@ -384,16 +382,16 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                 />
 
                 <InputField
-                  label="First Name"
-                  placeholder="First Name"
+                  label={t('form.firstName')}
+                  placeholder={t('form.firstName')}
                   name="firstName"
                   register={register}
                   isRequired
                 />
 
                 <InputField
-                  label="Last Name"
-                  placeholder="Last Name"
+                  label={t('form.lastName')}
+                  placeholder={t('form.lastName')}
                   name="lastName"
                   register={register}
                   isRequired
@@ -401,7 +399,7 @@ export default function EditProfilePage({ slug }: { slug: string }) {
 
                 <Box w={'full'} mb={'1.25rem'}>
                   <FormLabel color={'brand.slate.500'}>
-                    Your One-Line Bio
+                    {t('form.bio.label')}
                   </FormLabel>
                   <Textarea
                     borderColor="brand.slate.300"
@@ -411,7 +409,7 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                     focusBorderColor="brand.purple"
                     id={'bio'}
                     maxLength={180}
-                    placeholder="Here is a sample placeholder"
+                    placeholder={t('form.bio.placeholder')}
                     {...register('bio', { required: true })}
                   />
                   <Text
@@ -423,7 +421,9 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                     fontSize={'xs'}
                     textAlign="right"
                   >
-                    {180 - (watch('bio')?.length || 0)} characters left
+                    {t('form.bio.charactersLeft', {
+                      count: 180 - (watch('bio')?.length || 0),
+                    })}
                   </Text>
                 </Box>
 
@@ -435,7 +435,7 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                   fontWeight={600}
                   letterSpacing={0.4}
                 >
-                  SOCIALS
+                  {t('socials')}
                 </Text>
 
                 <SocialInput register={register} watch={watch} />
@@ -448,12 +448,12 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                   fontWeight={600}
                   letterSpacing={0.4}
                 >
-                  WORK
+                  {t('work')}
                 </Text>
 
                 <Box w={'full'} mb={'1.25rem'}>
                   <FormLabel color={'brand.slate.500'}>
-                    What areas of Web3 are you most interested in?
+                    {t('form.web3Interests.label')}
                   </FormLabel>
                   <ReactSelect
                     closeMenuOnSelect={false}
@@ -488,7 +488,7 @@ export default function EditProfilePage({ slug }: { slug: string }) {
 
                 <Box w={'full'} mb={'1.25rem'}>
                   <FormLabel color={'brand.slate.500'}>
-                    Community Affiliations
+                    {t('form.communityAffiliations.label')}
                   </FormLabel>
                   <ReactSelect
                     closeMenuOnSelect={false}
@@ -563,7 +563,9 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                   isRequired
                 />
 
-                <FormLabel color={'brand.slate.500'}>Proof of Work</FormLabel>
+                <FormLabel color={'brand.slate.500'}>
+                  {t('form.proofOfWork.label')}
+                </FormLabel>
                 <Box>
                   {pow.map((data, idx) => {
                     return (
@@ -614,7 +616,7 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                   }}
                   variant="outline"
                 >
-                  Add Project
+                  {t('form.addProject')}
                 </Button>
 
                 <SkillSelect
@@ -622,9 +624,9 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                   subSkills={subSkills}
                   setSkills={setSkills}
                   setSubSkills={setSubSkills}
-                  skillLabel="Your Skills"
-                  subSkillLabel="Sub Skills"
-                  helperText="We will send email notifications of new listings for your selected skills"
+                  skillLabel={t('form.skills.yourSkills')}
+                  subSkillLabel={t('form.skills.subSkills')}
+                  helperText={t('form.skills.helperText')}
                 />
 
                 <Checkbox
@@ -645,7 +647,7 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                   }}
                   size="md"
                 >
-                  Keep my info private
+                  {t('keepInfoPrivate')}
                 </Checkbox>
                 <br />
 
@@ -655,7 +657,7 @@ export default function EditProfilePage({ slug }: { slug: string }) {
                   isLoading={uploading || isLoading}
                   type="submit"
                 >
-                  Update Profile
+                  {t('updateProfile')}
                 </Button>
               </FormControl>
             </form>

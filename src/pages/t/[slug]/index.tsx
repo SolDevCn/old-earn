@@ -20,6 +20,7 @@ import axios from 'axios';
 import type { GetServerSideProps } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import React, { useEffect, useMemo, useState } from 'react';
 
@@ -122,32 +123,40 @@ function TalentProfile({ talent, stats }: TalentProps) {
   const isMD = useBreakpointValue({ base: false, md: true });
 
   const getWorkPreferenceText = (workPrefernce?: string): string | null => {
-    if (!workPrefernce || workPrefernce === 'Not looking for Work') {
+    const { t } = useTranslation('common');
+
+    if (
+      !workPrefernce ||
+      workPrefernce === t('talentProfile.workPreference.notLooking')
+    ) {
       return null;
     }
+
     const fullTimePatterns = [
-      'Passively looking for fulltime positions',
-      'Actively looking for fulltime positions',
-      'Fulltime',
+      t('talentProfile.workPreference.patterns.passiveFulltime'),
+      t('talentProfile.workPreference.patterns.activeFulltime'),
+      t('talentProfile.workPreference.patterns.fulltime'),
     ];
+
     const freelancePatterns = [
-      'Passively looking for freelance work',
-      'Actively looking for freelance work',
-      'Freelance',
+      t('talentProfile.workPreference.patterns.passiveFreelance'),
+      t('talentProfile.workPreference.patterns.activeFreelance'),
+      t('talentProfile.workPreference.patterns.freelance'),
     ];
+
     const internshipPatterns = [
-      'Actively looking for internships',
-      'Internship',
+      t('talentProfile.workPreference.patterns.activeInternship'),
+      t('talentProfile.workPreference.patterns.internship'),
     ];
 
     if (fullTimePatterns.includes(workPrefernce)) {
-      return 'Fulltime Roles';
+      return t('talentProfile.workPreference.fulltime');
     }
     if (freelancePatterns.includes(workPrefernce)) {
-      return 'Freelance Opportunities';
+      return t('talentProfile.workPreference.freelance');
     }
     if (internshipPatterns.includes(workPrefernce)) {
-      return 'Internship Opportunities';
+      return t('talentProfile.workPreference.internship');
     }
 
     return workPrefernce;
@@ -209,9 +218,13 @@ function TalentProfile({ talent, stats }: TalentProps) {
   ogImage.searchParams.set('winnerCount', stats?.wins?.toString());
   ogImage.searchParams.set('photo', talent?.photo!);
 
+  const { t } = useTranslation('common');
+
   const title =
     talent?.firstName && talent?.lastName
-      ? `${talent?.firstName} ${talent?.lastName} | Superteam Earn Talent`
+      ? t('talentProfile.metaTitle', {
+          name: `${talent?.firstName} ${talent?.lastName}`,
+        })
       : 'Superteam Earn';
 
   return (
@@ -227,7 +240,12 @@ function TalentProfile({ talent, stats }: TalentProps) {
             <meta name="twitter:card" content="summary_large_image" />
             <meta property="og:image:width" content="1200" />
             <meta property="og:image:height" content="630" />
-            <meta property="og:image:alt" content="Talent on Superteam" />
+            <meta
+              property="og:image:alt"
+              content={t('talentProfile.metaDescription', {
+                name: `${talent?.firstName} ${talent?.lastName}`,
+              })}
+            />
             <meta charSet="UTF-8" key="charset" />
             <meta
               name="viewport"
@@ -238,7 +256,7 @@ function TalentProfile({ talent, stats }: TalentProps) {
         }
       >
         {!talent?.id && (
-          <EmptySection message="Sorry! The profile you are looking for is not available." />
+          <EmptySection message={t('talentProfile.profileNotAvailable')} />
         )}
         {!!talent?.id && (
           <Box bg="white">
@@ -297,21 +315,30 @@ function TalentProfile({ talent, stats }: TalentProps) {
                   {user?.id === talent?.id
                     ? renderButton(
                         <EditIcon />,
-                        'Edit Profile',
+                        t('talentProfile.editProfile'),
                         handleEditProfileClick,
                       )
-                    : renderButton(<EmailIcon />, 'Reach Out', () => {
-                        posthog.capture('reach out_talent profile');
-                        const email = encodeURIComponent(talent?.email || '');
-                        const subject = encodeURIComponent(
-                          'Saw Your ST Earn Profile!',
-                        );
-                        const bcc = encodeURIComponent(
-                          'support@superteamearn.com',
-                        );
-                        window.location.href = `mailto:${email}?subject=${subject}&bcc=${bcc}`;
-                      })}
-                  {renderButton(<ShareIcon />, 'Share', onOpen, true)}
+                    : renderButton(
+                        <EmailIcon />,
+                        t('talentProfile.reachOut'),
+                        () => {
+                          posthog.capture('reach out_talent profile');
+                          const email = encodeURIComponent(talent?.email || '');
+                          const subject = encodeURIComponent(
+                            'Saw Your ST Earn Profile!',
+                          );
+                          const bcc = encodeURIComponent(
+                            'support@superteamearn.com',
+                          );
+                          window.location.href = `mailto:${email}?subject=${subject}&bcc=${bcc}`;
+                        },
+                      )}
+                  {renderButton(
+                    <ShareIcon />,
+                    t('talentProfile.share'),
+                    onOpen,
+                    true,
+                  )}
                 </Flex>
               </Flex>
               <ShareProfile
@@ -327,7 +354,7 @@ function TalentProfile({ talent, stats }: TalentProps) {
               >
                 <Box w={{ base: '100%', md: '50%' }}>
                   <Text mb={4} color={'brand.slate.900'} fontWeight={500}>
-                    Details
+                    {t('talentProfile.details')}
                   </Text>
                   {workPreferenceText && (
                     <Text mt={3} color={'brand.slate.400'}>
@@ -338,13 +365,13 @@ function TalentProfile({ talent, stats }: TalentProps) {
                     </Text>
                   )}
                   <Text mt={3} color={'brand.slate.400'}>
-                    Works at{' '}
+                    {t('talentProfile.workingFor')}{' '}
                     <Text as={'span'} color={'brand.slate.500'}>
                       {talent?.currentEmployer}
                     </Text>
                   </Text>
                   <Text mt={3} color={'brand.slate.400'}>
-                    Based in{' '}
+                    {t('talentProfile.basedIn')}{' '}
                     <Text as={'span'} color={'brand.slate.500'}>
                       {talent?.location}
                     </Text>
@@ -352,7 +379,7 @@ function TalentProfile({ talent, stats }: TalentProps) {
                 </Box>
                 <Box w={{ base: '100%', md: '50%' }}>
                   <Text color={'brand.slate.900'} fontWeight={500}>
-                    Skills
+                    {t('talentProfile.skills')}
                   </Text>
                   {Array.isArray(talent.skills) ? (
                     talent.skills.map((skillItem: any, index: number) => {
@@ -451,21 +478,21 @@ function TalentProfile({ talent, stats }: TalentProps) {
                       }).format(Math.round(stats?.totalWinnings || 0))}
                     </Text>
                     <Text color={'brand.slate.500'} fontWeight={500}>
-                      Earned
+                      {t('talentProfile.earned')}
                     </Text>
                   </Flex>
                   <Flex direction={'column'}>
                     <Text fontWeight={600}>{stats?.participations}</Text>
                     <Text color={'brand.slate.500'} fontWeight={500}>
                       {stats.participations === 1
-                        ? 'Submission'
-                        : 'Submissions'}
+                        ? t('talentProfile.submission')
+                        : t('talentProfile.submissions')}
                     </Text>
                   </Flex>
                   <Flex direction={'column'}>
                     <Text fontWeight={600}>{stats?.wins}</Text>
                     <Text color={'brand.slate.500'} fontWeight={500}>
-                      Won
+                      {t('talentProfile.won')}
                     </Text>
                   </Flex>
                 </Flex>
@@ -478,7 +505,7 @@ function TalentProfile({ talent, stats }: TalentProps) {
                 >
                   <Flex align="center" gap={3}>
                     <Text color={'brand.slate.900'} fontWeight={500}>
-                      Proof of Work
+                      {t('talentProfile.proofOfWork')}
                     </Text>
                     {user?.id === talent?.id && (
                       <Button
@@ -508,7 +535,7 @@ function TalentProfile({ talent, stats }: TalentProps) {
                       cursor="pointer"
                       onClick={() => setActiveTab('activity')}
                     >
-                      Activity Feed
+                      {t('talentProfile.activity')}
                     </Text>
                     <Text
                       color={
@@ -520,7 +547,7 @@ function TalentProfile({ talent, stats }: TalentProps) {
                       cursor="pointer"
                       onClick={() => setActiveTab('projects')}
                     >
-                      Personal Projects
+                      {t('talentProfile.projects')}
                     </Text>
                   </Flex>
                 </Flex>
@@ -544,9 +571,7 @@ function TalentProfile({ talent, stats }: TalentProps) {
                       fontWeight={500}
                       textAlign={'center'}
                     >
-                      {user?.id === talent?.id
-                        ? 'Add some proof of work to build your profile'
-                        : 'Nothing to see here yet ...'}
+                      {t('talentProfile.nothingToSee')}
                     </Text>
                     {user?.id === talent?.id ? (
                       <Button
@@ -556,7 +581,7 @@ function TalentProfile({ talent, stats }: TalentProps) {
                         mt={5}
                         onClick={onOpenPow}
                       >
-                        Add
+                        {t('talentProfile.addButton')}
                       </Button>
                     ) : (
                       <Box mt={5} />
@@ -574,7 +599,7 @@ function TalentProfile({ talent, stats }: TalentProps) {
                       onClick={() => router.push('/')}
                       variant={'outline'}
                     >
-                      Browse Bounties
+                      {t('talentProfile.browseBounties')}
                     </Button>
                   </>
                 ) : (

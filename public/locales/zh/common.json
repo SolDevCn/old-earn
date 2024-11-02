@@ -2122,5 +2122,121 @@
     "metaTitle": "在 Solar Earn 上为您的加密项目寻找顶级人才",
     "metaDescription": "为您的加密项目寻找顶级人才？Solar Earn 为您连接加密领域的专家，提供悬赏、项目和资助机会。",
     "videoIframeTitle": "Solar Earn 功能演示视频"
+  },
+  "talentEdit": {
+    "errors": {
+      "socialRequired": "至少需要添加一个额外的社交链接(除了 Discord)"
+    },
+    "toasts": {
+      "updating": "正在更新您的个人资料...",
+      "updateSuccess": "您的个人资料已成功更新！",
+      "updateError": "更新个人资料失败。"
+    },
+    "form": {
+      "username": "用户名",
+      "firstName": "名字",
+      "lastName": "姓氏",
+      "bio": {
+        "label": "一句话简介",
+        "placeholder": "这是一个示例占位符",
+        "charactersLeft": "还剩 {{count}} 个字符"
+      },
+      "web3Interests": {
+        "label": "您最感兴趣的 Web3 领域是什么？"
+      },
+      "communityAffiliations": {
+        "label": "社区关系"
+      },
+      "proofOfWork": {
+        "label": "工作证明"
+      },
+      "addProject": "添加项目",
+      "skills": {
+        "yourSkills": "您的技能",
+        "subSkills": "子技能",
+        "helperText": "我将为您选择的技能发送新列表的电子邮件通知"
+      }
+    }
+  },
+  "talentProfile": {
+    "title": "个人资料",
+    "details": "详细信息",
+    "workingFor": "工作于",
+    "basedIn": "所在地",
+    "skills": "技能",
+    "proofOfWork": "工作证明",
+    "earned": "已赚取",
+    "submission": "提交",
+    "submissions": "提交",
+    "won": "获胜",
+    "editProfile": "编辑个人资料",
+    "reachOut": "联系",
+    "share": "分享",
+    "activity": "活动动态",
+    "projects": "个人项目",
+    "activityFeed": "活动动态",
+    "personalProjects": "个人项目",
+    "addProject": "添加项目",
+    "nothingToSee": "这里还没有内容...",
+    "addProofOfWork": "添加一些工作证明来完善您的个人资料",
+    "browseBounties": "浏览悬赏",
+    "shareProfile": "分享个人资料",
+    "shareProfileDesc": "与您的朋友或在社交媒体上分享您的工作证明",
+    "copyLink": "复制链接",
+    "copied": "已复制",
+    "shareTo": "分享到",
+    "metaTitle": "{{name}} | Solar Earn 人才",
+    "metaDescription": "查看 {{name}} 在 Solar Earn 上的个人资料和工作证明",
+    "profileNotAvailable": "抱歉! 您要查找的个人资料不可用。",
+    "workPreference": {
+      "lookingFor": "正在寻找",
+      "notLooking": "不在找工作",
+      "fulltime": "全职岗位",
+      "freelance": "自由职业机会",
+      "internship": "实习机会",
+      "patterns": {
+        "passiveFulltime": "正在被动寻找全职岗位",
+        "activeFulltime": "正在积极寻找全职岗位",
+        "fulltime": "全职",
+        "passiveFreelance": "正在被动寻找自由职业工作",
+        "activeFreelance": "正在积极寻找自由职业工作",
+        "freelance": "自由职业",
+        "activeInternship": "正在积极寻找实习",
+        "internship": "实习"
+      }
+    },
+    "addButton": "添加"
+  },
+  "references": {
+    "references": "参考资料"
+  },
+  "404": {
+    "metaTitle": "未找到 | Solar Earn",
+    "metaDescription": "404 - 页面未找到",
+    "pageImageAlt": "404页面",
+    "nothingFound": "未找到内容",
+    "errorMessage": "抱歉，我们找不到您要找的内容。这可能是您自己的错误，请检查拼写或者看看这只猫",
+    "catImageAlt": "猫咪图片"
+  },
+  "signup": {
+    "welcome": "欢迎来到 Solar Earn",
+    "startJourney": "开始您的旅程,接触顶级全球人才!",
+    "inviteMessage": "{{senderName}} 邀请您加入 {{sponsorName}}",
+    "signInMessage": "请登录以接受邀请:",
+    "acceptInvite": "接受邀请",
+    "invitationError": "邀请错误",
+    "errorOccurred": "发生错误",
+    "goToHomepage": "返回首页"
+  },
+  "unauthorized": {
+    "metaTitle": "未授权 | Solar Earn",
+    "metaDescription": "401 - 未授权",
+    "title": "未授权访问",
+    "message": "抱歉，您没有权限查看此页面。如果您认为这是一个错误，请联系管理员。"
+  },
+  "verifyRequest": {
+    "logoAlt": "Superteam Earn",
+    "otpSent": "我们刚刚发送了一个验证码",
+    "onEmail": "到您的邮箱"
   }
 }

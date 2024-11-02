@@ -2122,5 +2122,121 @@
     "metaTitle": "Find Top Talent for Your Crypto Projects on Solar Earn",
     "metaDescription": "Seeking top talent for your crypto project? Solar Earn connects you with experts for Bounties, Projects, and Grants in the crypto space.",
     "videoIframeTitle": "Solar Earn Feature Demo Video"
+  },
+  "talentEdit": {
+    "errors": {
+      "socialRequired": "At least one additional social link (apart from Discord) is required"
+    },
+    "toasts": {
+      "updating": "Updating your profile...",
+      "updateSuccess": "Your profile has been updated successfully!",
+      "updateError": "Failed to update profile."
+    },
+    "form": {
+      "username": "Username",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "bio": {
+        "label": "Your One-Line Bio",
+        "placeholder": "Here is a sample placeholder",
+        "charactersLeft": "{{count}} characters left"
+      },
+      "web3Interests": {
+        "label": "What areas of Web3 are you most interested in?"
+      },
+      "communityAffiliations": {
+        "label": "Community Affiliations"
+      },
+      "proofOfWork": {
+        "label": "Proof of Work"
+      },
+      "addProject": "Add Project",
+      "skills": {
+        "yourSkills": "Your Skills",
+        "subSkills": "Sub Skills",
+        "helperText": "We will send email notifications of new listings for your selected skills"
+      }
+    }
+  },
+  "talentProfile": {
+    "title": "Profile",
+    "details": "Details",
+    "workingFor": "Works at",
+    "basedIn": "Based in",
+    "skills": "Skills",
+    "proofOfWork": "Proof of Work",
+    "earned": "Earned",
+    "submission": "Submission",
+    "submissions": "Submissions",
+    "won": "Won",
+    "editProfile": "Edit Profile",
+    "reachOut": "Reach Out",
+    "share": "Share",
+    "activity": "Activity",
+    "projects": "Projects",
+    "activityFeed": "Activity Feed",
+    "personalProjects": "Personal Projects",
+    "addProject": "Add Project",
+    "nothingToSee": "Nothing to see here yet ...",
+    "addProofOfWork": "Add some proof of work to build your profile",
+    "browseBounties": "Browse Bounties",
+    "shareProfile": "Share Profile",
+    "shareProfileDesc": "With your friends or on social media to showcase your proof of work",
+    "copyLink": "Copy Link",
+    "copied": "Copied",
+    "shareTo": "Share To",
+    "metaTitle": "{{name}} | Solar Earn Talent",
+    "metaDescription": "Check out {{name}}'s profile and proof of work on Solar Earn",
+    "profileNotAvailable": "Sorry! The profile you are looking for is not available.",
+    "workPreference": {
+      "lookingFor": "Looking for",
+      "notLooking": "Not looking for Work",
+      "fulltime": "Fulltime Roles",
+      "freelance": "Freelance Opportunities",
+      "internship": "Internship Opportunities",
+      "patterns": {
+        "passiveFulltime": "Passively looking for fulltime positions",
+        "activeFulltime": "Actively looking for fulltime positions",
+        "fulltime": "Fulltime",
+        "passiveFreelance": "Passively looking for freelance work",
+        "activeFreelance": "Actively looking for freelance work",
+        "freelance": "Freelance",
+        "activeInternship": "Actively looking for internships",
+        "internship": "Internship"
+      }
+    },
+    "addButton": "Add"
+  },
+  "references": {
+    "references": "References"
+  },
+  "404": {
+    "metaTitle": "Not Found | Solar Earn",
+    "metaDescription": "404 - Page Not Found",
+    "pageImageAlt": "404 page",
+    "nothingFound": "Nothing Found",
+    "errorMessage": "Sorry, we couldn't find what you were looking for. It's probably your own fault, please check your spelling or meanwhile have a look at this cat",
+    "catImageAlt": "cat image"
+  },
+  "signup": {
+    "welcome": "Welcome to Solar Earn",
+    "startJourney": "Start your journey to access top global talent!",
+    "inviteMessage": "{{senderName}} has invited you to join {{sponsorName}}",
+    "signInMessage": "Please sign in to accept the invitation:",
+    "acceptInvite": "Accept Invite",
+    "invitationError": "Invitation Error",
+    "errorOccurred": "An error occurred",
+    "goToHomepage": "Go to Homepage"
+  },
+  "unauthorized": {
+    "metaTitle": "Unauthorized | Solar Earn",
+    "metaDescription": "401 - Unauthorized",
+    "title": "Unauthorized Access",
+    "message": "Sorry, you do not have permission to view this page. Please contact the administrator if you believe this is an error."
+  },
+  "verifyRequest": {
+    "logoAlt": "Superteam Earn",
+    "otpSent": "We just sent an OTP",
+    "onEmail": "On your email"
   }
 }

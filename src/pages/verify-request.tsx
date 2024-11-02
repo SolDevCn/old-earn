@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState } from 'react';
 
 import { EmailIcon } from '@/svg/email';
@@ -18,6 +19,7 @@ import { EmailIcon } from '@/svg/email';
 export default function VerifyRequest() {
   const [email, setEmail] = useState('');
   const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const storedEmail = localStorage.getItem('emailForSignIn');
@@ -42,7 +44,7 @@ export default function VerifyRequest() {
             mx="auto"
             cursor="pointer"
             objectFit={'contain'}
-            alt={'Superteam Earn'}
+            alt={t('verifyRequest.logoAlt')}
             onClick={() => {
               router.push('/');
             }}
@@ -57,14 +59,14 @@ export default function VerifyRequest() {
           fontSize={{ base: '2xl', md: '28' }}
           textAlign={'center'}
         >
-          We just sent an OTP
+          {t('verifyRequest.otpSent')}
         </Heading>
         <Text
           color="#475569"
           fontSize={{ base: 'lg', md: '20' }}
           textAlign={'center'}
         >
-          On your email {email}
+          {t('verifyRequest.onEmail')} {email}
         </Text>
         <Circle mx="auto" my={16} bg="#EEF2FF" size={32}>
           <EmailIcon />
