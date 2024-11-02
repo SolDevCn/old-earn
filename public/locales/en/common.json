@@ -1626,5 +1626,44 @@
     "myListings": "My Listings",
     "teamSettings": "Team Settings",
     "localProfiles": "Local Profiles"
+  },
+  "sponsorPage": {
+    "pageTitle": "{{title}} Opportunities | Solar Earn",
+    "metaDescription": "Check out all of {{title}}'s latest earning opportunities on a single page.",
+    "ogTitle": "{{title}} on Solar Earn",
+    "twitterTitle": "{{title}} on Solar Earn",
+    "ogImageAlt": "{{title}} on Solar Earn",
+    "categoryIconAlt": "Category icon",
+    "earningOpportunities": "Earning Opportunities"
+  },
+  "bountiesAll": {
+    "allBounties": "All Bounties",
+    "biteSize": "Bite sized tasks for freelancers",
+    "noListings": "No listings available!",
+    "updatePreferences": "Update your email preferences (from the user menu) to be notified about new work opportunities."
+  },
+  "bountiesPage": {
+    "metaTitle": "Superteam Earn | Discover Bounties and Grants in Crypto for Design, Development, and Content",
+    "metaDescription": "Explore the latest bounties on Superteam Earn, offering opportunities in the crypto space across Design, Development, and Content.",
+    "title": "Bounties"
+  },
+  "categoryAll": {
+    "designTitle": "Design Bounties and Grants | Solar Earn",
+    "contentTitle": "Content Bounties and Grants | Solar Earn",
+    "developmentTitle": "Development Bounties and Grants | Solar Earn",
+    "otherTitle": "Other Bounties and Grants | Solar Earn",
+    "metaDescription": "Find the latest {{category}} bounties and grants for freelancers and builders in the crypto space on Solar Earn.",
+    "freelanceGigs": "Freelance Gigs"
+  },
+  "categoryPage": {
+    "gigs": "{{formattedSlug}} Gigs",
+    "grants": "{{formattedSlug}} Grants",
+    "grantsDescription": "Equity-free funding opportunities for builders",
+    "noGrantsAvailable": "No grants available!",
+    "subscribeNotification": "Subscribe to notifications to get notified about new grants.",
+    "designTitle": "Design Bounties and Grants | Solar Earn",
+    "contentTitle": "Content Bounties and Grants | Solar Earn",
+    "developmentTitle": "Development Bounties and Grants | Solar Earn",
+    "otherTitle": "Other Bounties and Grants | Solar Earn"
   }
 }

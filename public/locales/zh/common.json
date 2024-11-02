@@ -1626,5 +1626,44 @@
     "myListings": "我的列表",
     "teamSettings": "团队设置",
     "localProfiles": "本地档案"
+  },
+  "sponsorPage": {
+    "pageTitle": "{{title}} 机会 | Solar Earn",
+    "metaDescription": "在一个页面上查看 {{title}} 的所有最新赚钱机会。",
+    "ogTitle": "{{title}} - Solar Earn",
+    "twitterTitle": "{{title}} - Solar Earn",
+    "ogImageAlt": "{{title}} - Solar Earn",
+    "categoryIconAlt": "类别图标",
+    "earningOpportunities": "赚钱机会"
+  },
+  "bountiesAll": {
+    "allBounties": "所有悬赏",
+    "biteSize": "适合自由职业者的小任务",
+    "noListings": "暂无可用列表！",
+    "updatePreferences": "从用户菜单更新您的电子邮件偏好以获取新工作机会通知。"
+  },
+  "bountiesPage": {
+    "metaTitle": "Superteam Earn | 发现加密货币领域的设计、开发和内容悬赏与补助",
+    "metaDescription": "探索 Superteam Earn 上最新的悬赏任务，在设计、开发和内容领域提供加密货币空间的机会。",
+    "title": "悬赏"
+  },
+  "categoryAll": {
+    "designTitle": "设计悬赏和补助 | Solar Earn",
+    "contentTitle": "内容悬赏和补助 | Solar Earn",
+    "developmentTitle": "开发悬赏和补助 | Solar Earn",
+    "otherTitle": "其他悬赏和补助 | Solar Earn",
+    "metaDescription": "在 Solar Earn 上查找加密货币领域自由职业者和开发者的最新{{category}}悬赏和补助。",
+    "freelanceGigs": "自由职业机会"
+  },
+  "categoryPage": {
+    "gigs": "{{formattedSlug}}机会",
+    "grants": "{{formattedSlug}}资助",
+    "grantsDescription": "为开发者提供的无股权融资机会",
+    "noGrantsAvailable": "暂无可用资助！",
+    "subscribeNotification": "订阅通知以获取新资助信息。",
+    "designTitle": "设计悬赏和资助 | Solar Earn",
+    "contentTitle": "内容悬赏和资助 | Solar Earn",
+    "developmentTitle": "开发悬赏和资助 | Solar Earn",
+    "otherTitle": "其他悬赏和资助 | Solar Earn"
   }
 }

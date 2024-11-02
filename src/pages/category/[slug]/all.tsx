@@ -2,6 +2,7 @@ import { Box } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import type { NextPageContext } from 'next';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 
 import { listingsQuery, ListingTabs } from '@/features/listings';
 import { Home } from '@/layouts/Home';
@@ -11,6 +12,8 @@ type SlugKeys = 'design' | 'content' | 'development' | 'other';
 
 function AllCategoryListingsPage({ slug }: { slug: string }) {
   const router = useRouter();
+  const { t } = useTranslation();
+
   const { data: listings, isLoading } = useQuery(
     listingsQuery({
       filter: slug,
@@ -19,14 +22,17 @@ function AllCategoryListingsPage({ slug }: { slug: string }) {
   );
 
   const titlesForSlugs: { [key in SlugKeys]: string } = {
-    design: 'Design Bounties and Grants | Superteam Earn',
-    content: 'Content Bounties and Grants | Superteam Earn',
-    development: 'Development Bounties and Grants | Superteam Earn',
-    other: 'Other Bounties and Grants | Superteam Earn',
+    design: t('categoryAll.designTitle'),
+    content: t('categoryAll.contentTitle'),
+    development: t('categoryAll.developmentTitle'),
+    other: t('categoryAll.otherTitle'),
   };
+
   const titleKey = slug as SlugKeys;
-  const title = titlesForSlugs[titleKey] || 'Superteam Earn';
-  const metaDescription = `Find the latest ${slug.toLowerCase()} bounties and grants for freelancers and builders in the crypto space on Superteam Earn.`;
+  const title = titlesForSlugs[titleKey] || 'Solar Earn';
+  const metaDescription = t('categoryAll.metaDescription', {
+    category: slug.toLowerCase(),
+  });
   const canonicalURL = `https://earn.superteam.fun/category/${slug}/all`;
 
   return (
@@ -42,7 +48,7 @@ function AllCategoryListingsPage({ slug }: { slug: string }) {
           bounties={listings}
           isListingsLoading={isLoading}
           emoji="/assets/home/emojis/moneyman.webp"
-          title="Freelance Gigs"
+          title={t('categoryAll.freelanceGigs')}
           viewAllLink="/all"
         />
       </Box>

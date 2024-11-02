@@ -13,6 +13,7 @@ import {
 import { useQuery } from '@tanstack/react-query';
 import { type GetServerSideProps } from 'next';
 import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 import { FaXTwitter } from 'react-icons/fa6';
 import { MdOutlineInsertLink } from 'react-icons/md';
 
@@ -34,6 +35,7 @@ interface Props {
   sponsor: SponsorType;
 }
 const SponsorListingsPage = ({ slug, sponsor, title, description }: Props) => {
+  const { t } = useTranslation();
   const { data: listings, isLoading: isListingsLoading } = useQuery(
     sponsorListingsQuery(slug),
   );
@@ -55,21 +57,28 @@ const SponsorListingsPage = ({ slug, sponsor, title, description }: Props) => {
       hideFooter
       meta={
         <Head>
-          <title>{`${title} Opportunities | Solar Earn`}</title>
+          <title>{t('sponsorPage.pageTitle', { title })}</title>
           <meta
             name="description"
-            content={`
-Check out all of ${title}’s latest earning opportunities on a single page.
-`}
+            content={t('sponsorPage.metaDescription', { title })}
           />
-          <meta property="og:title" content={`${title} on Solar Earn`} />
+          <meta
+            property="og:title"
+            content={t('sponsorPage.ogTitle', { title })}
+          />
           <meta property="og:image" content={ogImage.toString()} />
-          <meta name="twitter:title" content={`${title} on Solar Earn`} />
+          <meta
+            name="twitter:title"
+            content={t('sponsorPage.twitterTitle', { title })}
+          />
           <meta name="twitter:image" content={ogImage.toString()} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta property="og:image:width" content="1200" />
           <meta property="og:image:height" content="630" />
-          <meta property="og:image:alt" content={`${title} on Solar Earn`} />
+          <meta
+            property="og:image:alt"
+            content={t('sponsorPage.ogImageAlt', { title })}
+          />
           <meta charSet="UTF-8" key="charset" />
           <meta
             name="viewport"
@@ -92,7 +101,12 @@ Check out all of ${title}’s latest earning opportunities on a single page.
         >
           <SkeletonCircle w={28} h={28} isLoaded={!isListingsLoading}>
             <Center rounded="full">
-              <Image h={'full'} alt="Category icon" rounded="full" src={logo} />
+              <Image
+                h={'full'}
+                alt={t('sponsorPage.categoryIconAlt')}
+                rounded="full"
+                src={logo}
+              />
             </Center>
           </SkeletonCircle>
           <Box w={{ md: '80%', base: '100%' }}>
@@ -172,7 +186,7 @@ Check out all of ${title}’s latest earning opportunities on a single page.
           <ListingTabs
             bounties={listings?.bounties}
             isListingsLoading={isListingsLoading}
-            title="Earning Opportunities"
+            title={t('sponsorPage.earningOpportunities')}
             take={20}
             showNotifSub={false}
           />

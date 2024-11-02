@@ -2,6 +2,7 @@ import { Box, Flex } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import type { NextPageContext } from 'next';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useMemo } from 'react';
 
 import { EmptySection } from '@/components/shared/EmptySection';
@@ -37,11 +38,13 @@ function ListingCategoryPage({ slug }: { slug: string }) {
     grantsQuery({ order: 'asc', take: 10 }),
   );
 
+  const { t } = useTranslation();
+
   const titlesForSlugs: { [key in SlugKeys]: string } = {
-    design: 'Design Bounties and Grants | Superteam Earn',
-    content: 'Content Bounties and Grants | Superteam Earn',
-    development: 'Development Bounties and Grants | Superteam Earn',
-    other: 'Other Bounties and Grants | Superteam Earn',
+    design: t('categoryPage.designTitle'),
+    content: t('categoryPage.contentTitle'),
+    development: t('categoryPage.developmentTitle'),
+    other: t('categoryPage.otherTitle'),
   };
 
   const titleKey = slug as SlugKeys;
@@ -65,15 +68,15 @@ function ListingCategoryPage({ slug }: { slug: string }) {
           bounties={listingsData ?? []}
           isListingsLoading={isListingsLoading}
           emoji="/assets/home/emojis/moneyman.webp"
-          title={`${formattedSlug} Gigs`}
+          title={t('categoryPage.gigs', { formattedSlug })}
           viewAllLink={`/category/${slug}/all`}
           showViewAll
           take={10}
         />
         <ListingSection
           type="grants"
-          title={`${formattedSlug} Grants`}
-          sub="Equity-free funding opportunities for builders"
+          title={t('categoryPage.grants', { formattedSlug })}
+          sub={t('categoryPage.grantsDescription')}
           emoji="/assets/home/emojis/grants.webp"
           showViewAll
         >
@@ -85,8 +88,8 @@ function ListingCategoryPage({ slug }: { slug: string }) {
           {!isGrantsLoading && !grants?.length && (
             <Flex align="center" justify="center" mt={8}>
               <EmptySection
-                title="No grants available!"
-                message="Subscribe to notifications to get notified about new grants."
+                title={t('categoryPage.noGrantsAvailable')}
+                message={t('categoryPage.subscribeNotification')}
               />
             </Flex>
           )}
