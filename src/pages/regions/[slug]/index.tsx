@@ -1,6 +1,7 @@
 import { Box, Flex } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import type { NextPageContext } from 'next';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { EmptySection } from '@/components/shared/EmptySection';
@@ -25,6 +26,8 @@ const RegionsPage = ({
   displayName: string;
   st: (typeof Superteams)[0];
 }) => {
+  const { t } = useTranslation();
+
   const { data: listings, isLoading: isListingsLoading } = useQuery(
     regionalListingsQuery({ region: slug, take: 10 }),
   );
@@ -37,8 +40,8 @@ const RegionsPage = ({
     <>
       <Home type="region" st={st}>
         <Meta
-          title={`Welcome to Superteam Earn ${displayName} | Discover Bounties and Grants`}
-          description={`Welcome to Superteam ${displayName}'s page — Discover bounties and grants and become a part of the global crypto community`}
+          title={t('regionPage.welcomeTitle', { displayName })}
+          description={t('regionPage.welcomeDescription', { displayName })}
           canonical={`https://earn.superteam.fun/regions/${slug}/`}
           og={ogImage.toString()}
         />
@@ -47,7 +50,7 @@ const RegionsPage = ({
             bounties={listings?.bounties}
             isListingsLoading={isListingsLoading}
             emoji="/assets/home/emojis/moneyman.webp"
-            title="Freelance Gigs"
+            title={t('regionPage.freelanceGigs')}
             showViewAll
             viewAllLink={`/regions/${slug}/all`}
             take={10}
@@ -55,8 +58,8 @@ const RegionsPage = ({
 
           <ListingSection
             type="grants"
-            title="Grants"
-            sub="Equity-free funding opportunities for builders"
+            title={t('regionPage.grants')}
+            sub={t('regionPage.grantsDescription')}
             emoji="/assets/home/emojis/grants.webp"
           >
             {isListingsLoading && (
@@ -72,8 +75,8 @@ const RegionsPage = ({
             {!isListingsLoading && !listings?.grants?.length && (
               <Flex align="center" justify="center" mt={8}>
                 <EmptySection
-                  title="No grants available!"
-                  message="Subscribe to notifications to get notified about new grants."
+                  title={t('regionPage.noGrantsAvailable')}
+                  message={t('regionPage.subscribeToNotifications')}
                 />
               </Flex>
             )}

@@ -20,12 +20,12 @@ import { useSession } from 'next-auth/react';
 import { usePostHog } from 'posthog-js/react';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { Trans, useTranslation } from 'react-i18next';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-import { useTranslation, Trans } from 'react-i18next';
 
 import { ImagePicker } from '@/components/shared/ImagePicker';
-import { IndustryList, PDTG } from '@/constants';
+import { IndustryList } from '@/constants';
 import { SignIn } from '@/features/auth';
 import {
   useSlugValidation,
@@ -76,7 +76,7 @@ const CreateSponsor = () => {
 
   const createNewSponsor = async (sponsor: SponsorType) => {
     if (getValues('bio').length > 180) {
-      setErrorMessage('Company short bio length exceeded the limit');
+      setErrorMessage(t('newSponsor2.bioLengthExceeded'));
       return;
     }
     setIsLoading(true);
@@ -89,10 +89,10 @@ const CreateSponsor = () => {
       router.push('/dashboard/listings?open=1');
     } catch (e: any) {
       if (e?.response?.status === 403) {
-        setErrorMessage('Sorry! You are not authorized to create a sponsor.');
+        setErrorMessage(t('newSponsor2.notAuthorized'));
       }
       if (e?.response?.data?.error?.code === 'P2002') {
-        setErrorMessage('Sorry! Sponsor name or username already exists.');
+        setErrorMessage(t('newSponsor2.nameExists'));
       }
       setIsLoading(false);
       setHasError(true);
@@ -102,7 +102,6 @@ const CreateSponsor = () => {
   if (!session && status === 'loading') {
     return <></>;
   }
-
 
   if (!session || session.user.role !== 'GOD') {
     // 从环境变量EARN_GOD_EMAIL 获取管理员邮件地址
@@ -114,17 +113,27 @@ const CreateSponsor = () => {
       <Default
         meta={
           <Meta
-            title="Create Sponsor | Superteam Earn"
-            description="Every Solana opportunity in one place!"
+            title={t('newSponsor2.metaTitle')}
+            description={t('newSponsor2.metaDescription')}
             canonical="https://earn.superteam.fun/new/sponsor/"
           />
         }
       >
         <VStack w="full" pt={8} pb={24}>
-          <Heading color={'gray.700'} fontFamily={'var(--font-sans)'} fontSize={'24px'} fontWeight={700}>
+          <Heading
+            color={'gray.700'}
+            fontFamily={'var(--font-sans)'}
+            fontSize={'24px'}
+            fontWeight={700}
+          >
             {t('newSponsor.contactAdmin')}
           </Heading>
-          <Text color={'gray.400'} fontFamily={'var(--font-sans)'} fontSize={'20px'} fontWeight={500}>
+          <Text
+            color={'gray.400'}
+            fontFamily={'var(--font-sans)'}
+            fontSize={'20px'}
+            fontWeight={500}
+          >
             <Trans
               i18nKey="newSponsor.contactAdminDetail"
               values={{ godEmail, godTelegram }}
@@ -143,8 +152,8 @@ const CreateSponsor = () => {
     <Default
       meta={
         <Meta
-          title="Create Sponsor | Superteam Earn"
-          description="Every Solana opportunity in one place!"
+          title={t('newSponsor2.metaTitle')}
+          description={t('newSponsor2.metaDescription')}
           canonical="https://earn.superteam.fun/new/sponsor/"
         />
       }
@@ -168,7 +177,7 @@ const CreateSponsor = () => {
                 fontWeight={600}
                 textAlign={'center'}
               >
-                You&apos;re one step away
+                {t('newSponsor2.oneStepAway')}
               </Text>
               <Text
                 pb={4}
@@ -177,7 +186,7 @@ const CreateSponsor = () => {
                 fontWeight={400}
                 textAlign={'center'}
               >
-                from joining Superteam Earn
+                {t('newSponsor2.joiningEarn')}
               </Text>
               <SignIn loginStep={loginStep} setLoginStep={setLoginStep} />
             </Box>
@@ -192,7 +201,7 @@ const CreateSponsor = () => {
               fontSize={'24px'}
               fontWeight={700}
             >
-              Welcome to Superteam Earn
+              {t('newSponsor2.welcomeToEarn')}
             </Heading>
             <Text
               color={'gray.400'}
@@ -200,7 +209,7 @@ const CreateSponsor = () => {
               fontSize={'20px'}
               fontWeight={500}
             >
-              {"Let's start with some basic information about your team"}
+              {t('newSponsor2.basicInformation')}
             </Text>
           </VStack>
           <VStack w={'2xl'} pt={10}>
@@ -228,7 +237,7 @@ const CreateSponsor = () => {
                     fontWeight={600}
                     htmlFor={'sponsorname'}
                   >
-                    Company Name
+                    {t('newSponsor2.companyName')}
                   </FormLabel>
                   <Input
                     w={'full'}
@@ -254,11 +263,7 @@ const CreateSponsor = () => {
                     </Text>
                   )}
                   <FormErrorMessage>
-                    {errors.sponsorname ? (
-                      <>{errors.sponsorname.message}</>
-                    ) : (
-                      <></>
-                    )}
+                    {errors.sponsorname ? t('newSponsor2.required') : null}
                   </FormErrorMessage>
                 </FormControl>
                 <FormControl w={'full'} isRequired>
@@ -268,7 +273,7 @@ const CreateSponsor = () => {
                     fontWeight={600}
                     htmlFor={'slug'}
                   >
-                    Company Username
+                    {t('newSponsor2.companyUsername')}
                   </FormLabel>
                   <Input
                     w={'full'}
@@ -294,7 +299,7 @@ const CreateSponsor = () => {
                     </Text>
                   )}
                   <FormErrorMessage>
-                    {errors.slug ? <>{errors.slug.message}</> : <></>}
+                    {errors.slug ? t('newSponsor2.required') : null}
                   </FormErrorMessage>
                 </FormControl>
               </Flex>
@@ -306,7 +311,7 @@ const CreateSponsor = () => {
                     fontWeight={600}
                     htmlFor={'sponsorname'}
                   >
-                    Company URL
+                    {t('newSponsor2.companyUrl')}
                   </FormLabel>
                   <Input
                     borderColor={'brand.slate.300'}
@@ -317,11 +322,7 @@ const CreateSponsor = () => {
                     {...register('sponsorurl')}
                   />
                   <FormErrorMessage>
-                    {errors.sponsorurl ? (
-                      <>{errors.sponsorurl.message}</>
-                    ) : (
-                      <></>
-                    )}
+                    {errors.sponsorurl ? t('newSponsor2.invalidUrl') : null}
                   </FormErrorMessage>
                 </FormControl>
                 <FormControl w={'full'} isRequired>
@@ -331,7 +332,7 @@ const CreateSponsor = () => {
                     fontWeight={600}
                     htmlFor={'twitterHandle'}
                   >
-                    Company Twitter
+                    {t('newSponsor2.companyTwitter')}
                   </FormLabel>
                   <Input
                     w={'full'}
@@ -342,11 +343,9 @@ const CreateSponsor = () => {
                     {...register('twitterHandle')}
                   />
                   <FormErrorMessage>
-                    {errors.twitterHandle ? (
-                      <>{errors.twitterHandle.message}</>
-                    ) : (
-                      <></>
-                    )}
+                    {errors.twitterHandle
+                      ? t('newSponsor2.invalidTwitter')
+                      : null}
                   </FormErrorMessage>
                 </FormControl>
               </HStack>
@@ -360,11 +359,11 @@ const CreateSponsor = () => {
                       fontWeight={600}
                       htmlFor={'entityName'}
                     >
-                      Entity Name
+                      {t('newSponsor2.entityName')}
                     </FormLabel>
                     <Tooltip
                       fontSize="xs"
-                      label="Please mention the official entity name of your project. If you are a DAO, simply mention the name of the DAO. If you neither have an entity nor are a DAO, mention your full name."
+                      label={t('newSponsor2.entityNameTooltip')}
                     >
                       <InfoOutlineIcon
                         color="brand.slate.500"
@@ -380,15 +379,11 @@ const CreateSponsor = () => {
                     _placeholder={{ color: 'brand.slate.300' }}
                     focusBorderColor="brand.purple"
                     id="entityName"
-                    placeholder="Full Entity Name"
+                    placeholder={t('newSponsor2.entityNamePlaceholder')}
                     {...register('entityName')}
                   />
                   <FormErrorMessage>
-                    {errors.entityName ? (
-                      <>{errors.entityName.message}</>
-                    ) : (
-                      <></>
-                    )}
+                    {errors.entityName ? t('newSponsor2.required') : null}
                   </FormErrorMessage>
                 </FormControl>
               </HStack>
@@ -399,7 +394,7 @@ const CreateSponsor = () => {
                     fontSize={'15px'}
                     fontWeight={600}
                   >
-                    Company Logo{' '}
+                    {t('newSponsor2.companyLogo')}{' '}
                     <span
                       style={{
                         color: 'red',
@@ -427,15 +422,16 @@ const CreateSponsor = () => {
                     fontWeight={600}
                     htmlFor={'industry'}
                   >
-                    Industry
+                    {t('newSponsor2.industry')}
                   </FormLabel>
 
                   <Select
+                    placeholder={t('newSponsor2.selectIndustry')}
                     closeMenuOnSelect={false}
                     components={animatedComponents}
                     isMulti
                     options={IndustryList.map((elm: string) => {
-                      return { label: elm, value: elm };
+                      return { label: t(`industries.${elm}`), value: elm };
                     })}
                     styles={{
                       control: (baseStyles) => ({
@@ -461,7 +457,7 @@ const CreateSponsor = () => {
                     fontWeight={600}
                     htmlFor={'bio'}
                   >
-                    Company Short Bio
+                    {t('newSponsor2.companyBio')}
                   </FormLabel>
                   <Input
                     w={'full'}
@@ -471,7 +467,7 @@ const CreateSponsor = () => {
                     id="bio"
                     maxLength={180}
                     {...register('bio')}
-                    placeholder="What does your company do?"
+                    placeholder={t('newSponsor2.bioPlaceholder')}
                   />
                   <Text
                     color={
@@ -482,7 +478,9 @@ const CreateSponsor = () => {
                     fontSize={'xs'}
                     textAlign="right"
                   >
-                    {180 - (watch('bio')?.length || 0)} characters left
+                    {t('newSponsor2.charactersLeft', {
+                      count: 180 - (watch('bio')?.length || 0),
+                    })}
                   </Text>
                   <FormErrorMessage>
                     {errors.bio ? <>{errors.bio.message}</> : <></>}
@@ -492,34 +490,30 @@ const CreateSponsor = () => {
               <Box my={8}>
                 {hasError && (
                   <Text align="center" mb={2} color="red">
-                    {errorMessage}
+                    {t('newSponsor2.errorMessage')}
                     {(validationErrorMessage ||
                       sponsorNameValidationErrorMessage) &&
-                      'Company name/username already exists.'}
+                      t('newSponsor2.companyNameExists')}
                   </Text>
                 )}
                 {(validationErrorMessage ||
                   sponsorNameValidationErrorMessage) && (
-                    <Text align={'center'} color="yellow.500">
-                      If you want access to the existing account, contact us on
-                      Telegram at{' '}
-                      <Link href={PDTG} isExternal>
-                        @pratikdholani
-                      </Link>
-                    </Text>
-                  )}
+                  <Text align={'center'} color="yellow.500">
+                    {t('newSponsor2.existingAccountContact')}
+                  </Text>
+                )}
               </Box>
               <Button
                 className="ph-no-capture"
                 w="full"
                 isDisabled={imageUrl === ''}
                 isLoading={!!isLoading}
-                loadingText="Creating..."
+                loadingText={t('newSponsor2.creatingText')}
                 size="lg"
                 type="submit"
                 variant="solid"
               >
-                Create Sponsor
+                {t('newSponsor2.createSponsor')}
               </Button>
             </form>
           </VStack>

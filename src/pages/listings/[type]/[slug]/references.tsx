@@ -1,6 +1,7 @@
 import { Box, Grid, HStack, Text } from '@chakra-ui/react';
 import axios from 'axios';
 import type { GetServerSideProps } from 'next';
+import { useTranslation } from 'next-i18next';
 
 import { OgImageViewer } from '@/components/shared/ogImageViewer';
 import { type Listing } from '@/features/listings';
@@ -33,6 +34,8 @@ const ReferenceCard = ({ link }: { link?: string }) => {
 };
 
 function BountyDetails({ bounty }: BountyDetailsProps) {
+  const { t } = useTranslation();
+
   return (
     <ListingPageLayout bounty={bounty}>
       <Box>
@@ -48,7 +51,7 @@ function BountyDetails({ bounty }: BountyDetailsProps) {
         >
           <Box w="full">
             <Text mt={2} mb={6} color="gray.500" fontSize="xl" fontWeight={600}>
-              References
+              {t('listingReferences.references')}
             </Text>
             <Grid
               gap={6}

@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { t } from 'i18next';
 import { type GetServerSideProps } from 'next';
 import NextImage from 'next/image';
 import { useRouter } from 'next/router';
@@ -109,8 +110,8 @@ export default function NewProfilePage({
     <Default
       meta={
         <Meta
-          title="Make Your Profile | Earn on Superteam | Connect with Crypto Talent"
-          description="Join Superteam to engage with top talent and discover bounties and grants for your crypto projects."
+          title={t('newProfile.metaTitle')}
+          description={t('newProfile.metaDescription')}
           canonical="https://earn.superteam.fun/new/"
         />
       }
@@ -135,7 +136,7 @@ export default function NewProfilePage({
             <Flex direction={'column'} gap={9} w="full">
               <Flex direction={'column'} gap={1.5}>
                 <Text color="brand.slate.900" fontSize={'2xl'} fontWeight={600}>
-                  Continue as talent
+                  {t('newProfile.continueAsTalent')}
                 </Text>
                 <Text
                   color="brand.slate.500"
@@ -143,8 +144,7 @@ export default function NewProfilePage({
                   lineHeight={'21.78px'}
                   letterSpacing="-0.2px"
                 >
-                  Create a profile to start submitting, and get notified on new
-                  work opportunities
+                  {t('newProfile.createProfileDescription')}
                 </Text>
               </Flex>
 
@@ -185,12 +185,14 @@ export default function NewProfilePage({
                   </Box>
                   <Box flexDir={'column'} gap={5} display={'flex'} px={4}>
                     <BulletPoint type="TALENT">
-                      Contribute to top Solana projects
+                      {t('newProfile.contributeToProjects')}
                     </BulletPoint>
                     <BulletPoint type="TALENT">
-                      Build your web3 resume
+                      {t('newProfile.buildResume')}
                     </BulletPoint>
-                    <BulletPoint type="TALENT">Get paid in crypto</BulletPoint>
+                    <BulletPoint type="TALENT">
+                      {t('newProfile.getPaidInCrypto')}
+                    </BulletPoint>
                   </Box>
                   <Divider borderColor="brand.slate.300" />
                   <Box px={4} pb={4}>
@@ -225,7 +227,7 @@ export default function NewProfilePage({
           <Flex direction={'column'} gap={9} w="full">
             <Flex direction={'column'} gap={1.5}>
               <Text color="brand.slate.900" fontSize={'2xl'} fontWeight={600}>
-                Continue as a sponsor
+                {t('newProfile.continueAsSponsor')}
               </Text>
               <Text
                 color="brand.slate.500"
@@ -233,8 +235,7 @@ export default function NewProfilePage({
                 lineHeight={'21.78px'}
                 letterSpacing="-0.2px"
               >
-                List a bounty or freelance gig for your project and find your
-                next contributor
+                {t('newProfile.listBountyDescription')}
               </Text>
             </Flex>
             <AuthWrapper style={{ width: '100%' }}>
@@ -274,12 +275,14 @@ export default function NewProfilePage({
                 </Box>
                 <Box flexDir={'column'} gap={5} display={'flex'} px={4}>
                   <BulletPoint type="SPONSOR">
-                    Get in front of 10,000 weekly visitors
+                    {t('newProfile.getVisibility')}
                   </BulletPoint>
                   <BulletPoint type="SPONSOR">
-                    20+ templates to choose from
+                    {t('newProfile.templates')}
                   </BulletPoint>
-                  <BulletPoint type="SPONSOR">100% free</BulletPoint>
+                  <BulletPoint type="SPONSOR">
+                    {t('newProfile.free')}
+                  </BulletPoint>
                 </Box>
                 <Divider borderColor="brand.slate.300" />
                 <Box px={4} pb={4}>

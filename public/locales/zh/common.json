@@ -1973,5 +1973,154 @@
     "Open In": "开放倒计时",
     "Close In": "关闭倒计时",
     "Closed": "已关闭"
+  },
+  "winnerPage": {
+    "apply": "申请",
+    "by": "来自",
+    "earnListing": "Solar Earn 列表",
+    "on": "在",
+    "earn": "Solar Earn",
+    "isSeekingFreelancers": "正在寻找自由职业者和开发者",
+    "toWorkOn": "参与",
+    "applyHere": "| 在此申请",
+    "bounty": "悬赏",
+    "bountyAlt": "Solar 悬赏"
+  },
+  "newProfile": {
+    "continueAsTalent": "以人才身份继续",
+    "createProfileDescription": "创建个人资料以开始提交,并获得新工作机会的通知",
+    "contributeToProjects": "为顶级 Solana 项目做贡献",
+    "buildResume": "建立您的 web3 简历",
+    "getPaidInCrypto": "获得加密货币支付",
+    "continueAsSponsor": "以赞助商身份继续",
+    "listBountyDescription": "为您的项目发布悬赏或自由职业机会,寻找下一位贡献者",
+    "getVisibility": "每周获得 10,000+ 访问者的关注",
+    "templates": "20+ 个模板可供选择",
+    "free": "100% 免费",
+    "joinOthers": "加入其他 {{count}}+ 用户",
+    "metaTitle": "创建您的个人资料 | 在 Superteam 上赚取收入 | 与加密人才建立联系",
+    "metaDescription": "加入 Superteam 与顶级人才互动,发现您的加密项目的悬赏和资助。"
+  },
+  "newSponsor2": {
+    "welcomeToEarn": "欢迎来到 Superteam Earn",
+    "basicInformation": "让我们从一些关于您团队的基本信息开始",
+    "companyName": "公司名称",
+    "starkIndustries": "斯塔克工业",
+    "companyUsername": "公司用户名",
+    "companyUrl": "公司网址",
+    "companyUrlPlaceholder": "https://starkindustries.com",
+    "companyTwitter": "公司 Twitter",
+    "twitterPlaceholder": "@StarkIndustries",
+    "entityName": "实体名称",
+    "entityNameTooltip": "请提供您项目的官方实体名称。如果您是 DAO,只需提供 DAO 的名称。如果您既不是实体也不是 DAO,请提供您的全名。",
+    "entityNamePlaceholder": "完整实体名称",
+    "companyLogo": "公司标志",
+    "industry": "行业",
+    "companyBio": "公司简介",
+    "bioPlaceholder": "您的公司是做什么的?",
+    "charactersLeft": "还剩 {{count}} 个字符",
+    "createSponsor": "创建赞助商",
+    "creatingText": "正在创建...",
+    "errorMessage": "抱歉！提交时发生错误。请重试或通过 support@Solarearn.com 联系我们",
+    "existingAccountContact": "如果您想访问现有账户,请通过 Telegram @pratikdholani 联系我们",
+    "companyNameExists": "公司名称/用户名已存在。",
+    "oneStepAway": "您只差一步",
+    "joiningEarn": "就能加入 Superteam Earn",
+    "metaTitle": "创建赞助商 | Superteam Earn",
+    "metaDescription": "所有 Solana 机会尽在一处！",
+    "bioLengthExceeded": "公司简介长度超出限制",
+    "notAuthorized": "抱歉！您没有创建赞助商的权限。",
+    "nameExists": "抱歉！赞助商名称或用户名已存在。",
+    "slugPlaceholder": "starkindustries",
+    "required": "此字段为必填项",
+    "invalidUrl": "请输入有效的网址",
+    "invalidTwitter": "请输入有效的 Twitter 用户名",
+    "requiredField": "此字段为必填项",
+    "selectIndustry": "选择行业",
+    "uploadLogo": "上传标志",
+    "maxSize": "最大尺寸 5MB",
+    "industryRequired": "请至少选择一个行业",
+    "bioRequired": "请提供公司简介",
+    "logoRequired": "请上传公司标志"
+  },
+  "talentOnboarding": {
+    "createProfile": "创建您的个人资料",
+    "readyToContribute": "如果您准备好为加密项目做贡献，您来对地方了。",
+    "tellAboutWork": "告诉我们您的工作经历",
+    "betterMatch": "您告诉我们的越多，我们就能为您找到更好的匹配！",
+    "socialsAndProof": "社交媒体和工作证明",
+    "learnMoreWork": "人们在哪里可以了解更多关于您的工作？",
+    "meta": {
+      "title": "创建您的个人资料以访问悬赏和资助 | Solar Earn",
+      "description": "成为 Solar 人才网络的一部分，在这里您可以展示您的技能并参与各种加密货币悬赏、资助和项目。",
+      "canonical": "https://earn.superteam.fun/new/talent/"
+    }
+  },
+  "projectsAll": {
+    "allProjects": "所有项目",
+    "biteSize": "适合自由职业者的小任务",
+    "noListings": "暂无可用列表！",
+    "updatePreferences": "从用户菜单更新您的电子邮件偏好以获取新工作机会通知。"
+  },
+  "projectsPage": {
+    "metaTitle": "在加密货币领域申请项目 | Solar Earn",
+    "metaDescription": "发现寻找人才的独特加密项目。在 Solar Earn 上申请并抓住在加密领域工作和赚钱的机会。"
+  },
+  "regionAll": {
+    "title": "欢迎来到 Superteam Earn {{displayName}} | 发现悬赏和资助",
+    "description": "欢迎来到 Superteam {{displayName}} 的页面 — 发现悬赏和资助,成为全球加密社区的一员",
+    "metaDescription": "欢迎来到 Superteam {{displayName}} 的页面 — 发现悬赏和资助,成为全球加密社区的一员",
+    "freelanceGigs": "自由职业机会"
+  },
+  "regionPage": {
+    "freelanceGigs": "自由职业机会",
+    "grants": "补助",
+    "grantsDescription": "为开发者提供的无股权融资机会",
+    "noGrantsAvailable": "暂无可用资助！",
+    "subscribeToNotifications": "订阅通知以获取新资助信息。",
+    "welcomeTitle": "欢迎来到 Superteam Earn {{displayName}} | 发现悬赏和资助",
+    "welcomeDescription": "欢迎来到 Superteam {{displayName}} 的页面 — 发现悬赏和资助,成为全球加密社区的一员"
+  },
+  "searchPage": {
+    "title": "搜索 - {{query}} | Solar Earn",
+    "description": "搜索结果: {{query}}",
+    "loading": "加载中...",
+    "noResults": "未找到结果",
+    "tryAgain": "请重试",
+    "searchPlaceholder": "搜索 Solar Earn 列表",
+    "count": "找到 {{count}} 个结果",
+    "for": "搜索 \"{{query}}\"",
+    "filters": {
+      "status": "状态",
+      "skills": "技能"
+    }
+  },
+  "sponsorEdit": {
+    "meta": {
+      "title": "编辑赞助商资料 | Solar Earn",
+      "description": "所有 Solana 机会尽在一处！"
+    },
+    "editSponsorProfile": "编辑赞助商资料",
+    "companyName": "公司名称",
+    "companyUsername": "公司用户名",
+    "companyURL": "公司网址",
+    "companyTwitter": "公司 Twitter",
+    "entityName": "实体名称",
+    "entityNameTooltip": "请提供您项目的官方实体名称。如果您是 DAO，只需提供 DAO 的名称。如果您既不是实体也不是 DAO，请提供您的全名。",
+    "companyLogo": "公司标志",
+    "industry": "行业",
+    "companyShortBio": "公司简介",
+    "errors": {
+      "sponsorNameValidation": "无效的赞助商名称",
+      "slugValidation": "无效的短链接格式",
+      "defaultError": "抱歉！编辑公司资料时发生错误！请更新详细信息并重试或联系支持！"
+    },
+    "updateProfile": "更新资料"
+  },
+  "sponsorIndexPage": {
+    "videoTitle": "演示视频",
+    "metaTitle": "在 Solar Earn 上为您的加密项目寻找顶级人才",
+    "metaDescription": "为您的加密项目寻找顶级人才？Solar Earn 为您连接加密领域的专家，提供悬赏、项目和资助机会。",
+    "videoIframeTitle": "Solar Earn 功能演示视频"
   }
 }

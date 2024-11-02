@@ -1,5 +1,6 @@
 import { Box, Divider, Flex, VStack } from '@chakra-ui/react';
 import { Regions } from '@prisma/client';
+import { t } from 'i18next';
 import debounce from 'lodash.debounce';
 import { type GetServerSideProps } from 'next';
 import { useSearchParams } from 'next/navigation';
@@ -115,8 +116,8 @@ const Search = ({
     <Default
       meta={
         <Meta
-          title={`Search - ${query} | Superteam Earn`}
-          description={`Search Results for ${query}`}
+          title={t('searchPage.title', { query })}
+          description={t('searchPage.description', { query })}
         />
       }
     >

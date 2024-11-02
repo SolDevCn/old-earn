@@ -1,6 +1,7 @@
 import { Flex, Grid } from '@chakra-ui/react';
 import localFont from 'next/font/local';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useState } from 'react';
 
 import {
@@ -24,6 +25,7 @@ const font = localFont({
 const Sponsor = () => {
   const [videoPopup, setVideoPopup] = useState<boolean>(false);
   const router = useRouter();
+  const { t } = useTranslation();
 
   const VideoPlayback = () => {
     return (
@@ -56,6 +58,7 @@ const Sponsor = () => {
               right: '0',
             }}
             src="https://www.youtube.com/embed/tHdS-JNwsgg?autoplay=1&mute=1"
+            title={t('sponsorIndexPage.videoIframeTitle')}
           ></iframe>
         </Flex>
       </Grid>
@@ -65,8 +68,8 @@ const Sponsor = () => {
   return (
     <>
       <Meta
-        title="Find Top Talent for Your Crypto Projects on Superteam Earn"
-        description="Seeking top talent for your crypto project? Superteam Earn connects you with experts for Bounties, Projects, and Grants in the crypto space."
+        title={t('sponsorIndexPage.metaTitle')}
+        description={t('sponsorIndexPage.metaDescription')}
         og={`${router.basePath}/assets/og/sponsor.png`}
       />
 

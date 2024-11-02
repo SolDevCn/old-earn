@@ -15,6 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { t } from 'i18next';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
 import { useEffect, useState } from 'react';
@@ -135,15 +136,15 @@ const UpdateSponsor = () => {
     <Default
       meta={
         <Meta
-          title="Edit Sponsor Profile | Superteam Earn"
-          description="Every Solana opportunity in one place!"
+          title={t('sponsorEdit.meta.title')}
+          description={t('sponsorEdit.meta.description')}
         />
       }
     >
       <VStack w="full" pt={12} pb={24}>
         <VStack>
           <Text color={'gray.700'} fontSize={'3xl'} fontWeight={700}>
-            Edit Sponsor Profile
+            {t('sponsorEdit.editSponsorProfile')}
           </Text>
         </VStack>
         <VStack w={'2xl'} pt={10}>
@@ -170,7 +171,7 @@ const UpdateSponsor = () => {
                   fontWeight={600}
                   htmlFor={'sponsorname'}
                 >
-                  Company Name
+                  {t('sponsorEdit.companyName')}
                 </FormLabel>
                 <Input
                   w={'full'}
@@ -186,7 +187,7 @@ const UpdateSponsor = () => {
                 />
                 {isSponsorNameInvalid && (
                   <Text color={'red'} fontSize={'sm'}>
-                    {sponsorNameValidationErrorMessage}
+                    {t('sponsorEdit.errors.sponsorNameValidation')}
                   </Text>
                 )}
                 <FormErrorMessage>
@@ -204,7 +205,7 @@ const UpdateSponsor = () => {
                   fontWeight={600}
                   htmlFor={'slug'}
                 >
-                  Company Username
+                  {t('sponsorEdit.companyUsername')}
                 </FormLabel>
                 <Input
                   w={'full'}
@@ -220,7 +221,7 @@ const UpdateSponsor = () => {
                 />
                 {isSlugInvalid && (
                   <Text color={'red'} fontSize={'sm'}>
-                    {slugValidationErrorMessage}
+                    {t('sponsorEdit.errors.slugValidation')}
                   </Text>
                 )}
                 <FormErrorMessage>
@@ -236,7 +237,7 @@ const UpdateSponsor = () => {
                   fontWeight={600}
                   htmlFor={'sponsorname'}
                 >
-                  Company URL
+                  {t('sponsorEdit.companyURL')}
                 </FormLabel>
                 <Input
                   borderColor={'brand.slate.300'}
@@ -257,7 +258,7 @@ const UpdateSponsor = () => {
                   fontWeight={600}
                   htmlFor={'twitterHandle'}
                 >
-                  Company Twitter
+                  {t('sponsorEdit.companyTwitter')}
                 </FormLabel>
                 <Input
                   w={'full'}
@@ -287,11 +288,11 @@ const UpdateSponsor = () => {
                     fontWeight={600}
                     htmlFor={'entityName'}
                   >
-                    Entity Name
+                    {t('sponsorEdit.entityName')}
                   </FormLabel>
                   <Tooltip
                     fontSize="xs"
-                    label="Please mention the official entity name of your project. If you are a DAO, simply mention the name of the DAO. If you neither have an entity nor are a DAO, mention your full name."
+                    label={t('sponsorEdit.entityNameTooltip')}
                   >
                     <InfoOutlineIcon
                       color="brand.slate.500"
@@ -322,14 +323,7 @@ const UpdateSponsor = () => {
                 fontSize={'15px'}
                 fontWeight={600}
               >
-                Company Logo{' '}
-                <span
-                  style={{
-                    color: 'red',
-                  }}
-                >
-                  *
-                </span>
+                {t('sponsorEdit.companyLogo')}
               </Heading>
               <HStack gap={5}>
                 {isPhotoLoading ? (
@@ -371,7 +365,7 @@ const UpdateSponsor = () => {
                   fontWeight={600}
                   htmlFor={'industry'}
                 >
-                  Industry
+                  {t('sponsorEdit.industry')}
                 </FormLabel>
 
                 <Select
@@ -412,7 +406,7 @@ const UpdateSponsor = () => {
                   fontWeight={600}
                   htmlFor={'bio'}
                 >
-                  Company Short Bio
+                  {t('sponsorEdit.companyShortBio')}
                 </FormLabel>
                 <Input
                   w={'full'}
@@ -443,10 +437,7 @@ const UpdateSponsor = () => {
             <Box mt={8}>
               {hasError && (
                 <Text align="center" mb={4} color="red">
-                  {errorMessage ||
-                    'Sorry! An error occurred while editing your company profile!'}
-                  <br />
-                  Please update the details & try again or contact support!
+                  {errorMessage || t('sponsorEdit.errors.defaultError')}
                 </Text>
               )}
               <Button
@@ -457,7 +448,7 @@ const UpdateSponsor = () => {
                 type="submit"
                 variant="solid"
               >
-                Update Profile
+                {t('sponsorEdit.updateProfile')}
               </Button>
             </Box>
           </form>

@@ -1973,5 +1973,154 @@
     "Open In": "Open In",
     "Close In": "Close In",
     "Closed": "Closed"
+  },
+  "winnerPage": {
+    "apply": "Apply",
+    "by": "by",
+    "earnListing": "Solar Earn Listing",
+    "on": "on",
+    "earn": "Solar Earn",
+    "isSeekingFreelancers": "is seeking freelancers and builders",
+    "toWorkOn": "to work on",
+    "applyHere": "| Apply Here",
+    "bounty": "Bounty",
+    "bountyAlt": "Solar Bounty"
+  },
+  "newProfile": {
+    "continueAsTalent": "Continue as talent",
+    "createProfileDescription": "Create a profile to start submitting, and get notified on new work opportunities",
+    "contributeToProjects": "Contribute to top Solana projects",
+    "buildResume": "Build your web3 resume",
+    "getPaidInCrypto": "Get paid in crypto",
+    "continueAsSponsor": "Continue as a sponsor",
+    "listBountyDescription": "List a bounty or freelance gig for your project and find your next contributor",
+    "getVisibility": "Get in front of 10,000 weekly visitors",
+    "templates": "20+ templates to choose from",
+    "free": "100% free",
+    "joinOthers": "Join {{count}}+ others",
+    "metaTitle": "Make Your Profile | Earn on Superteam | Connect with Crypto Talent",
+    "metaDescription": "Join Superteam to engage with top talent and discover bounties and grants for your crypto projects."
+  },
+  "newSponsor2": {
+    "welcomeToEarn": "Welcome to Superteam Earn",
+    "basicInformation": "Let's start with some basic information about your team",
+    "companyName": "Company Name",
+    "starkIndustries": "Stark Industries",
+    "companyUsername": "Company Username",
+    "companyUrl": "Company URL",
+    "companyUrlPlaceholder": "https://starkindustries.com",
+    "companyTwitter": "Company Twitter",
+    "twitterPlaceholder": "@StarkIndustries",
+    "entityName": "Entity Name",
+    "entityNameTooltip": "Please mention the official entity name of your project. If you are a DAO, simply mention the name of the DAO. If you neither have an entity nor are a DAO, mention your full name.",
+    "entityNamePlaceholder": "Full Entity Name",
+    "companyLogo": "Company Logo",
+    "industry": "Industry",
+    "companyBio": "Company Short Bio",
+    "bioPlaceholder": "What does your company do?",
+    "charactersLeft": "{{count}} characters left",
+    "createSponsor": "Create Sponsor",
+    "creatingText": "Creating...",
+    "errorMessage": "Sorry! An error occurred while submitting. Please try again or contact us at support@Solarearn.com",
+    "existingAccountContact": "If you want access to the existing account, contact us on Telegram at @pratikdholani",
+    "companyNameExists": "Company name/username already exists.",
+    "oneStepAway": "You're one step away",
+    "joiningEarn": "from joining Superteam Earn",
+    "metaTitle": "Create Sponsor | Superteam Earn",
+    "metaDescription": "Every Solana opportunity in one place!",
+    "bioLengthExceeded": "Company short bio length exceeded the limit",
+    "notAuthorized": "Sorry! You are not authorized to create a sponsor.",
+    "nameExists": "Sorry! Sponsor name or username already exists.",
+    "slugPlaceholder": "starkindustries",
+    "required": "This field is required",
+    "invalidUrl": "Please enter a valid URL",
+    "invalidTwitter": "Please enter a valid Twitter handle",
+    "requiredField": "This field is required",
+    "selectIndustry": "Select industry",
+    "uploadLogo": "Upload Logo",
+    "maxSize": "Maximum size 5MB",
+    "industryRequired": "Please select at least one industry",
+    "bioRequired": "Please provide a company bio",
+    "logoRequired": "Please upload a company logo"
+  },
+  "talentOnboarding": {
+    "createProfile": "Create Your Profile",
+    "readyToContribute": "If you're ready to start contributing to crypto projects, you're in the right place.",
+    "tellAboutWork": "Tell Us About Your Work",
+    "betterMatch": "The more you tell us, the better we can match you!",
+    "socialsAndProof": "Socials & Proof of Work",
+    "learnMoreWork": "Where can people learn more about your work?",
+    "meta": {
+      "title": "Create Your Profile to Access Bounties & Grants | Superteam Earn",
+      "description": "Become part of Superteam's talent network, where you can present your skills and collaborate on various crypto bounties, grants, and projects.",
+      "canonical": "https://earn.superteam.fun/new/talent/"
+    }
+  },
+  "projectsAll": {
+    "allProjects": "All Projects",
+    "biteSize": "Bite sized tasks for freelancers",
+    "noListings": "No listings available!",
+    "updatePreferences": "Update your email preferences (from the user menu) to be notified about new work opportunities."
+  },
+  "projectsPage": {
+    "metaTitle": "Apply to Projects in the Crypto Space | Solar Earn",
+    "metaDescription": "Discover unique crypto projects seeking talent. Apply on Solar Earn and take your chance to work and earn in the crypto space."
+  },
+  "regionAll": {
+    "title": "Welcome to Superteam Earn {{displayName}} | Discover Bounties and Grants",
+    "description": "Welcome to Superteam {{displayName}}'s page — Discover bounties and grants and become a part of the global crypto community",
+    "metaDescription": "Welcome to Superteam {{displayName}}'s page — Discover bounties and grants and become a part of the global crypto community",
+    "freelanceGigs": "Freelance Gigs"
+  },
+  "regionPage": {
+    "freelanceGigs": "Freelance Gigs",
+    "grants": "Grants",
+    "grantsDescription": "Equity-free funding opportunities for builders",
+    "noGrantsAvailable": "No grants available!",
+    "subscribeToNotifications": "Subscribe to notifications to get notified about new grants.",
+    "welcomeTitle": "Welcome to Superteam Earn {{displayName}} | Discover Bounties and Grants",
+    "welcomeDescription": "Welcome to Superteam {{displayName}}'s page — Discover bounties and grants and become a part of the global crypto community"
+  },
+  "searchPage": {
+    "title": "Search - {{query}} | Solar Earn",
+    "description": "Search Results for {{query}}",
+    "loading": "Loading...",
+    "noResults": "No results found",
+    "tryAgain": "Please try again",
+    "searchPlaceholder": "Search Solar Earn Listings",
+    "count": "Found {{count}} results",
+    "for": "for \"{{query}}\"",
+    "filters": {
+      "status": "Status",
+      "skills": "Skills"
+    }
+  },
+  "sponsorEdit": {
+    "meta": {
+      "title": "Edit Sponsor Profile | Solar Earn",
+      "description": "Every Solana opportunity in one place!"
+    },
+    "editSponsorProfile": "Edit Sponsor Profile",
+    "companyName": "Company Name",
+    "companyUsername": "Company Username",
+    "companyURL": "Company URL",
+    "companyTwitter": "Company Twitter",
+    "entityName": "Entity Name",
+    "entityNameTooltip": "Please mention the official entity name of your project. If you are a DAO, simply mention the name of the DAO. If you neither have an entity nor are a DAO, mention your full name.",
+    "companyLogo": "Company Logo",
+    "industry": "Industry",
+    "companyShortBio": "Company Short Bio",
+    "errors": {
+      "sponsorNameValidation": "Invalid sponsor name",
+      "slugValidation": "Invalid slug format",
+      "defaultError": "Sorry! An error occurred while editing your company profile! Please update the details & try again or contact support!"
+    },
+    "updateProfile": "Update Profile"
+  },
+  "sponsorIndexPage": {
+    "videoTitle": "Demo Video",
+    "metaTitle": "Find Top Talent for Your Crypto Projects on Solar Earn",
+    "metaDescription": "Seeking top talent for your crypto project? Solar Earn connects you with experts for Bounties, Projects, and Grants in the crypto space.",
+    "videoIframeTitle": "Solar Earn Feature Demo Video"
   }
 }

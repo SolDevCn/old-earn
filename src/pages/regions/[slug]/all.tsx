@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import type { NextPageContext } from 'next';
+import { useTranslation } from 'next-i18next';
 
 import { Superteams } from '@/constants/Superteam';
 import { ListingTabs, regionalListingsQuery } from '@/features/listings';
@@ -25,11 +26,18 @@ export default function AllRegionListingsPage({
   ogImage.searchParams.set('region', st.region);
   ogImage.searchParams.set('code', st.code!);
 
+  const { t } = useTranslation();
+
   return (
     <Home type="region" st={st}>
       <Meta
-        title={`Welcome to Superteam Earn ${displayName} | Discover Bounties and Grants`}
-        description={`Welcome to Superteam ${displayName}'s page — Discover bounties and grants and become a part of the global crypto community`}
+        title={t('regionAll.title', {
+          displayName: displayName,
+          description: t('regionAll.description'),
+        })}
+        description={t('regionAll.metaDescription', {
+          displayName: displayName,
+        })}
         canonical={`https://earn.superteam.fun/regions/${slug}/`}
         og={ogImage.toString()}
       />
@@ -38,7 +46,7 @@ export default function AllRegionListingsPage({
           bounties={listings?.bounties}
           isListingsLoading={isListingsLoading}
           emoji="/assets/home/emojis/moneyman.webp"
-          title="Freelance Gigs"
+          title={t('regionAll.freelanceGigs')}
           viewAllLink="/all"
         />
       </Box>

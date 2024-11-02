@@ -1,5 +1,6 @@
 import { Heading, HStack, Text, VStack } from '@chakra-ui/react';
 import axios from 'axios';
+import { t } from 'i18next';
 import { type GetServerSideProps } from 'next';
 import router from 'next/router';
 import React, { Fragment, useEffect, useState } from 'react';
@@ -67,17 +68,16 @@ const StepsCon = () => {
 
   const TitleArray = [
     {
-      title: 'Create Your Profile',
-      subTitle:
-        "If you're ready to start contributing to crypto projects, you're in the right place.",
+      title: t('talentOnboarding.createProfile'),
+      subTitle: t('talentOnboarding.readyToContribute'),
     },
     {
-      title: 'Tell Us About Your Work',
-      subTitle: 'The more you tell us, the better we can match you!',
+      title: t('talentOnboarding.tellAboutWork'),
+      subTitle: t('talentOnboarding.betterMatch'),
     },
     {
-      title: 'Socials & Proof of Work',
-      subTitle: 'Where can people learn more about your work?',
+      title: t('talentOnboarding.socialsAndProof'),
+      subTitle: t('talentOnboarding.learnMoreWork'),
     },
   ];
 
@@ -154,9 +154,9 @@ export default function Talent() {
     <Default
       meta={
         <Meta
-          title="Create Your Profile to Access Bounties & Grants | Superteam Earn"
-          description="Become part of Superteam's talent network, where you can present your skills and collaborate on various crypto bounties, grants, and projects."
-          canonical="https://earn.superteam.fun/new/talent/"
+          title={t('talentOnboarding.meta.title')}
+          description={t('talentOnboarding.meta.description')}
+          canonical={t('talentOnboarding.meta.canonical')}
         />
       }
     >

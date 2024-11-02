@@ -1,6 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { listingsQuery, ListingTabs } from '@/features/listings';
 import { Home } from '@/layouts/Home';
@@ -8,6 +9,8 @@ import { Meta } from '@/layouts/Meta';
 import { dayjs } from '@/utils/dayjs';
 
 export default function ProjectsPage() {
+  const { t } = useTranslation();
+
   const deadline = useMemo(
     () => dayjs().subtract(2, 'months').toISOString(),
     [],
@@ -24,8 +27,8 @@ export default function ProjectsPage() {
   return (
     <Home type="listing">
       <Meta
-        title="Apply to Projects in the Crypto Space | Superteam Earn"
-        description="Discover unique crypto projects seeking talent. Apply on Superteam Earn and take your chance to work and earn in the crypto space."
+        title={t('projectsPage.metaTitle')}
+        description={t('projectsPage.metaDescription')}
         canonical="https://earn.superteam.fun/projects/"
       />
       <Box w={'100%'}>
@@ -33,7 +36,7 @@ export default function ProjectsPage() {
           bounties={listings}
           isListingsLoading={isLoading}
           emoji="/assets/home/emojis/moneyman.webp"
-          title="Projects"
+          title={t('nav.projects')}
           viewAllLink="/projects/all"
           showViewAll
           take={20}
