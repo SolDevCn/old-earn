@@ -1488,5 +1488,102 @@
   },
   "toggleWinner": {
     "failedToToggleWinner": "切换获胜者失败,请稍后重试"
+  },
+  "aboutYou": {
+    "username": "用户名",
+    "usernamePlaceholder": "用户名",
+    "firstName": "名字",
+    "firstNamePlaceholder": "名字",
+    "lastName": "姓氏",
+    "lastNamePlaceholder": "姓氏",
+    "location": "位置",
+    "selectCountry": "选择您的国家",
+    "profilePicture": "头像",
+    "bio": "个人简介",
+    "bioPlaceholder": "这是一个示例占位符",
+    "charactersLeft": "还剩 {{count}} 个字符",
+    "continue": "继续"
+  },
+  "yourLinks": {
+    "atLeastOneSocialRequired": "至少需要添加一个额外的社交链接(除了 Discord)",
+    "otherProofOfWork": "其他工作证明",
+    "increasesChance": "添加更多工作证明可以增加获得工作的机会",
+    "addProject": "添加项目",
+    "finishProfile": "完成个人资料"
+  },
+  "yourWork": {
+    "web3Familiarity": "您对 Web3 有多熟悉？",
+    "pickExperience": "选择您的经验",
+    "workExperience": "工作经验",
+    "workPreference": "工作偏好",
+    "typeOfWork": "工作类型",
+    "currentEmployer": "当前雇主",
+    "currentEmployerPlaceholder": "当前雇主",
+    "communityAffiliations": "社区关系",
+    "web3Interests": "您最感兴趣的 Web3 领域是什么？",
+    "keepInfoPrivate": "保持我的信息私密",
+    "privateInfoTooltip": "您的\"工作偏好\"信息将在您的公开人才档案中隐藏。但是,您仍将继续通过电子邮件收到新机会的更新。",
+    "helperText": "我们将为您选择的技能发送新列表的电子邮件通知"
+  },
+  "addProject": {
+    "projectTitle": "项目标题",
+    "projectTitlePlaceholder": "项目标题",
+    "describeWork": "描述您的工作",
+    "aboutProjectPlaceholder": "关于项目",
+    "charactersLeft": "还剩 {{count}} 个字符",
+    "skillsUsed": "使用的技能",
+    "subSkillsUsed": "使用的子技能",
+    "link": "链接",
+    "linkPlaceholder": "https://example.com",
+    "skillsError": "请添加技能和子技能",
+    "addProject": "添加项目"
+  },
+  "emailSettings": {
+    "updatePreferences": "更新邮件偏好",
+    "tellUsPreferences": "告诉我们您想接收哪些邮件！",
+    "sponsorAlerts": "赞助商提醒",
+    "newSubmissions": "收到新的提交",
+    "commentsReceived": "收到新的评论",
+    "deadlineReminders": "截止日期相关提醒",
+    "talentAlerts": "人才提醒",
+    "weeklyRoundup": "每周新列表汇总",
+    "newListings": "添加了适合我技能的新列表",
+    "likesAndComments": "我的提交收到点赞和评论",
+    "scoutInvites": "赞助商邀请邮件 (Scout)",
+    "generalAlerts": "通用提醒",
+    "commentReplies": "评论回复和标记",
+    "productUpdates": "产品更新和通讯",
+    "updatingPreferences": "正在更新偏好..",
+    "preferencesUpdated": "邮件偏好已更新"
+  },
+  "shareProfile": {
+    "title": "分享个人资料",
+    "description": "与您的朋友或在社交媒体上分享您的工作证明，一切尽在一处",
+    "myProfileMessage": "查看我在 Superteam Earn 上的个人资料！",
+    "otherProfileMessage": "查看这个 Superteam Earn 上的个人资料！",
+    "copy": "复制",
+    "copied": "已复制",
+    "shareTo": "分享到",
+    "shareOn": "分享到 {{platform}}"
+  },
+  "skillSelectTalent": {
+    "yourSkills": "您的技能",
+    "subSkills": "子技能",
+    "selectAllThatApply": "选择所有适用项",
+    "infoIconAlt": "信息图标"
+  },
+  "socialInput": {
+    "discordRequired": "Discord 是必填项",
+    "invalidDiscord": "无效的 Discord 用户名",
+    "invalidTwitter": "无效的 Twitter 用户名或 URL",
+    "invalidGithub": "无效的 GitHub 用户名或 URL",
+    "invalidLinkedin": "无效的 LinkedIn 用户名或 URL",
+    "invalidTelegram": "无效的 Telegram 用户名或 URL",
+    "invalidWebsite": "无效的网站 URL"
+  },
+  "usernameValidation": {
+    "invalidFormat": "用户名只能包含小写字母、数字、'_'和'-'",
+    "unavailable": "用户名已被使用！请尝试其他用户名。",
+    "error": "检查用户名可用性时发生错误。"
   }
 }

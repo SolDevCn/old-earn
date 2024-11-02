@@ -9,6 +9,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import { type Dispatch, type SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -37,6 +38,8 @@ export function YourLinks({ useFormStore }: Props) {
   const { updateState } = useFormStore();
 
   const posthog = usePostHog();
+
+  const { t } = useTranslation();
 
   const uploadProfile = async (
     socials: {
@@ -84,9 +87,7 @@ export function YourLinks({ useFormStore }: Props) {
     const filledSocials = socialFields.filter((field) => data[field]);
 
     if (filledSocials.length === 0) {
-      toast.error(
-        'At least one additional social link (apart from Discord) is required',
-      );
+      toast.error(t('yourLinks.atLeastOneSocialRequired'));
       return;
     }
 
@@ -110,10 +111,10 @@ export function YourLinks({ useFormStore }: Props) {
           <FormControl w="full" mb={5}>
             <SocialInput watch={watch} register={register} />
             <Text color={'brand.slate.500'} fontWeight={'500'}>
-              Other Proof of Work
+              {t('yourLinks.otherProofOfWork')}
             </Text>
             <Text mb={3} color={'brand.slate.400'} fontWeight={400}>
-              Adding more PoW increases your chance of getting work
+              {t('yourLinks.increasesChance')}
             </Text>
             <Box>
               {pow.map((data, idx) => (
@@ -163,7 +164,7 @@ export function YourLinks({ useFormStore }: Props) {
               }}
               variant="outline"
             >
-              Add Project
+              {t('yourLinks.addProject')}
             </Button>
 
             <Button
@@ -176,7 +177,7 @@ export function YourLinks({ useFormStore }: Props) {
               spinnerPlacement="start"
               type="submit"
             >
-              Finish Profile
+              {t('yourLinks.finishProfile')}
             </Button>
           </FormControl>
         </form>

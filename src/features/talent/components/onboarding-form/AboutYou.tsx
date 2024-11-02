@@ -13,6 +13,7 @@ import {
 import { usePostHog } from 'posthog-js/react';
 import { type Dispatch, type SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { ImagePicker } from '@/components/shared/ImagePicker';
 import { CountryList } from '@/constants';
@@ -36,6 +37,7 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
   const [isGooglePhoto, setIsGooglePhoto] = useState<boolean>(
     user?.photo?.includes('googleusercontent.com') || false,
   );
+  const { t } = useTranslation();
 
   const { register, handleSubmit, watch } = useForm({
     defaultValues: {
@@ -65,7 +67,9 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
       <form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
         <FormControl w="full" mb={5} isRequired>
           <Box w={'full'} mb={'1.25rem'}>
-            <FormLabel color={'brand.slate.500'}>Username</FormLabel>
+            <FormLabel color={'brand.slate.500'}>
+              {t('aboutYou.username')}
+            </FormLabel>
             <Input
               color={'gray.800'}
               borderColor="brand.slate.300"
@@ -74,7 +78,7 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
               }}
               focusBorderColor="brand.purple"
               id="username"
-              placeholder="Username"
+              placeholder={t('aboutYou.usernamePlaceholder')}
               {...register('username', { required: true })}
               isInvalid={isInvalid}
               maxLength={40}
@@ -90,7 +94,9 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
 
           <Flex justify="space-between" gap={8} w={'full'} mb={'1.25rem'}>
             <Box w="full">
-              <FormLabel color={'brand.slate.500'}>First Name</FormLabel>
+              <FormLabel color={'brand.slate.500'}>
+                {t('aboutYou.firstName')}
+              </FormLabel>
               <Input
                 color={'gray.800'}
                 borderColor="brand.slate.300"
@@ -99,13 +105,15 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
                 }}
                 focusBorderColor="brand.purple"
                 id="firstName"
-                placeholder="First Name"
+                placeholder={t('aboutYou.firstNamePlaceholder')}
                 {...register('firstName', { required: true })}
                 maxLength={100}
               />
             </Box>
             <Box w="full">
-              <FormLabel color={'brand.slate.500'}>Last Name</FormLabel>
+              <FormLabel color={'brand.slate.500'}>
+                {t('aboutYou.lastName')}
+              </FormLabel>
               <Input
                 color={'gray.800'}
                 borderColor="brand.slate.300"
@@ -114,7 +122,7 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
                 }}
                 focusBorderColor="brand.purple"
                 id="lastName"
-                placeholder="Last Name"
+                placeholder={t('aboutYou.lastNamePlaceholder')}
                 {...register('lastName', { required: true })}
                 maxLength={100}
               />
@@ -122,7 +130,9 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
           </Flex>
 
           <Box w={'full'} mb={'1.25rem'}>
-            <FormLabel color={'brand.slate.500'}>Location</FormLabel>
+            <FormLabel color={'brand.slate.500'}>
+              {t('aboutYou.location')}
+            </FormLabel>
             <Select
               color={watch().location.length === 0 ? 'brand.slate.300' : ''}
               borderColor="brand.slate.300"
@@ -131,7 +141,7 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
               }}
               focusBorderColor="brand.purple"
               id={'location'}
-              placeholder="Select your Country"
+              placeholder={t('aboutYou.selectCountry')}
               {...register('location', { required: true })}
             >
               {CountryList.map((ct) => {
@@ -152,7 +162,7 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
                   color={'brand.slate.500'}
                   requiredIndicator={<></>}
                 >
-                  Profile Picture
+                  {t('aboutYou.profilePicture')}
                 </FormLabel>
                 <ImagePicker
                   defaultValue={{ url: user.photo }}
@@ -177,7 +187,7 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
                   color={'brand.slate.500'}
                   requiredIndicator={<></>}
                 >
-                  Profile Picture
+                  {t('aboutYou.profilePicture')}
                 </FormLabel>
                 <ImagePicker
                   onChange={async (e) => {
@@ -196,7 +206,7 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
           </VStack>
 
           <Box w={'full'} mb={'1.25rem'}>
-            <FormLabel color={'brand.slate.500'}>Your One-Line Bio</FormLabel>
+            <FormLabel color={'brand.slate.500'}>{t('aboutYou.bio')}</FormLabel>
             <Textarea
               borderColor="brand.slate.300"
               _placeholder={{
@@ -205,7 +215,7 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
               focusBorderColor="brand.purple"
               id={'bio'}
               maxLength={180}
-              placeholder="Here is a sample placeholder"
+              placeholder={t('aboutYou.bioPlaceholder')}
               {...register('bio', { required: true })}
             />
             <Text
@@ -215,7 +225,9 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
               fontSize={'xs'}
               textAlign="right"
             >
-              {180 - (watch('bio')?.length || 0)} characters left
+              {t('aboutYou.charactersLeft', {
+                count: 180 - (watch('bio')?.length || 0),
+              })}
             </Text>
           </Box>
           <Button
@@ -228,7 +240,7 @@ export function AboutYou({ setStep, useFormStore }: Step1Props) {
             spinnerPlacement="start"
             type="submit"
           >
-            Continue
+            {t('aboutYou.continue')}
           </Button>
         </FormControl>
       </form>

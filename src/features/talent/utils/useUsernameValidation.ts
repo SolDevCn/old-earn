@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { t } from 'i18next';
 import debounce from 'lodash.debounce';
 import { useEffect, useState } from 'react';
 
@@ -17,9 +18,7 @@ export const useUsernameValidation = (initialValue = '') => {
   const checkUsernameAvailability = async (username: string) => {
     if (!usernamePattern.test(username)) {
       setIsInvalid(true);
-      setValidationErrorMessage(
-        "Username can only contain lowercase letters, numbers, '_', and '-'",
-      );
+      setValidationErrorMessage(t('usernameValidation.invalidFormat'));
       return;
     }
 
@@ -30,14 +29,12 @@ export const useUsernameValidation = (initialValue = '') => {
       const available = response.data.available;
       setIsInvalid(!available);
       setValidationErrorMessage(
-        available ? '' : 'Username is unavailable! Please try another one.',
+        available ? '' : t('usernameValidation.unavailable'),
       );
     } catch (error) {
       logger.error(error);
       setIsInvalid(true);
-      setValidationErrorMessage(
-        'An error occurred while checking username availability.',
-      );
+      setValidationErrorMessage(t('usernameValidation.error'));
     }
   };
 

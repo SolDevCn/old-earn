@@ -17,6 +17,7 @@ import {
 import axios from 'axios';
 import { type Dispatch, type SetStateAction, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 
 import { SkillSelect } from '@/components/shared/SkillSelect';
 import type { MultiSelectOptions } from '@/constants';
@@ -45,6 +46,8 @@ export const AddProject = ({
   upload,
   onNewPow,
 }: AddProjectProps) => {
+  const { t } = useTranslation();
+
   const { register, handleSubmit, setValue, watch } = useForm<{
     title: string;
     description: string;
@@ -161,7 +164,9 @@ export const AddProject = ({
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl isRequired>
               <Box w={'full'} mb={'1.25rem'}>
-                <FormLabel color={'brand.slate.500'}>Project Title</FormLabel>
+                <FormLabel color={'brand.slate.500'}>
+                  {t('addProject.projectTitle')}
+                </FormLabel>
                 <Input
                   borderColor="brand.slate.300"
                   _placeholder={{
@@ -169,13 +174,13 @@ export const AddProject = ({
                   }}
                   focusBorderColor="brand.purple"
                   id="title"
-                  placeholder="Project Title"
+                  placeholder={t('addProject.projectTitlePlaceholder')}
                   {...register('title', { required: true })}
                 />
               </Box>
               <Box w={'full'} mb={'1.25rem'}>
                 <FormLabel color={'brand.slate.500'}>
-                  Describe Your Work
+                  {t('addProject.describeWork')}
                 </FormLabel>
                 <Textarea
                   borderColor="brand.slate.300"
@@ -185,7 +190,7 @@ export const AddProject = ({
                   focusBorderColor="brand.purple"
                   id={'description'}
                   maxLength={180}
-                  placeholder="About the Project"
+                  placeholder={t('addProject.aboutProjectPlaceholder')}
                   {...register('description', { required: true })}
                 />
                 <Text
@@ -197,7 +202,9 @@ export const AddProject = ({
                   fontSize={'xs'}
                   textAlign="right"
                 >
-                  {180 - (watch('description')?.length || 0)} characters left
+                  {t('addProject.charactersLeft', {
+                    count: 180 - (watch('description')?.length || 0),
+                  })}
                 </Text>
               </Box>
               <SkillSelect
@@ -205,12 +212,14 @@ export const AddProject = ({
                 subSkills={subSkills}
                 setSkills={setSkills}
                 setSubSkills={setSubSkills}
-                skillLabel="Skills Used"
-                subSkillLabel="Sub Skills Used"
+                skillLabel={t('addProject.skillsUsed')}
+                subSkillLabel={t('addProject.subSkillsUsed')}
               />
 
               <Box w={'full'} mb={'1.25rem'}>
-                <FormLabel color={'brand.slate.500'}>Link</FormLabel>
+                <FormLabel color={'brand.slate.500'}>
+                  {t('addProject.link')}
+                </FormLabel>
                 <InputGroup _placeholder={{ color: 'gray.500' }}>
                   <InputLeftElement
                     _placeholder={{ color: 'gray.500' }}
@@ -224,14 +233,14 @@ export const AddProject = ({
                       color: 'brand.slate.300',
                     }}
                     focusBorderColor="brand.purple"
-                    placeholder="https://example.com"
+                    placeholder={t('addProject.linkPlaceholder')}
                     {...register('link', { required: true })}
                   />
                 </InputGroup>
               </Box>
               <Box w={'full'} mb={'1.25rem'}>
                 {skillsError && (
-                  <Text color={'red'}>Please add Skills and Sub Skills</Text>
+                  <Text color={'red'}>{t('addProject.skillsError')}</Text>
                 )}
               </Box>
               <Button
@@ -241,7 +250,7 @@ export const AddProject = ({
                 bg={'rgb(101, 98, 255)'}
                 type="submit"
               >
-                Add Project
+                {t('addProject.addProject')}
               </Button>
             </FormControl>
           </form>

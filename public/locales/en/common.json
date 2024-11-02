@@ -1488,5 +1488,102 @@
   },
   "toggleWinner": {
     "failedToToggleWinner": "Failed to toggle winner, please try again later"
+  },
+  "aboutYou": {
+    "username": "Username",
+    "usernamePlaceholder": "Username",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "First Name",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "Last Name",
+    "location": "Location",
+    "selectCountry": "Select your Country",
+    "profilePicture": "Profile Picture",
+    "bio": "Your One-Line Bio",
+    "bioPlaceholder": "Here is a sample placeholder",
+    "charactersLeft": "{{count}} characters left",
+    "continue": "Continue"
+  },
+  "yourLinks": {
+    "atLeastOneSocialRequired": "At least one additional social link (apart from Discord) is required",
+    "otherProofOfWork": "Other Proof of Work",
+    "increasesChance": "Adding more PoW increases your chance of getting work",
+    "addProject": "Add Project",
+    "finishProfile": "Finish Profile"
+  },
+  "yourWork": {
+    "web3Familiarity": "How familiar are you with Web3?",
+    "pickExperience": "Pick your Experience",
+    "workExperience": "Work Experience",
+    "workPreference": "Work Preference",
+    "typeOfWork": "Type of work",
+    "currentEmployer": "Current Employer",
+    "currentEmployerPlaceholder": "Current Employer",
+    "communityAffiliations": "Community Affiliations",
+    "web3Interests": "What areas of Web3 are you most interested in?",
+    "keepInfoPrivate": "Keep my info private",
+    "privateInfoTooltip": "Your \"Work Preference\" information will be hidden from your public talent profile. However, you will continue to receive updates about new opportunities on your email.",
+    "helperText": "We will send email notifications of new listings for your selected skills"
+  },
+  "addProject": {
+    "projectTitle": "Project Title",
+    "projectTitlePlaceholder": "Project Title",
+    "describeWork": "Describe Your Work",
+    "aboutProjectPlaceholder": "About the Project",
+    "charactersLeft": "{{count}} characters left",
+    "skillsUsed": "Skills Used",
+    "subSkillsUsed": "Sub Skills Used",
+    "link": "Link",
+    "linkPlaceholder": "https://example.com",
+    "skillsError": "Please add Skills and Sub Skills",
+    "addProject": "Add Project"
+  },
+  "emailSettings": {
+    "updatePreferences": "Update Email Preferences",
+    "tellUsPreferences": "Tell us which emails you would like to receive!",
+    "sponsorAlerts": "SPONSOR ALERTS",
+    "newSubmissions": "New submissions received for your listing",
+    "commentsReceived": "Comments Received on your listing",
+    "deadlineReminders": "Deadline related reminders",
+    "talentAlerts": "TALENT ALERTS",
+    "weeklyRoundup": "Weekly Roundup of new listings",
+    "newListings": "New listings added for my skills",
+    "likesAndComments": "Likes and comments on my submissions",
+    "scoutInvites": "Sponsor Invitation Emails (Scout)",
+    "generalAlerts": "GENERAL ALERTS",
+    "commentReplies": "Comment replies and tags",
+    "productUpdates": "Product updates and newsletters",
+    "updatingPreferences": "Updating Preferences..",
+    "preferencesUpdated": "Email preferences updated"
+  },
+  "shareProfile": {
+    "title": "Share Profile",
+    "description": "With your friends or on social media to showcase your proof of work, all in one place",
+    "myProfileMessage": "Check out my profile on Superteam Earn!",
+    "otherProfileMessage": "Check out this profile on Superteam Earn!",
+    "copy": "Copy",
+    "copied": "Copied",
+    "shareTo": "SHARE TO",
+    "shareOn": "Share on {{platform}}"
+  },
+  "skillSelectTalent": {
+    "yourSkills": "Your Skills",
+    "subSkills": "Sub Skills",
+    "selectAllThatApply": "Select all that apply",
+    "infoIconAlt": "Info Icon"
+  },
+  "socialInput": {
+    "discordRequired": "Discord is required",
+    "invalidDiscord": "Invalid Discord username",
+    "invalidTwitter": "Invalid Twitter username or URL",
+    "invalidGithub": "Invalid GitHub username or URL",
+    "invalidLinkedin": "Invalid LinkedIn username or URL",
+    "invalidTelegram": "Invalid Telegram username or URL",
+    "invalidWebsite": "Invalid website URL"
+  },
+  "usernameValidation": {
+    "invalidFormat": "Username can only contain lowercase letters, numbers, '_', and '-'",
+    "unavailable": "Username is unavailable! Please try another one.",
+    "error": "An error occurred while checking username availability."
   }
 }

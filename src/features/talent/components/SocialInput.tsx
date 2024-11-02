@@ -1,4 +1,5 @@
 import { Box, Flex, Icon, Input, Text } from '@chakra-ui/react';
+import { t } from 'i18next';
 import React from 'react';
 import { type UseFormRegister, type UseFormWatch } from 'react-hook-form';
 import {
@@ -74,44 +75,44 @@ export const socials = [
 export const SocialInput = ({ register, watch }: SocialInputProps) => {
   const validateSocial = (value: string, name: string) => {
     if (name === 'discord' && !value) {
-      toast.error('Discord is required');
+      toast.error(t('socialInput.discordRequired'));
       return false;
     }
     if (value) {
       switch (name) {
         case 'discord':
           if (!isValidDiscordInput(value)) {
-            toast.error('Invalid Discord username');
+            toast.error(t('socialInput.invalidDiscord'));
             return false;
           }
           break;
         case 'twitter':
           if (!isValidTwitterInput(value) && !isValidTwitterUsername(value)) {
-            toast.error('Invalid Twitter username or URL');
+            toast.error(t('socialInput.invalidTwitter'));
             return false;
           }
           break;
         case 'github':
           if (!isValidGitHubInput(value) && !isValidGitHubUsername(value)) {
-            toast.error('Invalid GitHub username or URL');
+            toast.error(t('socialInput.invalidGithub'));
             return false;
           }
           break;
         case 'linkedin':
           if (!isValidLinkedInInput(value) && !isValidLinkedInUsername(value)) {
-            toast.error('Invalid LinkedIn username or URL');
+            toast.error(t('socialInput.invalidLinkedin'));
             return false;
           }
           break;
         case 'telegram':
           if (!isValidTelegramInput(value) && !isValidTelegramUsername(value)) {
-            toast.error('Invalid Telegram username or URL');
+            toast.error(t('socialInput.invalidTelegram'));
             return false;
           }
           break;
         case 'website':
           if (!isValidWebsiteUrl(value)) {
-            toast.error('Invalid website URL');
+            toast.error(t('socialInput.invalidWebsite'));
             return false;
           }
           break;

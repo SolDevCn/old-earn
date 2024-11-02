@@ -12,6 +12,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import React, { useState } from 'react';
 import { toast } from 'sonner';
@@ -36,6 +37,8 @@ export const EmailSettingsModal = ({
   );
 
   const [isUpdating, setIsUpdating] = useState(false);
+
+  const { t } = useTranslation();
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategories((prev) =>
@@ -95,10 +98,10 @@ export const EmailSettingsModal = ({
           <ModalCloseButton mt={2} />
           <ModalBody>
             <Text color="brand.slate.700" fontSize="2xl" fontWeight={600}>
-              Update Email Preferences
+              {t('emailSettings.updatePreferences')}
             </Text>
             <Text mt={1} color="brand.slate.400" fontWeight={500}>
-              Tell us which emails you would like to receive!
+              {t('emailSettings.tellUsPreferences')}
             </Text>
             {showSponsorAlerts && (
               <Box mt={6}>
@@ -109,18 +112,18 @@ export const EmailSettingsModal = ({
                   fontSize="sm"
                   letterSpacing={0.8}
                 >
-                  SPONSOR ALERTS
+                  {t('emailSettings.sponsorAlerts')}
                 </Text>
                 <AlertOption
-                  title="New submissions received for your listing"
+                  title={t('emailSettings.newSubmissions')}
                   category="submissionSponsor"
                 />
                 <AlertOption
-                  title="Comments Received on your listing"
+                  title={t('emailSettings.commentsReceived')}
                   category="commentSponsor"
                 />
                 <AlertOption
-                  title="Deadline related reminders"
+                  title={t('emailSettings.deadlineReminders')}
                   category="deadlineSponsor"
                 />
               </Box>
@@ -134,22 +137,22 @@ export const EmailSettingsModal = ({
                   fontSize="sm"
                   letterSpacing={0.8}
                 >
-                  TALENT ALERTS
+                  {t('emailSettings.talentAlerts')}
                 </Text>
                 <AlertOption
-                  title="Weekly Roundup of new listings"
+                  title={t('emailSettings.weeklyRoundup')}
                   category="weeklyListingRoundup"
                 />
                 <AlertOption
-                  title="New listings added for my skills"
+                  title={t('emailSettings.newListings')}
                   category="createListing"
                 />
                 <AlertOption
-                  title="Likes and comments on my submissions"
+                  title={t('emailSettings.likesAndComments')}
                   category="commentOrLikeSubmission"
                 />
                 <AlertOption
-                  title="Sponsor Invitation Emails (Scout)"
+                  title={t('emailSettings.scoutInvites')}
                   category="scoutInvite"
                 />
               </Box>
@@ -163,14 +166,14 @@ export const EmailSettingsModal = ({
                   fontSize="sm"
                   letterSpacing={0.8}
                 >
-                  GENERAL ALERTS
+                  {t('emailSettings.generalAlerts')}
                 </Text>
                 <AlertOption
-                  title="Comment replies and tags"
+                  title={t('emailSettings.commentReplies')}
                   category="replyOrTagComment"
                 />
                 <AlertOption
-                  title="Product updates and newsletters"
+                  title={t('emailSettings.productUpdates')}
                   category="productAndNewsletter"
                 />
               </Box>
@@ -182,10 +185,10 @@ export const EmailSettingsModal = ({
               w="100%"
               colorScheme="blue"
               isLoading={isUpdating}
-              loadingText="Updating Preferences.."
+              loadingText={t('emailSettings.updatingPreferences')}
               onClick={updateEmailSettings}
             >
-              Update Preferences
+              {t('emailSettings.updatePreferences')}
             </Button>
           </ModalFooter>
         </ModalContent>

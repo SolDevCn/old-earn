@@ -13,6 +13,7 @@ import {
 import { usePostHog } from 'posthog-js/react';
 import { type Dispatch, type SetStateAction, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import ReactSelect from 'react-select';
 import makeAnimated from 'react-select/animated';
 
@@ -61,6 +62,8 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
       isPrivate: form.isPrivate || false,
     },
   });
+
+  const { t } = useTranslation();
 
   const onSubmit = (data: any) => {
     setPost(true);
@@ -114,7 +117,7 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
           >
             <Box w={'full'}>
               <FormLabel color={'brand.slate.500'}>
-                How familiar are you with Web3?
+                {t('yourWork.web3Familiarity')}
               </FormLabel>
 
               <Select
@@ -127,7 +130,7 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
                 }}
                 focusBorderColor="brand.purple"
                 id="cryptoExperience"
-                placeholder="Pick your Experience"
+                placeholder={t('yourWork.pickExperience')}
                 {...register('cryptoExperience', { required: true })}
               >
                 {web3Exp.map((ct) => {
@@ -140,7 +143,9 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
               </Select>
             </Box>
             <Box w={'full'}>
-              <FormLabel color={'brand.slate.500'}>Work Experience</FormLabel>
+              <FormLabel color={'brand.slate.500'}>
+                {t('yourWork.workExperience')}
+              </FormLabel>
               <Select
                 color={watch().experience.length === 0 ? 'brand.slate.300' : ''}
                 borderColor="brand.slate.300"
@@ -149,7 +154,7 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
                 }}
                 focusBorderColor="brand.purple"
                 id="experience"
-                placeholder="Pick your experience"
+                placeholder={t('yourWork.pickExperience')}
                 {...register('experience', { required: true })}
               >
                 {workExp.map((ct) => {
@@ -163,7 +168,9 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
             </Box>
           </Flex>
           <Box w={'full'} mb={'1.25rem'}>
-            <FormLabel color={'brand.slate.500'}>Work Preference</FormLabel>
+            <FormLabel color={'brand.slate.500'}>
+              {t('yourWork.workPreference')}
+            </FormLabel>
             <Select
               color={
                 watch().workPrefernce.length === 0 ? 'brand.slate.300' : ''
@@ -174,7 +181,7 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
               }}
               focusBorderColor="brand.purple"
               id="workPrefernce"
-              placeholder="Type of work"
+              placeholder={t('yourWork.typeOfWork')}
               {...register('workPrefernce', { required: true })}
             >
               {workType.map((ct) => {
@@ -187,7 +194,9 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
             </Select>
           </Box>
           <Box w={'full'} mb={'1.25rem'}>
-            <FormLabel color={'brand.slate.500'}>Current Employer</FormLabel>
+            <FormLabel color={'brand.slate.500'}>
+              {t('yourWork.currentEmployer')}
+            </FormLabel>
             <Input
               color={'gray.800'}
               borderColor="brand.slate.300"
@@ -196,14 +205,14 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
               }}
               focusBorderColor="brand.purple"
               id="currentEmployer"
-              placeholder="Current Employer"
+              placeholder={t('yourWork.currentEmployerPlaceholder')}
               {...register('currentEmployer', { required: true })}
               maxLength={100}
             />
           </Box>
           <Box w={'full'} mb={'1.25rem'}>
             <FormLabel color={'brand.slate.500'}>
-              Community Affiliations
+              {t('yourWork.communityAffiliations')}
             </FormLabel>
             <ReactSelect
               closeMenuOnSelect={false}
@@ -240,7 +249,7 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
           </Box>
           <Box w={'full'} mb={'1.25rem'}>
             <FormLabel color={'brand.slate.500'}>
-              What areas of Web3 are you most interested in?
+              {t('yourWork.web3Interests')}
             </FormLabel>
             <ReactSelect
               closeMenuOnSelect={false}
@@ -300,7 +309,7 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
                 size="md"
                 {...register('isPrivate')}
               >
-                Keep my info private
+                {t('yourWork.keepInfoPrivate')}
               </Checkbox>
               <Tooltip
                 w="max"
@@ -311,7 +320,7 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
                 bg="#6562FF"
                 borderRadius="0.5rem"
                 hasArrow
-                label={`Your "Work Preference" information will be hidden from your public talent profile. However, you will continue to receive updates about new opportunities on your email.`}
+                label={t('yourWork.privateInfoTooltip')}
                 placement="right-end"
               >
                 <InfoOutlineIcon color="brand.slate.500" />
@@ -326,7 +335,7 @@ export function YourWork({ setStep, useFormStore }: Step1Props) {
             bg={'rgb(101, 98, 255)'}
             type="submit"
           >
-            Continue
+            {t('common.continue')}
           </Button>
         </FormControl>
       </form>

@@ -13,6 +13,7 @@ import {
   Text,
   useClipboard,
 } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { type IconType } from 'react-icons';
 import { FaTelegram, FaWhatsapp, FaXTwitter } from 'react-icons/fa6';
@@ -34,14 +35,15 @@ interface SocialPlatform {
 }
 
 export const ShareProfile = ({ isOpen, onClose, username, id }: Props) => {
+  const { t } = useTranslation();
   const { hasCopied, onCopy } = useClipboard(`${getURL()}t/${username}`);
 
   const { user } = useUser();
 
   const shareMessage =
     id === user?.id
-      ? 'Check out my profile on Superteam Earn!'
-      : 'Check out this profile on Superteam Earn!';
+      ? t('shareProfile.myProfileMessage')
+      : t('shareProfile.otherProfileMessage');
 
   const socialPlatforms: SocialPlatform[] = [
     {
@@ -87,11 +89,10 @@ export const ShareProfile = ({ isOpen, onClose, username, id }: Props) => {
       <ModalContent h={'max'} py={5}>
         <Box px={6} py={3}>
           <Text color={'brand.slate.900'} fontSize="lg" fontWeight={500}>
-            Share Profile
+            {t('shareProfile.title')}
           </Text>
           <Text mt={3} color={'brand.slate.500'} fontSize="lg" fontWeight={500}>
-            With your friends or on social media to showcase your proof of work,
-            all in one place
+            {t('shareProfile.description')}
           </Text>
         </Box>
         <Divider mt={2} mb={4} borderColor={'brand.slate.200'} />
@@ -110,7 +111,12 @@ export const ShareProfile = ({ isOpen, onClose, username, id }: Props) => {
             />
             <InputRightElement h="100%" mr="1rem">
               {hasCopied ? (
-                <CheckIcon h="1.3rem" w="1.3rem" color="brand.slate.500" />
+                <CheckIcon
+                  h="1.3rem"
+                  w="1.3rem"
+                  color="brand.slate.500"
+                  aria-label={t('shareProfile.copied')}
+                />
               ) : (
                 <CopyIcon
                   onClick={onCopy}
@@ -118,6 +124,7 @@ export const ShareProfile = ({ isOpen, onClose, username, id }: Props) => {
                   h="1.3rem"
                   w="1.3rem"
                   color="brand.slate.500"
+                  aria-label={t('shareProfile.copy')}
                 />
               )}
             </InputRightElement>
@@ -128,7 +135,7 @@ export const ShareProfile = ({ isOpen, onClose, username, id }: Props) => {
             fontSize={'sm'}
             fontWeight={500}
           >
-            SHARE TO
+            {t('shareProfile.shareTo')}
           </Text>
           <Flex gap={4} mt={3} mb={4}>
             {socialPlatforms.map(({ name, icon, share }) => (
@@ -138,6 +145,7 @@ export const ShareProfile = ({ isOpen, onClose, username, id }: Props) => {
                 boxSize={6}
                 color={'brand.slate.600'}
                 cursor="pointer"
+                aria-label={t('shareProfile.shareOn', { platform: name })}
                 onClick={() => share(`${getURL()}t/${username}`, shareMessage)}
               />
             ))}
