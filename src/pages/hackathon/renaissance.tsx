@@ -1,5 +1,6 @@
 import { Box, Button, Circle, Flex, SimpleGrid, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import Countdown from 'react-countdown';
 
@@ -11,6 +12,7 @@ import { statsDataQuery, trackDataQuery } from '@/queries/hackathon';
 import { RenaissanceLogo } from '@/svg/renaissance-logo';
 
 export default function Renaissance() {
+  const { t } = useTranslation('renaissance');
   const slug = 'renaissance';
 
   const { data: trackData } = useQuery(trackDataQuery(slug));
@@ -21,8 +23,8 @@ export default function Renaissance() {
       className="bg-white"
       meta={
         <Meta
-          title="Renaissance | Superteam Earn"
-          description="Explore the latest bounties on Superteam Earn, offering opportunities in the crypto space across Design, Development, and Content."
+          title={t('meta.title')}
+          description={t('meta.description')}
           canonical="https://earn.superteam.fun"
         />
       }
@@ -41,7 +43,7 @@ export default function Renaissance() {
         >
           <RenaissanceLogo styles={{ height: '80px', width: 'auto' }} />
           <Text mt={4} px={6} color="blackAlpha.800" textAlign={'center'}>
-            Submit to side tracks of the latest Solana Global Hackathon
+            {t('submitToTracks')}
           </Text>
           <Flex align="center" gap={6}>
             <Button
@@ -60,19 +62,19 @@ export default function Renaissance() {
               }
               rounded="full"
             >
-              Sponsor a Track
+              {t('sponsorTrack')}
             </Button>
             <Flex align="center" gap={1}>
               <Circle bg="gray.500" size={2.5} />
               <Text fontSize={'sm'} fontWeight={500}>
-                Submissions Closed
+                {t('submissionsClosed')}
               </Text>
             </Flex>
           </Flex>
           <Flex justify="center" gap={{ base: 4, md: 12 }} px={6} pb={6}>
             <Flex direction={'column'}>
               <Text fontSize={'sm'} fontWeight={500}>
-                Total Prizes
+                {t('totalPrizes')}
               </Text>
               <Text
                 color={'brand.slate.800'}
@@ -84,7 +86,7 @@ export default function Renaissance() {
             </Flex>
             <Flex direction={'column'}>
               <Text fontSize={'sm'} fontWeight={500}>
-                Tracks
+                {t('tracks')}
               </Text>
               <Text
                 color={'brand.slate.800'}
@@ -96,7 +98,7 @@ export default function Renaissance() {
             </Flex>
             <Flex direction={'column'}>
               <Text fontSize={'sm'} fontWeight={500}>
-                Submissions End In
+                {t('submissionsEndIn')}
               </Text>
               <Text
                 color={'brand.slate.800'}
@@ -120,7 +122,7 @@ export default function Renaissance() {
               fontSize={'xl'}
               fontWeight={600}
             >
-              Tracks
+              {t('tracks')}
             </Text>
             <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
               {trackData &&

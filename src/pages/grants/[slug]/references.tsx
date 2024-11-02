@@ -1,6 +1,7 @@
 import { Box, Grid, HStack, Text } from '@chakra-ui/react';
 import axios from 'axios';
 import type { GetServerSideProps } from 'next';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import { OgImageViewer } from '@/components/shared/ogImageViewer';
@@ -35,6 +36,7 @@ const ReferenceCard = ({ link }: { link?: string }) => {
 
 function Grants({ grant: initialGrant }: GrantsDetailsProps) {
   const [grant] = useState<typeof initialGrant>(initialGrant);
+  const { t } = useTranslation();
 
   return (
     <GrantPageLayout grant={grant}>
@@ -53,7 +55,7 @@ function Grants({ grant: initialGrant }: GrantsDetailsProps) {
         >
           <Box w="full">
             <Text mt={2} mb={6} color="gray.500" fontSize="xl" fontWeight={600}>
-              References
+              {t('grantReferences.references')}
             </Text>
             <Grid
               gap={6}

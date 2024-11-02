@@ -1,5 +1,6 @@
 import { Box, Button, Flex, SimpleGrid, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import Countdown from 'react-countdown';
 
@@ -11,6 +12,7 @@ import { statsDataQuery, trackDataQuery } from '@/queries/hackathon';
 import { ScribesLogo } from '@/svg/scribes-logo';
 
 export default function Scribes() {
+  const { t } = useTranslation();
   const slug = 'scribes';
 
   const { data: trackData } = useQuery(trackDataQuery(slug));
@@ -21,8 +23,8 @@ export default function Scribes() {
       className="bg-white"
       meta={
         <Meta
-          title="Solana Scribes | Superteam Earn"
-          description="Explore the latest bounties on Superteam Earn, offering opportunities in the crypto space across Design, Development, and Content."
+          title={t('scribes.metaTitle')}
+          description={t('scribes.metaDescription')}
           canonical="https://earn.superteam.fun"
         />
       }
@@ -40,11 +42,11 @@ export default function Scribes() {
           borderBottomWidth={'1px'}
         >
           <Text mb={4} fontFamily={'var(--font-mono)'}>
-            Lamport DAO presents
+            {t('scribes.presentedBy')}
           </Text>
           <ScribesLogo styles={{ height: '80px', width: 'auto' }} />
           <Text mt={4} px={6} color="brand.slate.600" textAlign={'center'}>
-            Participate in Solana&apos;s first ever content hackathon
+            {t('scribes.participateIn')}
           </Text>
           <Flex pb={4}>
             <Button
@@ -58,14 +60,14 @@ export default function Scribes() {
               }
               rounded="full"
             >
-              Join Solana Collective&apos;s Discord
+              {t('scribes.joinDiscord')}
             </Button>
           </Flex>
         </Flex>
         <Flex justify="center" gap={{ base: 4, md: 12 }} px={6} py={6}>
           <Flex direction={'column'}>
             <Text fontSize={'sm'} fontWeight={500}>
-              Total Prizes
+              {t('scribes.totalPrizes')}
             </Text>
             <Text
               color={'brand.slate.800'}
@@ -77,7 +79,7 @@ export default function Scribes() {
           </Flex>
           <Flex direction={'column'}>
             <Text fontSize={'sm'} fontWeight={500}>
-              Tracks
+              {t('scribes.tracks')}
             </Text>
             <Text
               color={'brand.slate.800'}
@@ -89,7 +91,7 @@ export default function Scribes() {
           </Flex>
           <Flex direction={'column'}>
             <Text fontSize={'sm'} fontWeight={500}>
-              Submissions End In
+              {t('scribes.submissionsEndIn')}
             </Text>
             <Text
               color={'brand.slate.800'}
@@ -112,7 +114,7 @@ export default function Scribes() {
               fontSize={'xl'}
               fontWeight={600}
             >
-              Tracks
+              {t('scribes.tracks')}
             </Text>
             <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={6}>
               {trackData &&

@@ -1814,5 +1814,164 @@
     "paginationText": "{{start}} - {{end}} 共 {{total}} 位成员",
     "previous": "上一页",
     "next": "下一页"
+  },
+  "grantReferences": {
+    "references": "参考资料"
+  },
+  "grantsPage": {
+    "metaTitle": "资助 | Solar Earn",
+    "metaDescription": "发现 Solana 开发、艺术、内容等领域的资助，为您的想法获取资金支持",
+    "backgroundImageAlt": "背景渐变图",
+    "needFunds": "需要资金来实现您的想法吗？",
+    "discoverGrants": "发现完整的加密资助列表，支持您的项目。快速、无股权融资，没有繁琐手续。",
+    "benefits": "无股权 • 没有废话 • 超快速"
+  },
+  "renaissance": {
+    "meta": {
+      "title": "Renaissance | Superteam Earn",
+      "description": "探索 Superteam Earn 上的最新悬赏，在设计、开发和内容领域提供加密货币空间的机会。"
+    },
+    "submitToTracks": "提交最新 Solana 全球黑客马拉松的赛道作品",
+    "sponsorTrack": "赞助赛道",
+    "submissionsClosed": "提交已关闭",
+    "totalPrizes": "总奖金",
+    "tracks": "赛道",
+    "submissionsEndIn": "提交截止时间"
+  },
+  "scribes": {
+    "metaTitle": "Solana Scribes | Superteam Earn",
+    "metaDescription": "在 Superteam Earn 上探索最新的悬赏任务，在设计、开发和内容领域提供加密货币空间的机会。",
+    "presentedBy": "Lamport DAO 呈现",
+    "participateIn": "参与 Solana 首个内容黑客马拉松",
+    "joinDiscord": "加入 Solana Collective 的 Discord",
+    "totalPrizes": "总奖金",
+    "tracks": "赛道",
+    "submissionsEndIn": "提交截止时间"
+  },
+  "talentOlympics": {
+    "completeAndEarn": "完成挑战。赢取奖品。获得全职工作。",
+    "description": "在一个地方完成挑战、赢取奖品并获得全职工作机会。",
+    "title": "完成挑战。赢取奖品。获得全职工作。",
+    "joinDiscord": "加入 Discord",
+    "poweredBy": "技术支持",
+    "getHiredBy": "受雇于",
+    "proofOfWork": "基于您的工作证明获得雇佣",
+    "proofOfWorkDesc": "人才奥林匹克旨在帮助世界各地的优秀开发者在 Solana 最好的公司找到工作。要参加,只需完成下面的开发者挑战。每个挑战都有最佳提交奖金池,全球得分最高的参与者将分享额外的 10,000 美元奖金池,并获得与我们招聘合作伙伴的面试机会。",
+    "messageFromKash": "来自 Kash 的消息",
+    "frontEndTrack": "前端赛道",
+    "rustTrack": "Rust 赛道",
+    "topCountries": "提交数量最多的国家",
+    "topIndividuals": "评分最高的个人",
+    "faq": "常见问题",
+    "submissionsIn": "提交将在",
+    "submissionsClose": "提交将关闭",
+    "closed": "已关闭",
+    "openIn": "开放倒计时",
+    "closeIn": "关闭倒计时",
+    "companiesHiring": "45 家公司正在招聘",
+    "companiesHiringDesc": "在人才奥林匹克",
+    "cashPrizes": "20,000 USDC",
+    "cashPrizesDesc": "作为最佳提交的现金奖励",
+    "tracksDesc": "包含多个挑战",
+    "challenges": "十个挑战",
+    "challengesDesc": "证明您是最佳候选人",
+    "tracks": {
+      "frontend": {
+        "walletSwap": "新钱包与交换功能",
+        "walletSwapDesc": "创建一个具有最佳集成和交换体验的钱包。",
+        "escrowUI": "托管UI + Blink",
+        "escrowUIDesc": "创建一个用户友好的托管UI和相应的Blink。",
+        "oracleAggregator": "预言机聚合器",
+        "oracleAggregatorDesc": "使用多个来源为DeFi应用程序显示预言机数据。",
+        "toolingDashboard": "工具数据浏览器/仪表板",
+        "toolingDashboardDesc": "制作一个从RPC/API源获取数据的浏览器或仪表板。",
+        "marketplaceUI": "创建市场UI",
+        "marketplaceUIDesc": "使用给定的智能合约仓库设计和开发创意市场UI。"
+      },
+      "rust": {
+        "nftMint": "NFT铸造、保管和交换",
+        "nftMintDesc": "创建一个可以铸造、保管和交换NFT的Anchor程序。",
+        "daoVoting": "DAO投票程序",
+        "daoVotingDesc": "使用Anchor开发一个可以显示结果的DAO投票程序。",
+        "predictionMarket": "预测市场与Memecoin Blink",
+        "predictionMarketDesc": "为SPL memecoin价格创建预测市场（二元期权模型）。",
+        "whitelistToken": "白名单代币销售",
+        "whitelistTokenDesc": "使用原生Rust或Anchor创建白名单控制的代币空投。",
+        "serviceMarketplace": "服务双边市场",
+        "serviceMarketplaceDesc": "使用Anchor或Rust创建服务的双边市场模型。"
+      }
+    }
+  },
+  "talentLeaderboard": {
+    "title": "人才排行榜 | Solar Earn",
+    "description": "人才排行榜 | Solar Earn",
+    "pageTitle": "人才排行榜",
+    "pageDescription": "看看您在 Solana 顶级贡献者中的排名",
+    "totalValueEarned": "总赚取价值",
+    "bountyCount": "悬赏数量",
+    "loading": "加载中..."
+  },
+  "talentOlympicsPage": {
+    "description": "完成挑战、赢取奖品、受雇于 Solana 最好的公司。",
+    "getHiredTitle": "基于您的工作证明获得雇佣",
+    "getHiredDescription": "人才奥林匹克旨在帮助世界各地的优秀开发者在 Solana 最好的公司找到工作。要参加，只需完成下面的开发者挑战。每个挑战都有最佳提交奖金池，全球得分最高的参与者将分享额外的 10,000 美元奖金池，并获得与我们招聘合作伙伴的面试机会。",
+    "topCountriesTitle": "提交数量最多的国家",
+    "topIndividualsTitle": "评分最高的个人",
+    "faqTitle": "常见问题",
+    "metaTitle": "人才奥林匹克 | Solar Earn",
+    "metaDescription": "完成挑战、赢取奖品、受雇于 Solana 最好的公司。立即加入人才奥林匹克！",
+    "companiesHiringTitle": "45 家公司正在招聘",
+    "companiesHiringDesc": "在人才奥林匹克",
+    "cashPrizesTitle": "20,000 USDC",
+    "cashPrizesDesc": "作为最佳提交的现金奖励",
+    "tracksTitle": "前端与 Rust 赛道",
+    "tracksDesc": "包含多个挑战",
+    "challengesTitle": "十个挑战",
+    "challengesDesc": "证明您是最佳候选人",
+    "messageFromKash": "来自 Kash 的消息",
+    "tracks": "赛道",
+    "frontEndTrackTitle": "前端赛道",
+    "rustTrackTitle": "Rust 赛道",
+    "getHiredBy": "受雇于",
+    "points": "积分",
+    "personInterested": "人感兴趣",
+    "peopleInterested": "人感兴趣",
+    "redactedContent": "已编辑内容",
+    "redactedText": "编辑",
+    "faq": {
+      "whatIs": {
+        "question": "什么是人才奥林匹克？",
+        "answer": "人才奥林匹克就像一个虚拟招聘会，但参与者需要提供真实的工作证明。"
+      },
+      "howToEnter": {
+        "question": "如何参加比赛？",
+        "answer": "通过提交前端和 Rust 赛道下的任何一个挑战。"
+      },
+      "teamsHiring": {
+        "question": "哪些团队在招聘？",
+        "answer": "超过 50 个 Solana 团队正在招聘。以下是正在招聘的团队列表（排名不分先后）：Transfero、Jungle、Khiza、Rippio、Moby Up、Coinlivre、Meta Pool、Prism、Bonk、MH Ventures、Bandit、Turbine、Future、Prizm、MoonThat、Jito、Flash、Mirror World、Pyth、Galaxe、Nosana、Sanctum、Tensor、Metaplex、Backpack、Parcl、Helio、Streamflow、Helius、DeCharge、Orca、Iron、Proto map、SolanaID、WifiDabba、Drift、Squads、Light Protocol、Mango、Sonar Watch、Kamino、Openbook、Staking facilities、Solana Beach、Noenomad、Linum Labs、DUX、VW Trucks & Bus、TRUTHER、Infratoken、One Percent、Bitfinix 等。"
+      },
+      "guaranteeJob": {
+        "question": "赢得人才奥林匹克悬赏是否保证能得到工作？",
+        "answer": "赢得一个或多个赛道并不能保证获得工作，但会大大增加被招聘合作伙伴注意到的机会。"
+      },
+      "participate": {
+        "question": "我可以参加任何赛道或挑战吗？",
+        "answer": "是的，您可以参加任何赛道，参加任意数量的挑战。但请记住，提交作品的质量是最重要的。"
+      },
+      "prizeSplit": {
+        "question": "奖金如何分配？",
+        "answer": "每个挑战的个人奖金在列表中都有说明。此外，还有一个 10,000 美元的单独奖金池，用于奖励整体表现最好的参与者。我们将根据合作伙伴的评审，考虑参与者提交作品的质量（最重要的标准）和数量来决定大奖的获得者。"
+      }
+    },
+    "completeProfileText": "请在订阅黑客马拉松之前完成您的个人资料。",
+    "unsubscribed": "已取消订阅",
+    "subscribed": "已订阅",
+    "subscriptionError": "切换订阅时发生错误",
+    "detailsRevealDate": "详情将于 7 月 11 日公布。",
+    "submissions": "提交",
+    "Open In": "开放倒计时",
+    "Close In": "关闭倒计时",
+    "Closed": "已关闭"
   }
 }

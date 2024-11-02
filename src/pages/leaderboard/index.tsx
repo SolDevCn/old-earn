@@ -7,6 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { type GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { getServerSession } from 'next-auth';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useState, useTransition } from 'react';
 
 import { totalsQuery, TotalStats } from '@/features/home';
@@ -46,6 +47,7 @@ function TalentLeaderboard({
   count,
   userRank,
 }: Props) {
+  const { t } = useTranslation();
   const { data: totals, isLoading: isTotalsLoading } = useQuery(totalsQuery);
 
   const [timeframe, setTimeframe] = useState<TIMEFRAME>(curTimeframe);
@@ -109,8 +111,8 @@ function TalentLeaderboard({
     <Default
       meta={
         <Meta
-          title={`Talent Leaderboard | Superteam Earn`}
-          description={`Talent Leaderboard | Superteam Earn`}
+          title={t('talentLeaderboard.title')}
+          description={t('talentLeaderboard.description')}
         />
       }
     >

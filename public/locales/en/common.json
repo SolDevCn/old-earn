@@ -1814,5 +1814,164 @@
     "paginationText": "{{start}} - {{end}} of {{total}} Members",
     "previous": "Previous",
     "next": "Next"
+  },
+  "grantReferences": {
+    "references": "References"
+  },
+  "grantsPage": {
+    "metaTitle": "Grants | Solar Earn",
+    "metaDescription": "Discover Solana Grants for Development, Art, Content, and more to fund your ideas",
+    "backgroundImageAlt": "Background gradient",
+    "needFunds": "Need funds to build out your idea?",
+    "discoverGrants": "Discover the complete list of crypto grants available to support your project. Fast, equity-free funding without the hassle.",
+    "benefits": "Equity-Free • No Bullshit • Fast AF"
+  },
+  "renaissance": {
+    "meta": {
+      "title": "Renaissance | Superteam Earn",
+      "description": "Explore the latest bounties on Superteam Earn, offering opportunities in the crypto space across Design, Development, and Content."
+    },
+    "submitToTracks": "Submit to side tracks of the latest Solana Global Hackathon",
+    "sponsorTrack": "Sponsor a Track",
+    "submissionsClosed": "Submissions Closed",
+    "totalPrizes": "Total Prizes",
+    "tracks": "Tracks",
+    "submissionsEndIn": "Submissions End In"
+  },
+  "scribes": {
+    "metaTitle": "Solana Scribes | Superteam Earn",
+    "metaDescription": "Explore the latest bounties on Superteam Earn, offering opportunities in the crypto space across Design, Development, and Content.",
+    "presentedBy": "Lamport DAO presents",
+    "participateIn": "Participate in Solana's first ever content hackathon",
+    "joinDiscord": "Join Solana Collective's Discord",
+    "totalPrizes": "Total Prizes",
+    "tracks": "Tracks",
+    "submissionsEndIn": "Submissions End In"
+  },
+  "talentOlympics": {
+    "pageTitle": "Talent Olympics | Solar Earn",
+    "pageDescription": "Explore the latest bounties on Solar Earn, offering opportunities in the crypto space across Design, Development, and Content.",
+    "title": "Complete Challenges. Earn Prizes. Get a Full-Time Job.",
+    "joinDiscord": "Join Discord",
+    "poweredBy": "POWERED BY",
+    "getHiredBy": "Get Hired By",
+    "proofOfWork": "Get Hired Based on Your Proof of Work",
+    "proofOfWorkDesc": "The Talent Olympics is designed to help talented developers from around the world get jobs at the best companies on Solana. To enter, simply complete the developer challenges below. Each challenge has a prize pool for the best submissions, and the participants with the most points globally will split an additional $10,000 prize pool and receive interviews with our hiring partners.",
+    "messageFromKash": "Message from Kash",
+    "frontEndTrack": "Front End Track",
+    "rustTrack": "Rust Track",
+    "topCountries": "Top Countries by Submissions",
+    "topIndividuals": "Top Individuals by Rating",
+    "faq": "FAQ",
+    "submissionsIn": "Submissions In",
+    "submissionsClose": "Submissions Close",
+    "closed": "Closed",
+    "openIn": "Open In",
+    "closeIn": "Close In",
+    "companiesHiring": "45 Companies Hiring",
+    "companiesHiringDesc": "at the Talent Olympics",
+    "cashPrizes": "20,000 USDC",
+    "cashPrizesDesc": "as cash prizes for the best submissions",
+    "tracksDesc": "with multiple challenges",
+    "challenges": "Ten Challenges",
+    "challengesDesc": "to prove you're the best candidate",
+    "tracks": {
+      "frontend": {
+        "walletSwap": "New Wallet with Swap Functionality",
+        "walletSwapDesc": "Create a wallet with the best-in-class integration and swapping experience.",
+        "escrowUI": "Escrow UI + Blink",
+        "escrowUIDesc": "Create a user-friendly escrow UI and a Blink for it.",
+        "oracleAggregator": "Oracle Aggregator",
+        "oracleAggregatorDesc": "Display Oracle data using multiple sources for a DeFi application.",
+        "toolingDashboard": "Tooling Data Explorer/Dashboard",
+        "toolingDashboardDesc": "Make an explorer or dashboard that fetches data from RPC/API sources.",
+        "marketplaceUI": "Create a Marketplace UI",
+        "marketplaceUIDesc": "Design and develop a creative marketplace UI using the given smart contract repo."
+      },
+      "rust": {
+        "nftMint": "NFT Mint, Vault & Swap",
+        "nftMintDesc": "Create an Anchor program that can mint, vault and swap NFTs.",
+        "daoVoting": "DAO Voting Program",
+        "daoVotingDesc": "Develop a DAO voting program that displays results, using Anchor.",
+        "predictionMarket": "Prediction Market & Blink for Memecoins",
+        "predictionMarketDesc": "Create a prediction marketplace (binary option model) for SPL memecoin prices.",
+        "whitelistToken": "Whitelist-gated Token Sale",
+        "whitelistTokenDesc": "Using Native Rust or Anchor, create a whitelist-gated token airdrop.",
+        "serviceMarketplace": "Two-sided Marketplace for Services",
+        "serviceMarketplaceDesc": "Create a 2-sided marketplace model for services using Anchor or Rust."
+      }
+    }
+  },
+  "talentLeaderboard": {
+    "title": "Talent Leaderboard | Solar Earn",
+    "description": "Talent Leaderboard | Solar Earn",
+    "pageTitle": "Talent Leaderboard",
+    "pageDescription": "See where you stand amongst Solana's top contributors",
+    "totalValueEarned": "Total Value Earned",
+    "bountyCount": "Bounty Count",
+    "loading": "Loading..."
+  },
+  "talentOlympicsPage": {
+    "description": "Complete challenges, earn prizes, and get hired by the best companies in Solana.",
+    "getHiredTitle": "Get Hired Based on Your Proof of Work",
+    "getHiredDescription": "The Talent Olympics is designed to help talented developers from around the world get jobs at the best companies on Solana. To enter, simply complete the developer challenges below. Each challenge has a prize pool for the best submissions, and the participants with the most points globally will split an additional $10,000 prize pool and receive interviews with our hiring partners.",
+    "topCountriesTitle": "Top Countries by Submissions",
+    "topIndividualsTitle": "Top Individuals by Rating",
+    "faqTitle": "FAQ",
+    "metaTitle": "Talent Olympics | Solar Earn",
+    "metaDescription": "Complete challenges, earn prizes, and get hired by the best companies in Solana. Join the Talent Olympics now!",
+    "companiesHiringTitle": "45 Companies Hiring",
+    "companiesHiringDesc": "at the Talent Olympics",
+    "cashPrizesTitle": "$20,000 USDC",
+    "cashPrizesDesc": "as cash prizes for the best submissions",
+    "tracksTitle": "Front End & Rust Tracks",
+    "tracksDesc": "with multiple challenges",
+    "challengesTitle": "Ten Challenges",
+    "challengesDesc": "to prove you're the best candidate",
+    "messageFromKash": "Message from Kash",
+    "tracks": "Tracks",
+    "frontEndTrackTitle": "Front End Track",
+    "rustTrackTitle": "Rust Track",
+    "getHiredBy": "Get Hired By",
+    "points": "Points",
+    "personInterested": "Person Interested",
+    "peopleInterested": "People Interested",
+    "redactedContent": "Redacted content",
+    "redactedText": "redac",
+    "faq": {
+      "whatIs": {
+        "question": "What is the Talent Olympics?",
+        "answer": "Talent Olympics is like a virtual job fair, except with users applying with real proof of work."
+      },
+      "howToEnter": {
+        "question": "How do I enter the competition?",
+        "answer": "By submitting to any of the ten challenges under the Frontend and Rust tracks."
+      },
+      "teamsHiring": {
+        "question": "Which teams are hiring?",
+        "answer": "Over 50 Solana teams are hiring. In no particular order, here is the list of teams that are hiring: Transfero, Jungle, Khiza, Rippio, Moby Up, Coinlivre, Meta Pool, Prism, Bonk, MH Ventures, Bandit, Turbine, Future, Prizm, MoonThat, Jito, Flash, Mirror World, Pyth, Galaxe, Nosana, Sanctum, Tensor, Metaplex, Backpack, Parcl, Helio, Streamflow, Helius, DeCharge, Orca, Iron, Proto map, SolanaID, WifiDabba, Drift, Squads, Light Protocol, Mango, Sonar Watch, Kamino, Openbook, Staking facilities, Solana Beach, Noenomad, Linum Labs, DUX, VW Trucks & Bus, TRUTHER, Infratoken, One Percent, Bitfinix, etc."
+      },
+      "guaranteeJob": {
+        "question": "Does winning a Talent Olympics bounty guarantee a job?",
+        "answer": "Winning one or multiple tracks does not guarantee a job, but greatly increases your chances of catching the eye of the hiring partners."
+      },
+      "participate": {
+        "question": "Can I participate in any track or challenge?",
+        "answer": "Yes, you can participate in any track, and any number of challenges as you'd like. But remember, that quality of your submission is the most important thing."
+      },
+      "prizeSplit": {
+        "question": "What is the prize split like?",
+        "answer": "The individual prizes for each challenge are mentioned in the listings themselves. On top of that, there's a separate prize pool of $10,000 for the best overall participants. We will consider both the quality (most important criteria) and the number of challenges that participants have submitted to for the grand prize, based on the reviews from our partners."
+      }
+    },
+    "completeProfileText": "Please complete your profile before subscribing to a hackathon.",
+    "unsubscribed": "Unsubscribed",
+    "subscribed": "Subscribed",
+    "subscriptionError": "Error occurred while toggling subscription",
+    "detailsRevealDate": "Details to be revealed on July 11.",
+    "submissions": "Submissions",
+    "Open In": "Open In",
+    "Close In": "Close In",
+    "Closed": "Closed"
   }
 }

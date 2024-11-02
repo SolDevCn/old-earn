@@ -8,6 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { ErrorInfo } from '@/components/shared/ErrorInfo';
@@ -18,6 +19,7 @@ import { Meta } from '@/layouts/Meta';
 
 function Grants() {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const {
     data: grants,
@@ -29,8 +31,8 @@ function Grants() {
     <Default
       meta={
         <Meta
-          title="Grants | Superteam Earn"
-          description="Discover Solana Grants for Development, Art, Content, and more to fund your ideas"
+          title={t('grantsPage.metaTitle')}
+          description={t('grantsPage.metaDescription')}
           canonical="https://earn.superteam.fun/grants/"
           og={`${router.basePath}/assets/og/grants.png`}
         />
@@ -50,7 +52,7 @@ function Grants() {
           right={'0'}
           left={'0'}
           w={'100%'}
-          alt=""
+          alt={t('grantsPage.backgroundImageAlt')}
           src="/assets/home/bg_grad.svg"
         />
         <VStack my={16} textAlign="center" spacing={4}>
@@ -60,7 +62,7 @@ function Grants() {
             fontWeight={700}
             lineHeight="1.2"
           >
-            Need funds to build out your idea?
+            {t('grantsPage.needFunds')}
           </Text>
           <Text
             maxW="2xl"
@@ -68,15 +70,14 @@ function Grants() {
             color="gray.600"
             fontSize={{ base: 'lg', md: 'xl' }}
           >
-            Discover the complete list of crypto grants available to support
-            your project. Fast, equity-free funding without the hassle.
+            {t('grantsPage.discoverGrants')}
           </Text>
           <Text
             mt={3}
             color={'brand.slate.400'}
             fontSize={{ base: 'sm', md: 'md' }}
           >
-            Equity-Free • No Bullshit • Fast AF
+            {t('grantsPage.benefits')}
           </Text>
         </VStack>
         <Container maxW={'7xl'} mb={12}>

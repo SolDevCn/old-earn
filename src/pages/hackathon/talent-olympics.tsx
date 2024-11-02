@@ -15,7 +15,7 @@ import {
   HStack,
   IconButton,
   Image,
-  keyframes,
+  keyframes as chakraKeyframes,
   Link,
   Modal,
   ModalBody,
@@ -30,6 +30,7 @@ import {
 } from '@chakra-ui/react';
 import { type SubscribeHackathon } from '@prisma/client';
 import axios from 'axios';
+import { t } from 'i18next';
 import type { GetServerSideProps } from 'next';
 import NextImage, { type StaticImageData } from 'next/image';
 import NextLink from 'next/link';
@@ -70,9 +71,8 @@ const slugLink = (slug: string) => `/listings/hackathon/${slug}`;
 const frontendTrack: TrackProps[] = [
   {
     icon: baseAsset('scan.svg'),
-    title: 'New Wallet with Swap Functionality',
-    description:
-      'Create a wallet with the best-in-class integration and swapping experience.',
+    title: t('talentOlympics.tracks.frontend.walletSwap'),
+    description: t('talentOlympics.tracks.frontend.walletSwapDesc'),
     amount: 1000,
     token: 'USDC',
     link: slugLink(
@@ -81,36 +81,32 @@ const frontendTrack: TrackProps[] = [
   },
   {
     icon: baseAsset('laptop.svg'),
-    title: 'Escrow UI + Blink  ',
-    description: 'Create a user-friendly escrow UI and a Blink for it.',
+    title: t('talentOlympics.tracks.frontend.escrowUI'),
+    description: t('talentOlympics.tracks.frontend.escrowUIDesc'),
     amount: 1000,
     token: 'USDC',
     link: slugLink('escrow-ui-blink-st-talent-olympics'),
   },
   {
     icon: baseAsset('cube.svg'),
-    title: 'Oracle Aggregator',
-
-    description:
-      'Display Orcale data using multiple sources for a DeFi application.',
+    title: t('talentOlympics.tracks.frontend.oracleAggregator'),
+    description: t('talentOlympics.tracks.frontend.oracleAggregatorDesc'),
     amount: 1000,
     token: 'USDC',
     link: slugLink('oracle-aggregator-st-talent-olympics'),
   },
   {
     icon: baseAsset('cube2.svg'),
-    title: 'Tooling Data Explorer/Dashboard',
-    description:
-      'Make an explorer or dashboard that fetches data from RPC/API sources.',
+    title: t('talentOlympics.tracks.frontend.toolingDashboard'),
+    description: t('talentOlympics.tracks.frontend.toolingDashboardDesc'),
     amount: 1000,
     token: 'USDC',
     link: slugLink('tooling-data-explorerdashboard-st-talent-olympics'),
   },
   {
     icon: baseAsset('code.svg'),
-    title: 'Create a Marketplace UI',
-    description:
-      'Design and develop a creative marketplace UI using the given smart contract repo.',
+    title: t('talentOlympics.tracks.frontend.marketplaceUI'),
+    description: t('talentOlympics.tracks.frontend.marketplaceUIDesc'),
     amount: 1000,
     token: 'USDC',
     link: slugLink('create-a-marketplace-ui-st-talent-olympics'),
@@ -120,8 +116,8 @@ const frontendTrack: TrackProps[] = [
 const rustTrack: TrackProps[] = [
   {
     icon: baseAsset('monitor.svg'),
-    title: 'NFT Mint, Vault & Swap',
-    description: 'Create an Anchor program that can mint, vault and swap NFTs.',
+    title: t('talentOlympics.tracks.rust.nftMint'),
+    description: t('talentOlympics.tracks.rust.nftMintDesc'),
     amount: 1000,
     token: 'USDC',
     link: slugLink(
@@ -130,18 +126,16 @@ const rustTrack: TrackProps[] = [
   },
   {
     icon: baseAsset('git.svg'),
-    title: 'DAO Voting Program',
-    description:
-      'Develop a DAO voting program that displays results, using Anchor.',
+    title: t('talentOlympics.tracks.rust.daoVoting'),
+    description: t('talentOlympics.tracks.rust.daoVotingDesc'),
     amount: 1000,
     token: 'USDC',
     link: slugLink('dao-voting-program-st-talent-olympics'),
   },
   {
     icon: baseAsset('filegit.svg'),
-    title: 'Prediction Market & Blink for Memecoins',
-    description:
-      'Create a prediction marketplace (binary option model) for SPL memecoin prices.',
+    title: t('talentOlympics.tracks.rust.predictionMarket'),
+    description: t('talentOlympics.tracks.rust.predictionMarketDesc'),
     amount: 1000,
     token: 'USDC',
     link: slugLink(
@@ -150,18 +144,16 @@ const rustTrack: TrackProps[] = [
   },
   {
     icon: baseAsset('book.svg'),
-    title: 'Whitelist-gated Token Sale',
-    description:
-      'Using Native Rust or Anchor, create a whitelist-gated token airdrop.',
+    title: t('talentOlympics.tracks.rust.whitelistToken'),
+    description: t('talentOlympics.tracks.rust.whitelistTokenDesc'),
     amount: 1000,
     token: 'USDC',
     link: slugLink('whitelist-gated-token-sale-st-talent-olympics'),
   },
   {
     icon: baseAsset('bookmark.svg'),
-    title: 'Two-sided Marketplace for Services',
-    description:
-      'Create a 2-sided marketplace model for services using Anchor or Rust.',
+    title: t('talentOlympics.tracks.rust.serviceMarketplace'),
+    description: t('talentOlympics.tracks.rust.serviceMarketplaceDesc'),
     amount: 1000,
     token: 'USDC',
     link: slugLink('two-sided-marketplace-for-services-st-talent-olympics'),
@@ -201,8 +193,8 @@ export default function TalentOlympics({ countryLeaders, rankings }: Props) {
       className="bg-white"
       meta={
         <Meta
-          title="Talent Olympics | Superteam Earn"
-          description="Explore the latest bounties on Superteam Earn, offering opportunities in the crypto space across Design, Development, and Content."
+          title={t('talentOlympicsPage.metaTitle')}
+          description={t('talentOlympicsPage.metaDescription')}
           canonical="https://earn.superteam.fun"
         />
       }
@@ -227,7 +219,7 @@ export default function TalentOlympics({ countryLeaders, rankings }: Props) {
             fontWeight={700}
             transform={'rotate(-90deg)'}
           >
-            Tracks
+            {t('talentOlympicsPage.tracks')}
           </Text>
           <Flex
             pos="relative"
@@ -240,12 +232,12 @@ export default function TalentOlympics({ countryLeaders, rankings }: Props) {
             mx="auto"
           >
             <Track
-              title="Front End Track"
+              title={t('talentOlympicsPage.frontEndTrackTitle')}
               tracks={frontendTrack}
               hackathonIsOn={hackathonIsOn}
             />
             <Track
-              title="Rust Track"
+              title={t('talentOlympicsPage.rustTrackTitle')}
               tracks={rustTrack}
               hackathonIsOn={hackathonIsOn}
             />
@@ -318,7 +310,7 @@ function Hero({
         fontWeight={500}
         textAlign={'center'}
       >
-        Complete Challenges. Earn Prizes. <br /> Get a Full-Time Job.
+        {t('talentOlympicsPage.description')}
       </Text>
       <Flex
         align="center"
@@ -342,7 +334,7 @@ function Hero({
             target="_blank"
           >
             <FaDiscord style={{ width: '1.2rem', height: '1.2rem' }} />
-            Join Discord
+            {t('talentOlympics.joinDiscord')}
           </Button>
 
           {!isMD && <SubscribeHackathon />}
@@ -363,7 +355,8 @@ function Hero({
             size={1.5}
           />
           <Text fontWeight={500}>
-            Submissions {status}{' '}
+            {t('talentOlympicsPage.submissions')}{' '}
+            {t(`talentOlympicsPage.${status}`)}{' '}
             {status !== 'Closed' && (
               <Countdown
                 date={countdownDate}
@@ -376,7 +369,7 @@ function Hero({
         {isMD && <SubscribeHackathon />}
       </Flex>
       <Text mt={4} color="white" fontSize={'9px'}>
-        POWERED BY
+        {t('talentOlympics.poweredBy')}
       </Text>
       <Flex align="center" gap={8} my={4}>
         <Image
@@ -619,7 +612,7 @@ function GetHiredBy() {
   return (
     <Flex align="center" gap={{ base: 4, md: 8 }} w="full" py={6}>
       <Box display="block" minW={'5rem'} color="brand.slate.400">
-        Get Hired <br /> By{' '}
+        {t('talentOlympicsPage.getHiredBy')} <br />
       </Box>
       <Box minW={0}>
         <Marquee speed={100}>
@@ -652,15 +645,10 @@ function About() {
       <GridItem>
         <VStack align="start" gap={4}>
           <Text fontSize={'xl'} fontWeight={700}>
-            Get Hired Based on Your Proof of Work
+            {t('talentOlympicsPage.getHiredTitle')}
           </Text>
           <Text color="brand.slate.500">
-            The Talent Olympics is designed to help talented developers from
-            around the world get jobs at the best companies on Solana. To enter,
-            simply complete the developer challenges below. Each challenge has a
-            prize pool for the best submissions, and the participants with the
-            most points globally will split an additional $10,000 prize pool and
-            receive interviews with our hiring partners.
+            {t('talentOlympicsPage.getHiredDescription')}
           </Text>
           <Button
             gap={2}
@@ -677,7 +665,7 @@ function About() {
               style={{ width: '1.5rem', height: '1.5rem' }}
             />
             <Text color="brand.slate.500" fontSize="sm" fontWeight={500}>
-              Message from Kash
+              {t('talentOlympicsPage.messageFromKash')}
             </Text>
             <FaPlay
               color="#1B0341"
@@ -694,29 +682,29 @@ function About() {
           <GridItem>
             <FeatureCard
               image={Trophy}
-              title="45 Companies Hiring"
-              description="at the Talent Olympics"
+              title={t('talentOlympicsPage.companiesHiringTitle')}
+              description={t('talentOlympicsPage.companiesHiringDesc')}
             />
           </GridItem>
           <GridItem>
             <FeatureCard
               image={CashBag}
-              title="$20,000 USDC"
-              description="as cash prizes for the best submissions"
+              title={t('talentOlympicsPage.cashPrizesTitle')}
+              description={t('talentOlympicsPage.cashPrizesDesc')}
             />
           </GridItem>
           <GridItem>
             <FeatureCard
               image={Coder}
-              title="Front End & Rust Tracks"
-              description="with multiple challenges"
+              title={t('talentOlympicsPage.tracksTitle')}
+              description={t('talentOlympicsPage.tracksDesc')}
             />
           </GridItem>
           <GridItem>
             <FeatureCard
               image={WinFlag}
-              title="Ten Challenges"
-              description="to prove you're the best candidate"
+              title={t('talentOlympicsPage.challengesTitle')}
+              description={t('talentOlympicsPage.challengesDesc')}
             />
           </GridItem>
         </Grid>
@@ -796,7 +784,9 @@ function TrackBox({
   hackathonIsOn,
 }: TrackProps) {
   return (
-    <Tooltip label={hackathonIsOn ? '' : 'Details to be revealed on July 11.'}>
+    <Tooltip
+      label={hackathonIsOn ? '' : t('talentOlympicsPage.detailsRevealDate')}
+    >
       <Box w="full">
         <Link
           as={NextLink}
@@ -882,7 +872,7 @@ function Leaderboard({ leaders }: { leaders: CountryLeader[] }) {
   return (
     <VStack gap={8} w="full" mx="auto" py={8}>
       <Text color="brand.slate.600" fontSize="xl" fontWeight={700}>
-        Top Countries by Submissions
+        {t('talentOlympicsPage.topCountriesTitle')}
       </Text>
       <Grid
         rowGap={6}
@@ -924,7 +914,7 @@ function Rankings({
   return (
     <VStack gap={8} display="none" w="full" mx="auto" py={8}>
       <Text color="brand.slate.600" fontSize="xl" fontWeight={700}>
-        Top Individuals by Rating
+        {t('talentOlympicsPage.topIndividualsTitle')}
       </Text>
       <Grid
         rowGap={6}
@@ -989,34 +979,28 @@ function Rankings({
 
 const faqs: { question: string; answer: string }[] = [
   {
-    question: 'What is the Talent Olympics?',
-    answer:
-      'Talent Olympics is like a virtual job fair, except with users applying with real proof of work.',
+    question: t('talentOlympicsPage.faq.whatIs.question'),
+    answer: t('talentOlympicsPage.faq.whatIs.answer'),
   },
   {
-    question: 'How do I enter the competition?',
-    answer:
-      'By submitting to any of the ten challenges under the Frontend and Rust tracks.',
+    question: t('talentOlympicsPage.faq.howToEnter.question'),
+    answer: t('talentOlympicsPage.faq.howToEnter.answer'),
   },
   {
-    question: 'Which teams are hiring?',
-    answer:
-      'Over 50 Solana teams are hiring. In no particular order, here is the list of teams that are hiring: Transfero, Jungle, Khiza, Rippio, Moby Up, Coinlivre, Meta Pool, Prism, Bonk, MH Ventures, Bandit, Turbine, Future, Prizm, MoonThat, Jito, Flash, Mirror World, Pyth, Galaxe, Nosana, Sanctum, Tensor, Metaplex, Backpack, Parcl, Helio, Streamflow, Helius, DeCharge, Orca, Iron, Proto map, SolanaID, WifiDabba, Drift, Squads, Light Protocol, Mango, Sonar Watch, Kamino, Openbook, Staking facilities, Solana Beach, Noenomad, Linum Labs, DUX, VW Trucks & Bus, TRUTHER, Infratoken, One Percent, Bitfinix, etc.',
+    question: t('talentOlympicsPage.faq.teamsHiring.question'),
+    answer: t('talentOlympicsPage.faq.teamsHiring.answer'),
   },
   {
-    question: 'Does winning a Talent Olympics bounty guarantee a job?',
-    answer:
-      'Winning one or multiple tracks does not guarantee a job, but greatly increases your chances of catching the eye of the hiring partners.',
+    question: t('talentOlympicsPage.faq.guaranteeJob.question'),
+    answer: t('talentOlympicsPage.faq.guaranteeJob.answer'),
   },
   {
-    question: 'Can I participate in any track or challenge?',
-    answer:
-      "Yes, you can participate in any track, and any number of challenges as you'd like. But remember, that quality of your submission is the most important thing.",
+    question: t('talentOlympicsPage.faq.participate.question'),
+    answer: t('talentOlympicsPage.faq.participate.answer'),
   },
   {
-    question: 'What is the prize split like?',
-    answer:
-      "The individual prizes for each challenge are mentioned in the listings themselves. On top of that, there's a separate prize pool of $10,000 for the best overall participants. We will consider both the quality (most important criteria) and the number of challenges that participants have submitted to for the grand prize, based on the reviews from our partners.",
+    question: t('talentOlympicsPage.faq.prizeSplit.question'),
+    answer: t('talentOlympicsPage.faq.prizeSplit.answer'),
   },
 ];
 
@@ -1024,7 +1008,7 @@ function FAQs() {
   return (
     <VStack py={8}>
       <Text fontSize="xl" fontWeight={700}>
-        FAQ
+        {t('talentOlympicsPage.faqTitle')}
       </Text>
       <Accordion w="full" maxW="35rem" allowToggle>
         {faqs.map((f) => (
@@ -1097,11 +1081,13 @@ const SubscribeHackathon = () => {
       });
       setUpdate((prev) => !prev);
       toast.success(
-        sub.find((e) => e.userId === user?.id) ? 'Unsubscribed' : 'Subscribed',
+        sub.find((e) => e.userId === user?.id)
+          ? t('talentOlympicsPage.unsubscribed')
+          : t('talentOlympicsPage.subscribed'),
       );
     } catch (error) {
       console.log(error);
-      toast.error('Error occurred while toggling subscription');
+      toast.error(t('talentOlympicsPage.subscriptionError'));
     } finally {
       setIsSubscribeLoading(false);
     }
@@ -1126,9 +1112,9 @@ const SubscribeHackathon = () => {
       <HStack align="start">
         <AuthWrapper
           showCompleteProfileModal
-          completeProfileModalBodyText={
-            'Please complete your profile before subscribing to a hackathon.'
-          }
+          completeProfileModalBodyText={t(
+            'talentOlympicsPage.completeProfileText',
+          )}
         >
           <IconButton
             className="ph-no-capture"
@@ -1175,7 +1161,9 @@ const SubscribeHackathon = () => {
             fontSize={'sm'}
             fontWeight={400}
           >
-            {sub?.length === 1 ? 'Person' : 'People'} Interested
+            {sub?.length === 1
+              ? t('talentOlympicsPage.personInterested')
+              : t('talentOlympicsPage.peopleInterested')}
           </Text>
         </VStack>
       </HStack>
@@ -1230,7 +1218,7 @@ const Marquee: React.FC<MarqueeProps> = ({ children, speed = 50 }) => {
     };
   }, [children]);
 
-  const marqueeAnimation = keyframes`
+  const marqueeAnimation = chakraKeyframes`
     0% { transform: translateX(0); }
     100% { transform: translateX(-${contentWidth}px); }
   `;
@@ -1275,9 +1263,9 @@ const TextStyler: React.FC<TextStylerProps> = ({ text }) => {
               textShadow="0 0 32px white"
               userSelect="none"
               filter="blur(4px)"
-              title="Redacted content"
+              title={t('talentOlympicsPage.redactedContent')}
             >
-              redac
+              {t('talentOlympicsPage.redactedText')}
             </Box>
           );
         }
