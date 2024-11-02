@@ -11,6 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { toast } from 'sonner';
@@ -33,6 +34,7 @@ export const DeleteDraftModal = ({
 }: DeleteDraftModalProps) => {
   const queryClient = useQueryClient();
   const { user } = useUser();
+  const { t } = useTranslation();
 
   const deleteMutation = useMutation({
     mutationFn: async () => {
@@ -47,12 +49,12 @@ export const DeleteDraftModal = ({
         ['dashboard', user?.currentSponsorId],
         (oldData) => (oldData ? oldData.filter((x) => x.id !== listingId) : []),
       );
-      toast.success('Draft deleted successfully');
+      toast.success(t('deleteDraftModal.draftDeletedSuccess'));
       deleteDraftOnClose();
     },
     onError: (error) => {
       console.error('Delete error:', error);
-      toast.error('Failed to delete draft. Please try again.');
+      toast.error(t('deleteDraftModal.draftDeleteError'));
     },
   });
 
@@ -64,31 +66,30 @@ export const DeleteDraftModal = ({
     <Modal isOpen={deleteDraftIsOpen} onClose={deleteDraftOnClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Delete Draft?</ModalHeader>
+        <ModalHeader>{t('deleteDraftModal.title')}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
           <Text color="brand.slate.500">
-            Are you sure you want to delete this draft listing?
+            {t('deleteDraftModal.confirmMessage')}
           </Text>
           <br />
           <Text color="brand.slate.500">
-            Note: If this was previously a published listing, all submissions or
-            applications received for this listing will also be deleted.
+            {t('deleteDraftModal.submissionsWarning')}
           </Text>
         </ModalBody>
 
         <ModalFooter>
           <Button mr={4} onClick={deleteDraftOnClose} variant="ghost">
-            Close
+            {t('common.close')}
           </Button>
           <Button
             isLoading={deleteMutation.isPending}
             leftIcon={<AiOutlineDelete />}
-            loadingText="Deleting..."
+            loadingText={t('deleteDraftModal.deletingText')}
             onClick={deleteSelectedDraft}
             variant="solid"
           >
-            Confirm
+            {t('deleteDraftModal.confirmButton')}
           </Button>
         </ModalFooter>
       </ModalContent>

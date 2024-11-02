@@ -1,4 +1,5 @@
 import { Button, type ButtonProps, useDisclosure } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { RecordPaymentModal } from './Modals/RecordPaymentModal';
@@ -18,6 +19,7 @@ export const RecordPaymentButton = ({
   token: string;
   onPaymentRecorded: (updatedApplication: any) => void;
 }) => {
+  const { t } = useTranslation();
   const {
     isOpen: recordPaymentIsOpen,
     onOpen: recordPaymentOnOpen,
@@ -36,7 +38,7 @@ export const RecordPaymentButton = ({
         onPaymentRecorded={onPaymentRecorded}
       />
       <Button {...buttonStyle} onClick={() => recordPaymentOnOpen()}>
-        Record Payment
+        {t('recordPaymentButton.recordPayment')}
       </Button>
     </>
   );

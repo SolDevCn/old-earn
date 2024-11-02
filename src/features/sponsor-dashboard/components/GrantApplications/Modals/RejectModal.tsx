@@ -14,6 +14,7 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next'; // 添加这行
 import React, { useState } from 'react';
 
 import { tokenList } from '@/constants';
@@ -38,6 +39,7 @@ export const RejectGrantApplicationModal = ({
   onRejectGrant,
 }: RejectModalProps) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const { t } = useTranslation(); // 添加这行
 
   const rejectGrant = async () => {
     if (!applicationId) return;
@@ -58,22 +60,21 @@ export const RejectGrantApplicationModal = ({
       <ModalOverlay />
       <ModalContent>
         <ModalHeader color={'brand.slate.500'} fontSize={'md'} fontWeight={600}>
-          Reject Grant Payment
+          {t('rejectModal.title')}
         </ModalHeader>
         <ModalCloseButton />
         <Divider />
         <ModalBody fontSize={'0.95rem'} fontWeight={500}>
           <Text mt={3} color="brand.slate.500">
-            You are about to reject {granteeName}’s grant request. They will be
-            notified via email.
+            {t('rejectModal.aboutToReject', { granteeName })}
           </Text>
           <br />
           <Flex align={'center'} justify="space-between" mb={8}>
-            <Text color="brand.slate.500">Grant Request</Text>
+            <Text color="brand.slate.500">{t('rejectModal.grantRequest')}</Text>
             <Flex align="center">
               <Image
                 boxSize="6"
-                alt={`${token} icon`}
+                alt={t('rejectModal.tokenIcon', { token })}
                 rounded={'full'}
                 src={tokenList.find((t) => t.tokenSymbol === token)?.icon || ''}
               />
@@ -98,10 +99,10 @@ export const RejectGrantApplicationModal = ({
                 </Circle>
               )
             }
-            loadingText="Rejecting"
+            loadingText={t('rejectModal.rejecting')}
             onClick={rejectGrant}
           >
-            Reject Grant
+            {t('rejectModal.rejectGrant')}
           </Button>
         </ModalBody>
       </ModalContent>

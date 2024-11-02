@@ -18,6 +18,7 @@ import {
 import { type SubmissionLabels } from '@prisma/client';
 import { useAtom } from 'jotai';
 import debounce from 'lodash.debounce';
+import { useTranslation } from 'next-i18next';
 import React, {
   type Dispatch,
   type SetStateAction,
@@ -62,6 +63,7 @@ export const SubmissionList = ({
   toggleAllSubmissions,
   isAllToggled,
 }: Props) => {
+  const { t } = useTranslation();
   const [selectedSubmission, setSelectedSubmission] = useAtom(
     selectedSubmissionAtom,
   );
@@ -163,7 +165,9 @@ export const SubmissionList = ({
                 }}
                 focusBorderColor="brand.purple"
                 onChange={(e) => debouncedSetSearchText(e.target.value)}
-                placeholder="Search Submissions"
+                placeholder={t(
+                  'sponsorDashboard.submissionList.searchSubmissions',
+                )}
                 type="text"
               />
               <InputLeftElement pointerEvents="none">
@@ -178,7 +182,7 @@ export const SubmissionList = ({
             cursor="default"
           >
             <Text color="brand.slate.500" fontSize="xs">
-              Filter By
+              {t('sponsorDashboard.submissionList.filterBy')}
             </Text>
             <Menu>
               <MenuButton
@@ -209,7 +213,8 @@ export const SubmissionList = ({
                     textTransform={'capitalize'}
                     whiteSpace={'nowrap'}
                   >
-                    {filterLabel || 'Select Option'}
+                    {filterLabel ||
+                      t('sponsorDashboard.submissionList.selectOption')}
                   </TagLabel>
                 </Tag>
               </MenuButton>
@@ -226,7 +231,7 @@ export const SubmissionList = ({
                       textTransform={'capitalize'}
                       whiteSpace={'nowrap'}
                     >
-                      Select Option
+                      {t('sponsorDashboard.submissionList.selectOption')}
                     </TagLabel>
                   </Tag>
                 </MenuItem>
@@ -249,7 +254,7 @@ export const SubmissionList = ({
                       textTransform={'capitalize'}
                       whiteSpace={'nowrap'}
                     >
-                      Winner
+                      {t('sponsorDashboard.submissionList.winner')}
                     </TagLabel>
                   </Tag>
                 </MenuItem>
@@ -273,7 +278,7 @@ export const SubmissionList = ({
                         textTransform={'capitalize'}
                         whiteSpace={'nowrap'}
                       >
-                        Rejected
+                        {t('sponsorDashboard.submissionList.rejected')}
                       </TagLabel>
                     </Tag>
                   </MenuItem>

@@ -21,6 +21,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import { t } from 'i18next';
 import React, { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { LuCheck, LuX } from 'react-icons/lu';
@@ -246,7 +247,7 @@ export const VerifyPaymentModal = ({
     if (error) {
       return (
         <Text color="red.500">
-          Error loading submissions. Please try again.
+          {t('verifyPayment.errorLoadingSubmissions')}
         </Text>
       );
     }
@@ -265,11 +266,10 @@ export const VerifyPaymentModal = ({
               />
               <VStack maxW="20rem">
                 <Text color="brand.slate.900" fontWeight={500}>
-                  Verifying Payment
+                  {t('verifyPayment.verifyingPayment')}
                 </Text>
                 <Text align="center" color="brand.slate.500" fontSize="sm">
-                  {`We're`} verifying all your links, hang tight! <br /> This
-                  should take less than a minute
+                  {t('verifyPayment.verifyingDescription')}
                 </Text>
               </VStack>
             </VStack>
@@ -282,7 +282,7 @@ export const VerifyPaymentModal = ({
               cursor="wait"
               type="submit"
             >
-              Verifying Payment....
+              {t('verifyPayment.verifyingPaymentButton')}
             </Button>
           </VStack>
         );
@@ -306,10 +306,10 @@ export const VerifyPaymentModal = ({
             </Center>
             <VStack maxW="20rem">
               <Text color="brand.slate.900" fontWeight={500}>
-                External Payment(s) Added
+                {t('verifyPayment.externalPaymentAdded')}
               </Text>
               <Text align="center" color="brand.slate.500" fontSize="sm">
-                We have successfully added an external payment to your listing.
+                {t('verifyPayment.paymentAddedSuccess')}
               </Text>
             </VStack>
             {listing?.totalPaymentsMade !== listing?.totalWinnersSelected && (
@@ -321,7 +321,7 @@ export const VerifyPaymentModal = ({
                 onClick={tryAgain}
                 variant="link"
               >
-                Verify More
+                {t('verifyPayment.verifyMore')}
               </Button>
             )}
           </VStack>

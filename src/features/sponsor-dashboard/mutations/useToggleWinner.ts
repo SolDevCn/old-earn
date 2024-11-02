@@ -1,5 +1,6 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import { t } from 'i18next';
 import { useAtom } from 'jotai';
 import { toast } from 'sonner';
 
@@ -123,7 +124,7 @@ export const useToggleWinner = (
     },
     onError: (error) => {
       console.error('Failed to toggle winner:', error);
-      toast.error('Failed to toggle winner, please try again later');
+      toast.error(t('toggleWinner.failedToToggleWinner'));
     },
   });
 };

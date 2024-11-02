@@ -1,6 +1,7 @@
 import { Box, Flex, Link, Text } from '@chakra-ui/react';
 import { useAtomValue } from 'jotai';
 import NextLink from 'next/link';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { LinkTextParser } from '@/components/shared/LinkTextParser';
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export const Details = ({ bounty }: Props) => {
+  const { t } = useTranslation('common');
   const selectedSubmission = useAtomValue(selectedSubmissionAtom);
   const isProject = bounty?.type === 'project';
   const isHackathon = bounty?.type === 'hackathon';
@@ -55,7 +57,7 @@ export const Details = ({ bounty }: Props) => {
                 fontWeight={600}
                 textTransform={'uppercase'}
               >
-                Main Submission
+                {t('submissionDetails.mainSubmission')}
               </Text>
               <Link
                 as={NextLink}
@@ -76,7 +78,7 @@ export const Details = ({ bounty }: Props) => {
                 fontWeight={600}
                 textTransform={'uppercase'}
               >
-                Tweet Link
+                {t('submissionDetails.tweetLink')}
               </Text>
               <Link
                 as={NextLink}
@@ -98,7 +100,7 @@ export const Details = ({ bounty }: Props) => {
               fontWeight={600}
               textTransform={'uppercase'}
             >
-              Ask
+              {t('submissionDetails.ask')}
             </Text>
             <Text color="brand.slate.700">
               {selectedSubmission?.ask?.toLocaleString()} {bounty?.token}
@@ -131,7 +133,7 @@ export const Details = ({ bounty }: Props) => {
             fontWeight={600}
             textTransform={'uppercase'}
           >
-            Anything Else
+            {t('submissionDetails.anythingElse')}
           </Text>
           <LinkTextParser text={selectedSubmission?.otherInfo || ''} />
         </Box>

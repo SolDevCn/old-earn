@@ -22,6 +22,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { tokenList } from '@/constants';
 
@@ -49,13 +50,12 @@ export const ApproveModal = ({
   const [approvedAmount, setApprovedAmount] = useState<number | undefined>(ask);
   const [loading, setLoading] = useState<boolean>(false);
   const [warningMessage, setWarningMessage] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   const handleAmountChange = (valueString: string) => {
     const value = parseFloat(valueString);
     if (value > (ask as number)) {
-      setWarningMessage(
-        'Approved amount is greater than the requested amount. Are you sure you want to approve?',
-      );
+      setWarningMessage(t('approveModal.warningAmountGreater'));
     } else {
       setWarningMessage(null);
     }
@@ -88,22 +88,23 @@ export const ApproveModal = ({
       <ModalOverlay />
       <ModalContent>
         <ModalHeader color={'brand.slate.500'} fontSize={'md'} fontWeight={600}>
-          Approve Grant Payment
+          {t('approveModal.title')}
         </ModalHeader>
         <ModalCloseButton />
         <Divider />
         <ModalBody fontSize={'0.95rem'} fontWeight={500}>
           <Text mt={3} color="brand.slate.500">
-            You are about to approve {granteeName}’s grant request. They will be
-            notified via email.
+            {t('approveModal.aboutToApprove', { granteeName })}
           </Text>
           <br />
           <Flex align={'center'} justify="space-between" mb={6}>
-            <Text color="brand.slate.500">Grant Request</Text>
+            <Text color="brand.slate.500">
+              {t('approveModal.grantRequest')}
+            </Text>
             <Flex align="center">
               <Image
                 boxSize="5"
-                alt={`${token} icon`}
+                alt={t('approveModal.tokenIcon', { token })}
                 rounded={'full'}
                 src={tokenList.find((t) => t.tokenSymbol === token)?.icon || ''}
               />
@@ -118,7 +119,7 @@ export const ApproveModal = ({
 
           <Flex align={'center'} justify="space-between" w="100%" mb={6}>
             <Text w="100%" color="brand.slate.500" whiteSpace={'nowrap'}>
-              Approved Amount
+              {t('approveModal.approvedAmount')}
             </Text>
             <InputGroup>
               <NumberInput
@@ -151,7 +152,7 @@ export const ApproveModal = ({
                 <Image
                   boxSize="5"
                   mr={1}
-                  alt={`${token} icon`}
+                  alt={t('approveModal.tokenIcon', { token })}
                   rounded={'full'}
                   src={
                     tokenList.find((t) => t.tokenSymbol === token)?.icon || ''
@@ -185,10 +186,10 @@ export const ApproveModal = ({
                 </Circle>
               )
             }
-            loadingText="Approving"
+            loadingText={t('approveModal.approving')}
             onClick={approveGrant}
           >
-            Approve Grant
+            {t('approveModal.approveGrant')}
           </Button>
         </ModalBody>
       </ModalContent>

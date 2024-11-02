@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { type GrantApplicationStatus } from '@prisma/client';
 import debounce from 'lodash.debounce';
+import { useTranslation } from 'next-i18next';
 import React, {
   type Dispatch,
   type SetStateAction,
@@ -48,6 +49,7 @@ export const ApplicationList = ({
   isAllToggled,
 }: Props) => {
   const debouncedSetSearchText = useRef(debounce(setSearchText, 300)).current;
+  const { t } = useTranslation();
 
   useEffect(() => {
     return () => {
@@ -96,7 +98,7 @@ export const ApplicationList = ({
               }}
               focusBorderColor="brand.purple"
               onChange={(e) => debouncedSetSearchText(e.target.value)}
-              placeholder="Search Applications"
+              placeholder={t('applicationList.searchApplications')}
               type="text"
             />
             <InputLeftElement pointerEvents="none">
@@ -139,7 +141,10 @@ export const ApplicationList = ({
                       borderColor: 'brand.purple',
                     },
                   }}
-                  disabled={application?.applicationStatus !== 'Pending'}
+                  disabled={
+                    application?.applicationStatus !==
+                    t('applicationList.pending')
+                  }
                   isChecked={isToggled(application.id)}
                   onChange={() => toggleApplication(application.id)}
                 />
@@ -156,7 +161,7 @@ export const ApplicationList = ({
                     whiteSpace="nowrap"
                     textOverflow="ellipsis"
                   >
-                    {application?.projectTitle}
+                    {t('applicationList.projectTitle')}
                   </Text>
                   <Text
                     overflow={'hidden'}

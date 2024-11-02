@@ -16,6 +16,7 @@ import {
   Tr,
 } from '@chakra-ui/react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 import { tokenList } from '@/constants';
@@ -46,6 +47,8 @@ const PaymentDetailsRow = ({
   paymentDetails: GrantPaymentDetailProps[];
   token: string;
 }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <Td>
@@ -73,7 +76,7 @@ const PaymentDetailsRow = ({
         {paymentDetails.map((payment, index) => (
           <Flex key={index} align="center" justify="space-between" my={2}>
             <Text color="brand.slate.500" fontSize={'sm'} fontWeight={500}>
-              Milestone {payment.tranche}
+              {t('paymentsHistoryTab.milestone', { number: payment.tranche })}
             </Text>
           </Flex>
         ))}
@@ -88,6 +91,7 @@ const PaymentDetailsRow = ({
                     alignItems={'center'}
                     gap={1}
                     display={'flex'}
+                    aria-label={t('paymentsHistoryTab.viewTransaction')}
                     href={payment.txId}
                     rel="noopener noreferrer"
                     target="_blank"
@@ -120,6 +124,7 @@ export const PaymentsHistoryTab = ({
   const { user } = useUser();
   const [expandedRows, setExpandedRows] = useState<Set<string>>(new Set());
   const queryClient = useQueryClient();
+  const { t } = useTranslation();
 
   const isNativeAndNonST = !grant?.airtableId && grant?.isNative;
 
@@ -176,10 +181,10 @@ export const PaymentsHistoryTab = ({
         <Table variant="simple">
           <Thead>
             <Tr bg="brand.slate.100">
-              <GrantTh>Approved Grantee</GrantTh>
-              <GrantTh>Approved</GrantTh>
-              <GrantTh>Paid Out</GrantTh>
-              <GrantTh>% Paid</GrantTh>
+              <GrantTh>{t('paymentsHistoryTab.approvedGrantee')}</GrantTh>
+              <GrantTh>{t('paymentsHistoryTab.approved')}</GrantTh>
+              <GrantTh>{t('paymentsHistoryTab.paidOut')}</GrantTh>
+              <GrantTh>{t('paymentsHistoryTab.percentPaid')}</GrantTh>
               <GrantTh />
             </Tr>
           </Thead>

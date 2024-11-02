@@ -18,6 +18,7 @@ import {
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { BiPlus } from 'react-icons/bi';
@@ -67,6 +68,7 @@ export const RecordPaymentModal = ({
   token,
   onPaymentRecorded,
 }: RecordPaymentModalProps) => {
+  const { t } = useTranslation();
   const maxAmount = approvedAmount - totalPaid;
 
   const {
@@ -92,13 +94,13 @@ export const RecordPaymentModal = ({
     },
     onSuccess: (updatedApplication) => {
       onPaymentRecorded(updatedApplication);
-      toast.success('Payment recorded successfully');
+      toast.success(t('recordPaymentModal.paymentSuccess'));
       reset();
       recordPaymentOnClose();
     },
     onError: (error) => {
       console.error(error);
-      toast.error('Error recording payment. Please try again.');
+      toast.error(t('recordPaymentModal.paymentError'));
     },
   });
 
@@ -111,7 +113,7 @@ export const RecordPaymentModal = ({
       <ModalOverlay />
       <ModalContent>
         <ModalHeader color={'brand.slate.500'} fontSize={'md'} fontWeight={600}>
-          Add Grant Payment
+          {t('recordPaymentModal.title')}
         </ModalHeader>
         <ModalCloseButton />
         <Divider />
@@ -119,17 +121,17 @@ export const RecordPaymentModal = ({
           <form onSubmit={handleSubmit(onSubmit)}>
             <FormControl isInvalid={!!errors.amount}>
               <FormLabel color="brand.slate.500" fontSize={'0.95rem'}>
-                Amount
+                {t('recordPaymentModal.amount')}
               </FormLabel>
               <NumberInput focusBorderColor="brand.purple">
                 <NumberInputField
                   color={'brand.slate.800'}
                   borderColor="brand.slate.300"
                   {...register('amount', {
-                    required: 'This field is required',
+                    required: t('recordPaymentModal.amountRequired'),
                     setValueAs: (value) => parseFloat(value),
                   })}
-                  placeholder="Enter amount"
+                  placeholder={t('recordPaymentModal.amountPlaceholder')}
                 />
               </NumberInput>
               <FormErrorMessage>
@@ -138,12 +140,12 @@ export const RecordPaymentModal = ({
             </FormControl>
             <FormControl mt={4} isInvalid={!!errors.transactionLink}>
               <FormLabel color="brand.slate.500" fontSize={'0.95rem'}>
-                Transaction Link
+                {t('recordPaymentModal.transactionLink')}
               </FormLabel>
               <Input
                 mt={-1}
                 {...register('transactionLink')}
-                placeholder="Enter transaction link"
+                placeholder={t('recordPaymentModal.transactionLinkPlaceholder')}
               />
               <FormErrorMessage>
                 {errors.transactionLink && (
@@ -162,10 +164,10 @@ export const RecordPaymentModal = ({
                   <BiPlus color="white" size="18px" />
                 )
               }
-              loadingText="Adding Payment"
+              loadingText={t('recordPaymentModal.addingPayment')}
               type="submit"
             >
-              Add Payment
+              {t('recordPaymentModal.addPayment')}
             </Button>
           </form>
         </ModalBody>

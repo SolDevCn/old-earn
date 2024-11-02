@@ -2,6 +2,7 @@ import { SubmissionStatus } from '@prisma/client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useSetAtom } from 'jotai';
+import { useTranslation } from 'next-i18next';
 import { toast } from 'sonner';
 
 import { type SubmissionWithUser } from '@/interface/submission';
@@ -12,6 +13,7 @@ export const useRejectSubmissions = (slug: string) => {
   const queryClient = useQueryClient();
   const setSelectedSubmission = useSetAtom(selectedSubmissionAtom);
   const setSelectedSubmissionIds = useSetAtom(selectedSubmissionIdsAtom);
+  const { t } = useTranslation();
 
   return useMutation({
     mutationFn: async (submissionIds: string[]) => {
@@ -37,9 +39,7 @@ export const useRejectSubmissions = (slug: string) => {
       });
     },
     onError: () => {
-      toast.error(
-        'An error occurred while rejecting submissions. Please try again.',
-      );
+      toast.error(t('rejectSubmissions.errorMessage'));
     },
     onSuccess: (_, submissionIds) => {
       queryClient.setQueryData(['sponsor-submissions', slug], (old: any) => {
@@ -60,7 +60,7 @@ export const useRejectSubmissions = (slug: string) => {
 
       setSelectedSubmission(updatedSubmission);
       setSelectedSubmissionIds(new Set());
-      toast.success('Submissions rejected successfully');
+      toast.success(t('rejectSubmissions.successMessage'));
     },
   });
 };

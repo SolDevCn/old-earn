@@ -362,7 +362,8 @@
     "allOpportunities": "所有机会",
     "bounties": "悬赏",
     "projects": "项目",
-    "grants": "资助"
+    "grants": "资助",
+    "hackathons": "黑客马拉松"
   },
   "RecentEarners": {
     "recentEarners": "最近赚取者",
@@ -1141,5 +1142,351 @@
   "newSponsor": {
     "contactAdmin": "向管理员发送邮件或者IM, 开通相应权限",
     "contactAdminDetail": "发送邮件至 <1>{{godEmail}}</1>, 或者telegram <3>@{{godTelegram}}</3> 联系管理员"
+  },
+  "approveModal": {
+    "title": "批准资助付款",
+    "aboutToApprove": "您即将批准 {{granteeName}} 的资助申请。我们将通过电子邮件通知他们。",
+    "grantRequest": "资助申请",
+    "approvedAmount": "批准金额",
+    "tokenIcon": "{{token}} 图标",
+    "warningAmountGreater": "批准金额大于申请金额。您确定要批准吗？",
+    "approving": "正在批准",
+    "approveGrant": "批准资助"
+  },
+  "recordPaymentModal": {
+    "title": "添加资助付款",
+    "amount": "金额",
+    "amountPlaceholder": "输入金额",
+    "transactionLink": "交易链接",
+    "transactionLinkPlaceholder": "输入交易链接",
+    "invalidUrl": "无效的 URL",
+    "transactionLinkRequired": "交易链接为必填项",
+    "amountRequired": "金额为必填项",
+    "invalidTransactionLink": "无效的交易链接。必须是 solscan.io 或 solana.fm 链接并带有有效的交易 ID。",
+    "maxAmountError": "{{maxAmount}} {{token}} 是剩余需要支付的总金额。交易金额不能高于剩余需要支付的金额。",
+    "addPayment": "添加付款",
+    "addingPayment": "正在添加付款",
+    "paymentSuccess": "付款记录成功",
+    "paymentError": "记录付款时出错。请重试。"
+  },
+  "rejectAllModal": {
+    "title": "拒绝资助付款",
+    "aboutToReject": "您即将拒绝 {{count}} 个资助申请。我们将通过电子邮件通知他们。",
+    "rejecting": "正在拒绝",
+    "rejectGrant": "拒绝资助"
+  },
+  "rejectModal": {
+    "title": "拒绝资助付款",
+    "aboutToReject": "您即将拒绝 {{granteeName}} 的资助申请。我将通过电子件通知他们。",
+    "grantRequest": "资助申请",
+    "tokenIcon": "{{token}} 图标",
+    "rejecting": "正在拒绝",
+    "rejectGrant": "拒绝资助"
+  },
+  "applicationDetails": {
+    "application": "的申请",
+    "viewProfile": "查看个人资料",
+    "approve": "批准",
+    "reject": "拒绝",
+    "approved": "已批准",
+    "paid": "已支付",
+    "email": "邮箱",
+    "walletId": "钱包地址",
+    "copyWallet": "复制钱包地址",
+    "ask": "申请金额",
+    "applicationDate": "申请日期",
+    "projectTitle": "项目标题",
+    "oneLinerDescription": "一句话描述",
+    "projectDetails": "项目详情",
+    "twitter": "Twitter",
+    "deadline": "截止日期",
+    "proofOfWork": "工作证明",
+    "goalsAndMilestones": "目标和里程碑",
+    "primaryKPI": "主要关键绩效指标",
+    "walletCopied": "钱包地址已复制"
+  },
+  "applicationHeader": {
+    "allListings": "所有列表",
+    "bankIconAlt": "银行图标",
+    "exportCSV": "导出 CSV",
+    "exporting": "导出中...",
+    "csvExportSuccess": "CSV 导出成功",
+    "csvExportError": "导出 CSV 失败。请重试。",
+    "viewGrant": "查看资助",
+    "applications": "申请",
+    "deadline": "截止日期",
+    "rolling": "滚动",
+    "status": "状态",
+    "grantSize": "资助规模",
+    "tokenIconAlt": "代币图标",
+    "share": "分享"
+  },
+  "applicationList": {
+    "searchApplications": "搜索申请",
+    "projectTitle": "项目标题",
+    "pending": "待处理"
+  },
+  "paymentsHistoryTab": {
+    "approvedGrantee": "已批准的受助人",
+    "approved": "已批准",
+    "paidOut": "已支付",
+    "percentPaid": "支付百分比",
+    "milestone": "里程碑 {{number}}",
+    "viewTransaction": "查看交易"
+  },
+  "recordPaymentButton": {
+    "recordPayment": "记录付款"
+  },
+  "filterSection": {
+    "filterBySkills": "按技能筛选",
+    "searchUsers": "搜索用户...",
+    "exportCSV": "导出 CSV",
+    "exporting": "导出中...",
+    "csvExportSuccess": "CSV 导出成功",
+    "exportUrlEmpty": "导出 URL 为空",
+    "csvExportError": "导出 CSV 失败，请重试。"
+  },
+  "userDrawer": {
+    "wins": "获胜",
+    "submissions": "提交",
+    "earned": "$ 已赚取",
+    "rank": "# 排名",
+    "viewProfile": "查看个人资料",
+    "socials": "社交媒体",
+    "bio": "个人简介",
+    "discordUsername": "Discord 用户名",
+    "skills": "技能",
+    "subSkills": "子技能",
+    "interests": "兴趣",
+    "communities": "社区",
+    "profileCreationDate": "个人资料创建日期"
+  },
+  "userTable": {
+    "rank": "# 排名",
+    "user": "用户",
+    "earned": "$ 已赚取",
+    "submissions": "提交",
+    "wins": "获胜",
+    "skills": "技能",
+    "socials": "社交媒体",
+    "viewProfile": "查看个人资料"
+  },
+  "inviteMembers": {
+    "inviteMember": "邀请成员",
+    "sentInvite": "已发送邀请！",
+    "teamMemberWillReceive": "您的团队成员将收到一封包含加入 Superteam Earn 链接的电子邮件。",
+    "addEmailAddress": "添加电子邮件地址",
+    "errorSendingInvite": "抱歉！发送邀请时发生错误。",
+    "memberType": "成员类型",
+    "member": "成员",
+    "memberDescription": "成员可以管理悬赏和项目，可以指定获胜者并进行支付。",
+    "admin": "管理员",
+    "adminDescription": "管理员拥有所有成员权限，并且可以管理所有成员。",
+    "inviting": "正在邀请...",
+    "sendInvite": "发送邀请",
+    "inviteSentSuccess": "邀请发送成功",
+    "inviteSendError": "发送邀请失败。请重试。"
+  },
+  "deleteDraftModal": {
+    "title": "删除草稿？",
+    "confirmMessage": "您确定要删除这个草稿列表吗？",
+    "submissionsWarning": "注意：如果这是之前发布过的列表，所有收到的提交或申请也将被删除。",
+    "deletingText": "正在删除...",
+    "confirmButton": "确认",
+    "draftDeletedSuccess": "草稿删除成功",
+    "draftDeleteError": "删除草稿失败。请重试。"
+  },
+  "unpublishModal": {
+    "title": "取消发布列表？",
+    "description": "取消发布后，此列表将从主页隐藏。您确定要取消发布此列表吗？",
+    "unpublishing": "正在取消发布...",
+    "unpublish": "取消发布",
+    "unpublishSuccess": "列表已成功取消发布",
+    "unpublishError": "取消发布列表失败。请重试。"
+  },
+  "verifyPayment": {
+    "errorLoadingSubmissions": "加载提交时出错。请重试。",
+    "verifyingPayment": "验证付款",
+    "verifyingDescription": "我们正在验证您的所有链接,请稍候！这应该不会超过一分钟",
+    "verifyingPaymentButton": "正在验证付款....",
+    "externalPaymentAdded": "已添加外部付款",
+    "paymentAddedSuccess": "我们已成功为您的列表添加外部付款。",
+    "verifyMore": "验证更多",
+    "ohUhVerificationFailed": "哎呀 验证失败",
+    "verificationFailedDescription": "我们无法验证您的付款状态。请检查您的链接并确保金额准确无误",
+    "thinkMistake": "认为我们出错了？给我们发消息",
+    "tryAgain": "重试?",
+    "addRewardPaymentLink": "添加奖励付款链接",
+    "addRewardDescription": "如果您已在 Earn 之外支付获胜者并想将此列表状态更新为\"已完成\",请添加支付给获胜者的交易链接。",
+    "prize": "奖项",
+    "paymentVerified": "付款已验证。查看交易",
+    "pasteLink": "在此粘贴您的链接",
+    "addExternalPayment": "添加外部付款",
+    "verificationFailed": "验证失败"
+  },
+  "inviteButton": {
+    "invite": "邀请",
+    "invited": "已邀请",
+    "inviteSent": "邀请已发送。剩余 {{invites}} 个邀请名额",
+    "inviteSentSingular": "邀请已发送。剩余 1 个邀请名额",
+    "inviteError": "邀请失败,请稍后重试"
+  },
+  "scoutTable": {
+    "user": "用户",
+    "earned": "已赚取",
+    "earnedTooltip": "在所有相关技能列表中赚取的金额。",
+    "matchScore": "匹配分数",
+    "matchScoreTooltip": "基于多个因素(如匹配技能数量、赚取金额等)的综合评分。",
+    "matchedSkills": "匹配技能",
+    "matchedSkillsTooltip": "匹配技能指用户之前赢得的列表所需的技能。",
+    "invitesLeft": "剩余邀请: {{count}}/{{total}}",
+    "noProfilesFound": "未找到个人资料",
+    "noProfilesFoundDesc": "我们无法为您的列表找到合适的匹配",
+    "viewProfile": "查看个人资料"
+  },
+  "submissionModals": {
+    "rejectAll": {
+      "title": "拒绝申请",
+      "message": "您即将拒绝 {{count}} 个申请请求。他们将通过电子邮件收到通知。",
+      "rejecting": "正在拒绝",
+      "rejectButton": "拒绝申请"
+    }
+  },
+  "submissionRejectModal": {
+    "modalTitle": "拒绝申请",
+    "rejectMessage": "您即将拒绝 {{applicantName}} 的提交申请。他们将通过电子邮件收到通知。",
+    "rejectingStatus": "正在拒绝",
+    "rejectButton": "拒绝申请"
+  },
+  "submissionDetails": {
+    "mainSubmission": "主要提交",
+    "tweetLink": "推文链接",
+    "ask": "申请金额",
+    "anythingElse": "其他信息"
+  },
+  "notes": {
+    "reviewNotes": "审核笔记",
+    "autoSaved": "已自动保存",
+    "startTypingPlaceholder": "• 在此开始输入笔记",
+    "charactersRemaining": "还剩 {{count}} 个字符",
+    "errorSavingNotes": "保存笔记时出错："
+  },
+  "selectWinner": {
+    "approve": "批准",
+    "reject": "拒绝",
+    "selectWinner": "选择获胜者",
+    "winner": "获胜者"
+  },
+  "submissionHeader": {
+    "allListings": "所有列表",
+    "exportCSV": "导出 CSV",
+    "exporting": "导出中...",
+    "viewListing": "查看列表",
+    "edit": "编辑",
+    "submissions": "提交",
+    "deadline": "截止日期",
+    "status": "状态",
+    "prize": "奖励",
+    "share": "分享",
+    "csvExportSuccess": "CSV 导出成功",
+    "csvExportError": "导出 CSV 失败。请重试。"
+  },
+  "sponsorDashboard": {
+    "submissionList": {
+      "searchSubmissions": "搜索提交",
+      "filterBy": "按以下条件筛选",
+      "selectOption": "选择选项",
+      "winner": "获胜者",
+      "rejected": "已拒绝",
+      "applications": "申请",
+      "submission": "提交",
+      "submissions": "提交",
+      "remaining": "剩余",
+      "deadline": "截止日期",
+      "rolling": "滚动"
+    }
+  },
+  "submissionPanel": {
+    "submissionBy": "的提交",
+    "viewProfile": "查看资料",
+    "noSubmissions": "未找到提交",
+    "tryDifferentSearch": "尝试不同的搜索条件",
+    "payToken": "支付 {{token}} {{amount}}",
+    "pleaseAnnounceWinners": "请在支付获奖者之前公布获奖者",
+    "viewPaymentTx": "查看支付交易",
+    "announceWinners": "公布获奖者",
+    "cannotChangeWinners": "结果发布后将无法更改获奖者！",
+    "winnersRemaining": {
+      "winners": "{{count}} 名获奖者",
+      "winnersPlural": "{{count}} 名获奖者",
+      "bonus": "{{count}} 个奖金",
+      "bonusPlural": "{{count}} 个奖金",
+      "remaining": "剩余"
+    },
+    "allWinnersSelected": "已选择所有获奖者",
+    "copyWalletTooltip": "复制钱包地址"
+  },
+  "sponsorDashboardBanner": {
+    "tooltipTextReward": "已公布获奖者的列表总奖励金额（以美元计）",
+    "tooltipTextListings": "在 Earn 上添加的列表总数",
+    "tooltipTextSubmissions": "所有列表收到的提交/申请总数",
+    "sponsorSince": "赞助商自 {{year}} 年起",
+    "hackathon": "黑客马拉松",
+    "rewarded": "已奖励",
+    "totalPrizes": "总奖金",
+    "listings": "列表",
+    "tracks": "赛道",
+    "submissions": "提交",
+    "stuckSomewhere": "遇到问题了吗？",
+    "messageUs": "给我们发消息"
+  },
+  "createListingModal": {
+    "bountyIllustrationAlt": "悬赏插图",
+    "projectIllustrationAlt": "项目插图",
+    "bounty": "悬赏",
+    "project": "项目",
+    "hostWorkCompetition": "举办工作竞赛",
+    "bountyDescription": "所有参与者完成您的工作范围，最佳提交作品将获得奖励。获得多个选择方案。",
+    "createBounty": "创建悬赏",
+    "hireFreelancer": "雇佣自由职业者",
+    "projectDescription": "根据您设置的问卷获取申请，并选择一位申请者合作。提供固定预算或询问报价。",
+    "createProject": "创建项目"
+  },
+  "listingTable": {
+    "listingName": "列表名称",
+    "submissions": "提交",
+    "deadline": "截止日期",
+    "prize": "奖励",
+    "status": "状态",
+    "actions": "操作",
+    "linkCopied": "链接已复制",
+    "applications": "申请",
+    "edit": "编辑",
+    "viewListing": "查看{{label}}",
+    "copyLink": "复制链接",
+    "editListing": "编辑{{label}}",
+    "duplicate": "复制",
+    "deleteDraft": "删除草稿",
+    "updatePaymentStatus": "更新支付状态",
+    "unpublish": "取消发布"
+  },
+  "sponsorInfoModal": {
+    "completeProfile": "完成您的个人资料",
+    "username": "用户名",
+    "usernamePlaceholder": "用户名",
+    "firstName": "名字",
+    "firstNamePlaceholder": "名字",
+    "lastName": "姓氏",
+    "lastNamePlaceholder": "姓氏",
+    "profilePicture": "头像",
+    "submitting": "正在提交...",
+    "submit": "提交"
+  },
+  "rejectSubmissions": {
+    "errorMessage": "拒绝提交时发生错误。请重试。",
+    "successMessage": "提交已成功拒绝"
+  },
+  "toggleWinner": {
+    "failedToToggleWinner": "切换获胜者失败,请稍后重试"
   }
 }

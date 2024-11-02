@@ -23,6 +23,7 @@ import {
 } from '@chakra-ui/react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 import { AiOutlineSend } from 'react-icons/ai';
 import { toast } from 'sonner';
@@ -43,6 +44,7 @@ const validateEmail = (email: string) => {
 export function InviteMembers({ isOpen, onClose }: Props) {
   const [email, setEmail] = useState<string>('');
   const [memberType, setMemberType] = useState<string>('MEMBER');
+  const { t } = useTranslation();
 
   const inviteMutation = useMutation({
     mutationFn: async () => {
@@ -53,11 +55,11 @@ export function InviteMembers({ isOpen, onClose }: Props) {
       return response.data;
     },
     onSuccess: () => {
-      toast.success('Invite sent successfully');
+      toast.success(t('inviteMembers.inviteSentSuccess'));
     },
     onError: (error) => {
       console.error('Invite error:', error);
-      toast.error('Failed to send invite. Please try again.');
+      toast.error(t('inviteMembers.inviteSendError'));
     },
   });
 
@@ -78,7 +80,7 @@ export function InviteMembers({ isOpen, onClose }: Props) {
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Invite Member</ModalHeader>
+        <ModalHeader>{t('inviteMembers.inviteMember')}</ModalHeader>
         <ModalCloseButton />
         {inviteMutation.isSuccess ? (
           <>
@@ -95,17 +97,16 @@ export function InviteMembers({ isOpen, onClose }: Props) {
               >
                 <AlertIcon boxSize="40px" mr={4} />
                 <Box>
-                  <AlertTitle>Sent Invite!</AlertTitle>
+                  <AlertTitle>{t('inviteMembers.sentInvite')}</AlertTitle>
                   <AlertDescription>
-                    Your team member will receive an email with a link to join
-                    Superteam Earn.
+                    {t('inviteMembers.teamMemberWillReceive')}
                   </AlertDescription>
                 </Box>
               </Alert>
             </ModalBody>
             <ModalFooter>
               <Button onClick={onClose} variant="solid">
-                Close
+                {t('common.close')}
               </Button>
             </ModalFooter>
           </>
@@ -113,7 +114,9 @@ export function InviteMembers({ isOpen, onClose }: Props) {
           <>
             <ModalBody>
               <FormControl isInvalid={inviteMutation.isError}>
-                <FormLabel mb={0}>Add Email Address</FormLabel>
+                <FormLabel mb={0}>
+                  {t('inviteMembers.addEmailAddress')}
+                </FormLabel>
                 <Input
                   color="brand.slate.500"
                   borderColor="brand.slate.300"
@@ -125,11 +128,11 @@ export function InviteMembers({ isOpen, onClose }: Props) {
                   type="email"
                 />
                 <FormErrorMessage>
-                  Sorry! Error occurred while sending invite.
+                  {t('inviteMembers.errorSendingInvite')}
                 </FormErrorMessage>
               </FormControl>
               <Stack pt={4}>
-                <FormLabel mb={0}>Member Type</FormLabel>
+                <FormLabel mb={0}>{t('inviteMembers.memberType')}</FormLabel>
                 <RadioGroup
                   defaultValue={memberType}
                   onChange={(value) => setMemberType(value)}
@@ -143,11 +146,10 @@ export function InviteMembers({ isOpen, onClose }: Props) {
                   >
                     <Box ml={2}>
                       <Text fontSize="sm" fontWeight={700}>
-                        Member
+                        {t('inviteMembers.member')}
                       </Text>
                       <Text fontSize="sm">
-                        Members can manage bounties & projects, can assign
-                        winners and make payments.
+                        {t('inviteMembers.memberDescription')}
                       </Text>
                     </Box>
                   </Radio>
@@ -161,11 +163,10 @@ export function InviteMembers({ isOpen, onClose }: Props) {
                   >
                     <Box ml={2}>
                       <Text fontSize="sm" fontWeight={700}>
-                        Admin
+                        {t('inviteMembers.admin')}
                       </Text>
                       <Text fontSize="sm">
-                        Admin have all Member privileges, and they can manage
-                        all members.
+                        {t('inviteMembers.adminDescription')}
                       </Text>
                     </Box>
                   </Radio>
@@ -174,17 +175,17 @@ export function InviteMembers({ isOpen, onClose }: Props) {
             </ModalBody>
             <ModalFooter>
               <Button mr={4} onClick={onClose} variant="ghost">
-                Close
+                {t('common.close')}
               </Button>
               <Button
                 colorScheme="blue"
                 isDisabled={!email}
                 isLoading={inviteMutation.isPending}
                 leftIcon={<AiOutlineSend />}
-                loadingText="Inviting..."
+                loadingText={t('inviteMembers.inviting')}
                 onClick={sendInvites}
               >
-                Send Invite
+                {t('inviteMembers.sendInvite')}
               </Button>
             </ModalFooter>
           </>

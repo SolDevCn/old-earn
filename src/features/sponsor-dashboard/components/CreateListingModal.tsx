@@ -12,6 +12,7 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import React from 'react';
 
@@ -26,6 +27,7 @@ export const CreateListingModal = ({
   isOpen: boolean;
   onClose: () => void;
 }) => {
+  const { t } = useTranslation();
   const posthog = usePostHog();
   const router = useRouter();
   const { resetForm } = useListingFormStore();
@@ -57,7 +59,7 @@ export const CreateListingModal = ({
               <Image
                 w="100%"
                 h="auto"
-                alt="Bounty Illustration"
+                alt={t('createListingModal.bountyIllustrationAlt')}
                 src="/assets/dashboard/bounty_illustration.svg"
               />
               <Flex
@@ -81,20 +83,19 @@ export const CreateListingModal = ({
                   }}
                 />
                 <Text fontSize="sm" fontWeight="bold">
-                  Bounty
+                  {t('createListingModal.bounty')}
                 </Text>
               </Flex>
             </Center>
             <Box p={8}>
               <Heading as="h3" mb={4} fontWeight={600} size="md">
-                Host a Work Competition
+                {t('createListingModal.hostWorkCompetition')}
               </Heading>
               <Text mb={4} color="brand.slate.500">
-                All participants complete your scope of work, and the best
-                submission(s) are rewarded. Get multiple options to choose from.
+                {t('createListingModal.bountyDescription')}
               </Text>
               <Button w="full" py={7} onClick={handleCreateBounty} size="lg">
-                Create a Bounty
+                {t('createListingModal.createBounty')}
               </Button>
             </Box>
           </Box>
@@ -108,7 +109,7 @@ export const CreateListingModal = ({
               <Image
                 w="100%"
                 h="auto"
-                alt="Project Illustration"
+                alt={t('createListingModal.projectIllustrationAlt')}
                 src="/assets/dashboard/project_illustration.svg"
               />
               <Flex
@@ -132,21 +133,19 @@ export const CreateListingModal = ({
                   }}
                 />
                 <Text fontSize="sm" fontWeight="bold">
-                  Project
+                  {t('createListingModal.project')}
                 </Text>
               </Flex>
             </Center>
             <Box p={8}>
               <Heading as="h3" mb={4} fontWeight={600} size="md">
-                Hire a Freelancer
+                {t('createListingModal.hireFreelancer')}
               </Heading>
               <Text mb={4} color="brand.slate.500">
-                Get applications based on a questionnaire set by you, and select
-                one applicant to work with. Give a fixed budget, or ask for
-                quotes.
+                {t('createListingModal.projectDescription')}
               </Text>
               <Button w="full" py={7} onClick={handleCreateProject} size="lg">
-                Create a Project
+                {t('createListingModal.createProject')}
               </Button>
             </Box>
           </Box>

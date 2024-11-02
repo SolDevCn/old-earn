@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import dayjs from 'dayjs';
 import NextLink from 'next/link';
+import { useTranslation } from 'next-i18next';
 import { type ReactNode } from 'react';
 
 import { skillMap } from '@/constants';
@@ -28,6 +29,8 @@ export const UserDrawer = ({
   onClose: () => void;
   user: LocalProfile;
 }) => {
+  const { t } = useTranslation();
+
   const parentSkills = user.skills.map((skill: any) => skill.skills);
   const subSkills = user.skills.flatMap((skill: any) => skill.subskills);
   const socialLinks = [
@@ -96,7 +99,7 @@ export const UserDrawer = ({
                     {user?.wins}
                   </Text>
                   <Text color="brand.slate.500" fontSize={'0.92rem'}>
-                    Wins
+                    {t('userDrawer.wins')}
                   </Text>
                 </Flex>
                 <Flex
@@ -114,7 +117,7 @@ export const UserDrawer = ({
                     {user?.totalSubmissions}
                   </Text>
                   <Text color="brand.slate.500" fontSize={'0.92rem'}>
-                    Submissions
+                    {t('userDrawer.submissions')}
                   </Text>
                 </Flex>
                 <Flex
@@ -132,7 +135,7 @@ export const UserDrawer = ({
                     ${user.totalEarnings.toLocaleString()}
                   </Text>
                   <Text color="brand.slate.500" fontSize={'0.92rem'}>
-                    $ Earned
+                    {t('userDrawer.earned')}
                   </Text>
                 </Flex>
                 <Flex
@@ -150,7 +153,7 @@ export const UserDrawer = ({
                     #{user?.rank}
                   </Text>
                   <Text color="brand.slate.500" fontSize={'0.92rem'}>
-                    # Rank
+                    {t('userDrawer.rank')}
                   </Text>
                 </Flex>
 
@@ -164,14 +167,14 @@ export const UserDrawer = ({
                   rel="noopener noreferrer"
                   target="_blank"
                 >
-                  View Profile <ArrowForwardIcon />
+                  {t('userDrawer.viewProfile')} <ArrowForwardIcon />
                 </Link>
               </Flex>
             </Flex>
 
             <Box>
               <Text mb={2} color="brand.slate.400" fontWeight={500}>
-                Socials
+                {t('userDrawer.socials')}
               </Text>
               <Flex gap={2}>
                 {socialLinks.map(({ Component, link }, index) => (
@@ -188,21 +191,21 @@ export const UserDrawer = ({
 
             <Box>
               <Text mb={2} color="brand.slate.400" fontWeight={500}>
-                Bio
+                {t('userDrawer.bio')}
               </Text>
               <Text color="brand.slate.500">{user.bio || '-'}</Text>
             </Box>
 
             <Box>
               <Text mb={2} color="brand.slate.400" fontWeight={500}>
-                Discord Username
+                {t('userDrawer.discordUsername')}
               </Text>
               <Text color="brand.slate.500">{user.discord || '-'}</Text>
             </Box>
 
             <Box>
               <Text mb={2} color="brand.slate.400" fontWeight={500}>
-                Skills
+                {t('userDrawer.skills')}
               </Text>
               <Flex wrap="wrap" gap={2}>
                 {parentSkills.length > 0 ? (
@@ -228,7 +231,7 @@ export const UserDrawer = ({
 
             <Box>
               <Text mb={2} color="brand.slate.400" fontWeight={500}>
-                Sub Skills
+                {t('userDrawer.subSkills')}
               </Text>
               <Flex wrap="wrap" gap={2}>
                 {subSkills.length > 0 ? (
@@ -243,7 +246,7 @@ export const UserDrawer = ({
 
             <Box>
               <Text mb={2} color="brand.slate.400" fontWeight={500}>
-                Interests
+                {t('userDrawer.interests')}
               </Text>
               <Flex wrap="wrap" gap={2}>
                 <Text color="brand.slate.500">
@@ -257,7 +260,7 @@ export const UserDrawer = ({
 
             <Box>
               <Text mb={2} color="brand.slate.400" fontWeight={500}>
-                Communities
+                {t('userDrawer.communities')}
               </Text>
               <Text color="brand.slate.500">
                 {(() => {
@@ -268,7 +271,7 @@ export const UserDrawer = ({
             </Box>
             <Box>
               <Text mb={2} color="brand.slate.400" fontWeight={500}>
-                Profile Creation Date
+                {t('userDrawer.profileCreationDate')}
               </Text>
               <Text color="brand.slate.500">{formattedCreatedAt}</Text>
             </Box>

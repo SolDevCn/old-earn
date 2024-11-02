@@ -29,6 +29,7 @@ import axios from 'axios';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { FaXTwitter } from 'react-icons/fa6';
 import { LuPencil } from 'react-icons/lu';
@@ -64,6 +65,7 @@ export const SubmissionHeader = ({
   const { data: session } = useSession();
   const { resetForm } = useListingFormStore();
   const router = useRouter();
+  const { t } = useTranslation();
 
   const deadline = formatDeadline(
     bounty?.deadline,
@@ -106,9 +108,9 @@ ${socialListingLink('twitter')}
       const url = data?.url || '';
       if (url) {
         window.open(url, '_blank');
-        toast.success('CSV exported successfully');
+        toast.success(t('submissionHeader.csvExportSuccess'));
       } else {
-        toast.error('Export URL is empty');
+        toast.error(t('submissionHeader.csvExportError'));
       }
     },
     onError: (error) => {
@@ -140,7 +142,7 @@ ${socialListingLink('twitter')}
               <BreadcrumbLink color="brand.slate.400">
                 <Flex align="center">
                   <ChevronLeftIcon mr={1} w={6} h={6} />
-                  All Listings
+                  {t('submissionHeader.allListings')}
                 </Flex>
               </BreadcrumbLink>
             </Link>
@@ -164,11 +166,11 @@ ${socialListingLink('twitter')}
             _hover={{ bg: '#E0E7FF', color: '#6366F1' }}
             isLoading={exportMutation.isPending}
             leftIcon={<DownloadIcon />}
-            loadingText={'Exporting...'}
+            loadingText={t('submissionHeader.exporting')}
             onClick={() => exportSubmissionsCsv()}
             variant={'ghost'}
           >
-            Export CSV
+            {t('submissionHeader.exportCSV')}
           </Button>
           <Button
             color={'brand.slate.400'}
@@ -179,7 +181,7 @@ ${socialListingLink('twitter')}
             }
             variant={'ghost'}
           >
-            View Listing
+            {t('submissionHeader.viewListing')}
           </Button>
           {!!(
             (session?.user?.role === 'GOD' && bounty?.type !== 'grant') ||
@@ -201,7 +203,7 @@ ${socialListingLink('twitter')}
                 leftIcon={<LuPencil />}
                 variant={'ghost'}
               >
-                Edit
+                {t('submissionHeader.edit')}
               </Button>
             </Link>
           )}
@@ -210,13 +212,15 @@ ${socialListingLink('twitter')}
       <Divider />
       <Flex align="center" gap={12} mt={4} mb={8}>
         <Box>
-          <Text color="brand.slate.500">Submissions</Text>
+          <Text color="brand.slate.500">
+            {t('submissionHeader.submissions')}
+          </Text>
           <Text mt={3} color="brand.slate.600" fontWeight={600}>
             {totalSubmissions}
           </Text>
         </Box>
         <Box>
-          <Text color="brand.slate.500">Deadline</Text>
+          <Text color="brand.slate.500">{t('submissionHeader.deadline')}</Text>
           <Text
             mt={3}
             color="brand.slate.600"
@@ -227,7 +231,7 @@ ${socialListingLink('twitter')}
           </Text>
         </Box>
         <Box>
-          <Text color="brand.slate.500">Status</Text>
+          <Text color="brand.slate.500">{t('submissionHeader.status')}</Text>
           <Tag
             mt={3}
             px={3}
@@ -243,7 +247,7 @@ ${socialListingLink('twitter')}
           </Tag>
         </Box>
         <Box>
-          <Text color="brand.slate.500">Prize</Text>
+          <Text color="brand.slate.500">{t('submissionHeader.prize')}</Text>
           <Flex align={'center'} justify={'start'} gap={1} mt={3}>
             <Image
               w={5}
@@ -271,7 +275,7 @@ ${socialListingLink('twitter')}
           </Flex>
         </Box>
         <Box ml="auto">
-          <Text color="brand.slate.500">Share</Text>
+          <Text color="brand.slate.500">{t('submissionHeader.share')}</Text>
           <Flex align="center" gap={4} mt={2}>
             <InputGroup bg="#F8FAFC" borderColor={'brand.slate.100'}>
               <InputLeftElement>

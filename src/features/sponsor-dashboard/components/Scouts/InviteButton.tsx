@@ -1,6 +1,7 @@
 import { Button } from '@chakra-ui/react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import React from 'react';
 import { LuCheck, LuPlus } from 'react-icons/lu';
@@ -24,6 +25,7 @@ export function InviteButton({
   invitesLeft,
 }: Props) {
   const posthog = usePostHog();
+  const { t } = useTranslation();
 
   const inviteMutation = useMutation({
     mutationFn: async () => {
@@ -39,12 +41,14 @@ export function InviteButton({
       });
       const invites = invitesLeft - 1;
       toast.success(
-        `Invite sent. ${invites} Invite${invites === 1 ? '' : 's'} Remaining`,
+        invites === 1
+          ? t('inviteButton.inviteSentSingular')
+          : t('inviteButton.inviteSent', { invites }),
       );
     },
     onError: (error) => {
       console.error('Invite error:', error);
-      toast.error('Invite failed, please try again later');
+      toast.error(t('inviteButton.inviteError'));
     },
   });
 
@@ -71,11 +75,13 @@ export function InviteButton({
     >
       {invited ? (
         <>
-          <LuCheck strokeLinecap="square" strokeWidth={3} /> Invited
+          <LuCheck strokeLinecap="square" strokeWidth={3} />{' '}
+          {t('inviteButton.invited')}
         </>
       ) : (
         <>
-          <LuPlus strokeLinecap="square" strokeWidth={3} /> Invite
+          <LuPlus strokeLinecap="square" strokeWidth={3} />{' '}
+          {t('inviteButton.invite')}
         </>
       )}
     </Button>

@@ -8,6 +8,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
+import { useTranslation } from 'next-i18next';
 import React, { type Dispatch, type SetStateAction } from 'react';
 import { MdArrowDropDown } from 'react-icons/md';
 
@@ -41,6 +42,7 @@ export const SelectWinner = ({
   onWinnersAnnounceOpen,
   isMultiSelectOn,
 }: Props) => {
+  const { t } = useTranslation();
   const rewards = sortRank(cleanRewards(bounty?.rewards));
 
   const [selectedSubmission] = useAtom(selectedSubmissionAtom);
@@ -113,7 +115,7 @@ export const SelectWinner = ({
                   }
                   onClick={onWinnersAnnounceOpen}
                 >
-                  Approve
+                  {t('selectWinner.approve')}
                 </Button>
                 <Button
                   color="#E11D48"
@@ -127,7 +129,7 @@ export const SelectWinner = ({
                   }
                   onClick={rejectedOnOpen}
                 >
-                  Reject
+                  {t('selectWinner.reject')}
                 </Button>
               </>
             )}
@@ -157,7 +159,7 @@ export const SelectWinner = ({
                 : ''
             }
           >
-            <option>Select Winner</option>
+            <option>{t('selectWinner.selectWinner')}</option>
             {rewards.map((reward) => {
               let isRewardUsed = usedPositions.includes(reward);
               if (reward === BONUS_REWARD_POSITION) {
@@ -173,7 +175,9 @@ export const SelectWinner = ({
               return (
                 (!isRewardUsed || isCurrentSubmissionReward) && (
                   <option key={reward} value={reward}>
-                    {isProject ? 'Winner' : getRankLabels(reward)}
+                    {isProject
+                      ? t('selectWinner.winner')
+                      : getRankLabels(reward)}
                   </option>
                 )
               );

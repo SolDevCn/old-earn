@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useAtom } from 'jotai';
 import debounce from 'lodash.debounce';
+import { useTranslation } from 'next-i18next';
 import React, { useCallback, useEffect, useState } from 'react';
 
 import { type SubmissionWithUser } from '@/interface/submission';
@@ -18,6 +19,7 @@ type Props = {
 };
 
 export const Notes = ({ submissionId, initialNotes = '', slug }: Props) => {
+  const { t } = useTranslation();
   const [selectedSubmission, setSelectedSubmission] = useAtom(
     selectedSubmissionAtom,
   );
@@ -42,7 +44,7 @@ export const Notes = ({ submissionId, initialNotes = '', slug }: Props) => {
       );
     },
     onError: (error) => {
-      console.error('Error saving notes:', error);
+      console.error(t('notes.errorSavingNotes'), error);
     },
   });
 
@@ -93,11 +95,11 @@ export const Notes = ({ submissionId, initialNotes = '', slug }: Props) => {
   return (
     <Flex align="start" direction="column" w="full">
       <HStack justify="space-between" w="full" mb={2} color="brand.slate.400">
-        <Text fontWeight={800}>Review Notes</Text>
+        <Text fontWeight={800}>{t('notes.reviewNotes')}</Text>
         {isSaving ? (
           <Spinner size="xs" />
         ) : (
-          <Text fontSize="xx-small">Auto-saved</Text>
+          <Text fontSize="xx-small">{t('notes.autoSaved')}</Text>
         )}
       </HStack>
       <Textarea
@@ -117,12 +119,14 @@ export const Notes = ({ submissionId, initialNotes = '', slug }: Props) => {
         resize="vertical"
         onChange={handleChange}
         onKeyDown={handleKeyDown}
-        placeholder="• Start typing notes here"
+        placeholder={t('notes.startTypingPlaceholder')}
         rows={20}
         value={notes}
       />
       <Text mt={1} color="brand.slate.400" fontSize="xs">
-        {MAX_CHARACTERS - notes.length} characters remaining
+        {t('notes.charactersRemaining', {
+          count: MAX_CHARACTERS - notes.length,
+        })}
       </Text>
     </Flex>
   );

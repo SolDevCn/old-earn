@@ -25,6 +25,7 @@ import {
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import React, { useState } from 'react';
 import { FiMoreVertical } from 'react-icons/fi';
@@ -87,6 +88,8 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
     onClose: verifyPaymentOnClose,
   } = useDisclosure();
 
+  const { t } = useTranslation('listingTable');
+
   const handleUnpublish = async (
     unpublishedListing: ListingWithSubmissions,
   ) => {
@@ -128,7 +131,7 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
   const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text).then(
       () => {
-        toast.success('Link Copied');
+        toast.success(t('linkCopied'));
       },
       (err) => {
         console.error('Failed to copy text: ', err);
@@ -169,18 +172,18 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
         <Table variant="simple">
           <Thead>
             <Tr bg="brand.slate.100">
-              <ListingTh>Listing Name</ListingTh>
+              <ListingTh>{t('listingName')}</ListingTh>
               <ListingTh
                 style={{
                   textAlign: 'center',
                 }}
               >
-                Submissions
+                {t('submissions')}
               </ListingTh>
-              <ListingTh>Deadline</ListingTh>
-              <ListingTh>Prize</ListingTh>
-              <ListingTh>Status</ListingTh>
-              <ListingTh>Actions</ListingTh>
+              <ListingTh>{t('deadline')}</ListingTh>
+              <ListingTh>{t('prize')}</ListingTh>
+              <ListingTh>{t('status')}</ListingTh>
+              <ListingTh>{t('actions')}</ListingTh>
               <Th pl={0} />
             </Tr>
           </Thead>
@@ -375,7 +378,7 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
                           size="sm"
                           variant="ghost"
                         >
-                          Edit
+                          {t('edit')}
                         </Button>
                       </Link>
                     ) : (
@@ -403,7 +406,7 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
                           icon={<Icon as={IoOpenOutline} w={4} h={4} />}
                           onClick={() => window.open(listingLink, '_blank')}
                         >
-                          View {listingLabel}
+                          {t('viewListing', { label: listingLabel })}
                         </MenuItem>
 
                         {!!listing.isPublished && (
@@ -414,7 +417,7 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
                             icon={<Icon as={IoCopyOutline} w={4} h={4} />}
                             onClick={() => copyToClipboard(listingLink)}
                           >
-                            Copy Link
+                            {t('copyLink')}
                           </MenuItem>
                         )}
 
@@ -438,7 +441,7 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
                               fontWeight={500}
                               icon={<Icon as={PiNotePencil} w={4} h={4} />}
                             >
-                              Edit {listingLabel}
+                              {t('editListing', { label: listingLabel })}
                             </MenuItem>
                           </Link>
                         )}
@@ -458,7 +461,7 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
                               );
                             }}
                           >
-                            Duplicate
+                            {t('duplicate')}
                           </MenuItem>
                         )}
                         {listingStatus === 'Draft' &&
@@ -471,7 +474,7 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
                                 icon={<Icon as={IoTrashOutline} w={4} h={4} />}
                                 onClick={() => handleDeleteDraft(listing)}
                               >
-                                Delete Draft
+                                {t('deleteDraft')}
                               </MenuItem>
                             </>
                           )}
@@ -492,7 +495,7 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
                                 }
                                 onClick={() => handleVerifyPayment(listing)}
                               >
-                                Update Payment Status
+                                {t('updatePaymentStatus')}
                               </MenuItem>
                             </>
                           )}
@@ -506,7 +509,7 @@ export const ListingTable = ({ listings }: ListingTableProps) => {
                               icon={<Icon as={IoEyeOffOutline} boxSize={4} />}
                               onClick={() => handleUnpublish(listing)}
                             >
-                              Unpublish
+                              {t('unpublish')}
                             </MenuItem>
                           )}
                       </MenuList>

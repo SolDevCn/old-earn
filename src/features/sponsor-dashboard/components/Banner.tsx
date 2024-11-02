@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { usePostHog } from 'posthog-js/react';
+import { useTranslation } from 'react-i18next';
 import { AiOutlineEdit } from 'react-icons/ai';
 import { MdInfoOutline, MdOutlineChatBubbleOutline } from 'react-icons/md';
 
@@ -31,9 +32,13 @@ export function Banner({
   const posthog = usePostHog();
   const sponsorId = isHackathon ? user?.hackathonId : user?.currentSponsorId;
 
-  const tooltipTextReward = `Total compensation (in USD) of listings where the winners have been announced`;
-  const tooltipTextListings = `Total number of listings added to Earn`;
-  const tooltipTextSubmissions = `Total number of submissions/applications received on all listings`;
+  const { t } = useTranslation();
+
+  const tooltipTextReward = t('sponsorDashboardBanner.tooltipTextReward');
+  const tooltipTextListings = t('sponsorDashboardBanner.tooltipTextListings');
+  const tooltipTextSubmissions = t(
+    'sponsorDashboardBanner.tooltipTextSubmissions',
+  );
 
   const sponsor = isHackathon ? stats : user?.currentSponsor;
 
@@ -94,8 +99,10 @@ export function Banner({
                   whiteSpace={'nowrap'}
                 >
                   {!isHackathon
-                    ? `Sponsor since ${stats?.yearOnPlatform}`
-                    : 'Hackathon'}
+                    ? t('sponsorDashboardBanner.sponsorSince', {
+                        year: stats?.yearOnPlatform,
+                      })
+                    : t('sponsorDashboardBanner.hackathon')}
                 </Text>
               )}
             </Box>
@@ -121,7 +128,9 @@ export function Banner({
                   fontWeight={400}
                   whiteSpace={'nowrap'}
                 >
-                  {!isHackathon ? 'Rewarded' : 'Total Prizes'}
+                  {!isHackathon
+                    ? t('sponsorDashboardBanner.rewarded')
+                    : t('sponsorDashboardBanner.totalPrizes')}
                 </Text>
                 <MdInfoOutline color="#94a3b8" size={16} />
               </Flex>
@@ -152,7 +161,9 @@ export function Banner({
                   fontWeight={400}
                   whiteSpace={'nowrap'}
                 >
-                  {!isHackathon ? 'Listings' : 'Tracks'}
+                  {!isHackathon
+                    ? t('sponsorDashboardBanner.listings')
+                    : t('sponsorDashboardBanner.tracks')}
                 </Text>
                 <MdInfoOutline color="#94a3b8" size={16} />
               </Flex>
@@ -180,7 +191,7 @@ export function Banner({
                   fontWeight={400}
                   whiteSpace={'nowrap'}
                 >
-                  Submissions
+                  {t('sponsorDashboardBanner.submissions')}
                 </Text>
                 <MdInfoOutline color="#94a3b8" size={16} />
               </Flex>
@@ -230,14 +241,14 @@ export function Banner({
                   fontWeight={600}
                   whiteSpace={'nowrap'}
                 >
-                  Stuck somewhere?
+                  {t('sponsorDashboardBanner.stuckSomewhere')}
                 </Text>
                 <Text
                   color="brand.slate.500"
                   fontWeight={600}
                   whiteSpace={'nowrap'}
                 >
-                  Message Us
+                  {t('sponsorDashboardBanner.messageUs')}
                 </Text>
               </Box>
             </Flex>

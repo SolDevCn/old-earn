@@ -2,6 +2,7 @@ import { ArrowForwardIcon, CopyIcon, ExternalLinkIcon } from '@chakra-ui/icons';
 import { Box, Button, Flex, Link, Text, Tooltip } from '@chakra-ui/react';
 import { useAtom } from 'jotai';
 import NextLink from 'next/link';
+import { useTranslation } from 'next-i18next';
 import React, { type Dispatch, type SetStateAction } from 'react';
 import { FaXTwitter } from 'react-icons/fa6';
 import { MdOutlineAccountBalanceWallet, MdOutlineMail } from 'react-icons/md';
@@ -42,6 +43,8 @@ export const SubmissionPanel = ({
   setRemainings,
   isMultiSelectOn,
 }: Props) => {
+  const { t } = useTranslation();
+
   const afterAnnounceDate =
     bounty?.type === 'hackathon'
       ? dayjs().isAfter(bounty?.Hackathon?.announceDate)
@@ -83,7 +86,7 @@ export const SubmissionPanel = ({
                       fontWeight={500}
                       whiteSpace={'nowrap'}
                     >
-                      {`${selectedSubmission?.user?.firstName}'s Submission`}
+                      {`${selectedSubmission?.user?.firstName}${t('submissionPanel.submissionBy')}`}
                     </Text>
                     <Link
                       as={NextLink}
@@ -94,7 +97,8 @@ export const SubmissionPanel = ({
                       whiteSpace={'nowrap'}
                       href={`/t/${selectedSubmission?.user?.username}`}
                     >
-                      View Profile <ArrowForwardIcon mb="0.5" />
+                      {t('submissionPanel.viewProfile')}{' '}
+                      <ArrowForwardIcon mb="0.5" />
                     </Link>
                   </Box>
                 </Flex>
@@ -116,7 +120,7 @@ export const SubmissionPanel = ({
                           bg={'brand.purple'}
                           hasArrow={true}
                           isDisabled={!!bounty?.isWinnersAnnounced}
-                          label="Please announce the winners before you paying out the winners"
+                          label={t('submissionPanel.pleaseAnnounceWinners')}
                           placement="top"
                         >
                           <Button
@@ -125,11 +129,13 @@ export const SubmissionPanel = ({
                             size="sm"
                             variant="solid"
                           >
-                            Pay {bounty?.token}{' '}
-                            {!!bounty?.rewards &&
-                              bounty?.rewards[
-                                selectedSubmission?.winnerPosition as keyof Rewards
-                              ]}
+                            {t('submissionPanel.payToken', {
+                              token: bounty?.token,
+                              amount:
+                                bounty?.rewards?.[
+                                  selectedSubmission?.winnerPosition as keyof Rewards
+                                ],
+                            })}
                           </Button>
                         </Tooltip>
                       </>
@@ -150,7 +156,7 @@ export const SubmissionPanel = ({
                         size="md"
                         variant="ghost"
                       >
-                        View Payment Tx
+                        {t('submissionPanel.viewPaymentTx')}
                       </Button>
                     )}
                   {!bounty?.isWinnersAnnounced && (
@@ -169,7 +175,7 @@ export const SubmissionPanel = ({
                           bg={'brand.purple'}
                           hasArrow={true}
                           isDisabled={!bounty?.isWinnersAnnounced}
-                          label="You cannot change the winners once the results are published!"
+                          label={t('submissionPanel.cannotChangeWinners')}
                           placement="top"
                         >
                           <Button
@@ -190,7 +196,7 @@ export const SubmissionPanel = ({
                             onClick={onWinnersAnnounceOpen}
                             variant={'solid'}
                           >
-                            Announce Winners
+                            {t('submissionPanel.announceWinners')}
                           </Button>
                         </Tooltip>
                       )}
@@ -211,20 +217,24 @@ export const SubmissionPanel = ({
                     <Text color="#F55151">
                       {remainings.podiums > 0 && (
                         <>
-                          {remainings.podiums}{' '}
-                          {remainings.podiums === 1 ? 'Winner' : 'Winners'}{' '}
+                          {t('submissionPanel.winnersRemaining.winners', {
+                            count: remainings.podiums,
+                          })}{' '}
                         </>
                       )}
                       {remainings.bonus > 0 && (
                         <>
-                          {remainings.bonus}{' '}
-                          {remainings.bonus === 1 ? 'Bonus' : 'Bonus'}{' '}
+                          {t('submissionPanel.winnersRemaining.bonus', {
+                            count: remainings.bonus,
+                          })}{' '}
                         </>
                       )}
-                      Remaining
+                      {t('submissionPanel.winnersRemaining.remaining')}
                     </Text>
                   ) : (
-                    <Text color="#48CB6D">All winners selected</Text>
+                    <Text color="#48CB6D">
+                      {t('submissionPanel.allWinnersSelected')}
+                    </Text>
                   )}
                 </Flex>
               )}
@@ -256,7 +266,10 @@ export const SubmissionPanel = ({
                         selectedSubmission?.user?.publicKey,
                         3,
                       )}
-                      <Tooltip label="Copy Wallet ID" placement="right">
+                      <Tooltip
+                        label={t('submissionPanel.copyWalletTooltip')}
+                        placement="right"
+                      >
                         <CopyIcon
                           cursor="pointer"
                           ml={1}
@@ -274,7 +287,6 @@ export const SubmissionPanel = ({
                 {selectedSubmission?.user?.twitter && (
                   <Flex align="center" justify="start" gap={2} fontSize="sm">
                     <FaXTwitter color="#94A3B8" />
-
                     <Link
                       color="brand.slate.400"
                       href={selectedSubmission?.user?.twitter}
@@ -291,10 +303,10 @@ export const SubmissionPanel = ({
         ) : (
           <Box p={3}>
             <Text color={'brand.slate.500'} fontSize={'xl'} fontWeight={500}>
-              No submissions found
+              {t('submissionPanel.noSubmissions')}
             </Text>
             <Text color={'brand.slate.400'} fontSize={'sm'}>
-              Try a different search query
+              {t('submissionPanel.tryDifferentSearch')}
             </Text>
           </Box>
         )}

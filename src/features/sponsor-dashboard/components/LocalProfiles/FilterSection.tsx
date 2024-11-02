@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { toast } from 'sonner';
 
@@ -33,6 +34,7 @@ export const FilterSection = ({
   debouncedSetSearchText,
   setCurrentPage,
 }: FilterSectionProps) => {
+  const { t } = useTranslation();
   const mainSkills = Object.keys(skillSubSkillMap);
   const selectedSkillsCount =
     Object.values(checkedItems).filter(Boolean).length;
@@ -53,14 +55,14 @@ export const FilterSection = ({
       const url = data?.url || '';
       if (url) {
         window.open(url, '_blank');
-        toast.success('CSV exported successfully');
+        toast.success(t('filterSection.csvExportSuccess'));
       } else {
-        toast.error('Export URL is empty');
+        toast.error(t('filterSection.exportUrlEmpty'));
       }
     },
     onError: (error) => {
       console.error('Export error:', error);
-      toast.error('Failed to export CSV. Please try again.');
+      toast.error(t('filterSection.csvExportError'));
     },
   });
 
@@ -82,7 +84,7 @@ export const FilterSection = ({
           size={'sm'}
           variant={'outline'}
         >
-          Filter By Skills
+          {t('filterSection.filterBySkills')}
           {selectedSkillsCount > 0 ? ` (${selectedSkillsCount})` : ''}
         </MenuButton>
         <MenuList>
@@ -128,7 +130,7 @@ export const FilterSection = ({
             debouncedSetSearchText(e.target.value);
             setCurrentPage(1);
           }}
-          placeholder="Search users..."
+          placeholder={t('filterSection.searchUsers')}
           type="text"
         />
         <InputLeftElement pointerEvents="none">
@@ -143,12 +145,12 @@ export const FilterSection = ({
         borderColor={'brand.slate.300'}
         isLoading={exportMutation.isPending}
         leftIcon={<DownloadIcon />}
-        loadingText={'Exporting...'}
+        loadingText={t('filterSection.exporting')}
         onClick={() => exportUserCsv()}
         size={'sm'}
         variant={'ghost'}
       >
-        Export CSV
+        {t('filterSection.exportCSV')}
       </Button>
     </Flex>
   );

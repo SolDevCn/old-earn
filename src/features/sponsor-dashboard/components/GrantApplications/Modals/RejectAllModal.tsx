@@ -12,6 +12,7 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next'; // 添加这行
 import React, { useState } from 'react';
 
 interface RejectModalProps {
@@ -28,6 +29,7 @@ export const RejectAllGrantApplicationModal = ({
   applicationIds,
 }: RejectModalProps) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const { t } = useTranslation(); // 添加这行
 
   const rejectGrant = async () => {
     setLoading(true);
@@ -46,14 +48,15 @@ export const RejectAllGrantApplicationModal = ({
       <ModalOverlay />
       <ModalContent>
         <ModalHeader color={'brand.slate.500'} fontSize={'md'} fontWeight={600}>
-          Reject Grant Payment
+          {t('rejectAllModal.title')}
         </ModalHeader>
         <ModalCloseButton />
         <Divider />
         <ModalBody fontSize={'0.95rem'} fontWeight={500}>
           <Text mt={3} color="brand.slate.500">
-            You are about to reject {applicationIds.length} grant request. They
-            will be notified via email.
+            {t('rejectAllModal.aboutToReject', {
+              count: applicationIds.length,
+            })}
           </Text>
           <br />
           <Button
@@ -72,10 +75,10 @@ export const RejectAllGrantApplicationModal = ({
                 </Circle>
               )
             }
-            loadingText="Rejecting"
+            loadingText={t('rejectAllModal.rejecting')}
             onClick={rejectGrant}
           >
-            Reject Grant
+            {t('rejectAllModal.rejectGrant')}
           </Button>
         </ModalBody>
       </ModalContent>

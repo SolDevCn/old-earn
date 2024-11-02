@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { toast } from 'sonner';
 
@@ -31,6 +32,7 @@ export const UnpublishModal = ({
   listingId,
   listingType,
 }: UnpublishModalProps) => {
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const { user } = useUser();
 
@@ -60,12 +62,12 @@ export const UnpublishModal = ({
               )
             : [],
       );
-      toast.success('Listing unpublished successfully');
+      toast.success(t('unpublishModal.unpublishSuccess'));
       unpublishOnClose();
     },
     onError: (error) => {
       console.error('Unpublish error:', error);
-      toast.error('Failed to unpublish listing. Please try again.');
+      toast.error(t('unpublishModal.unpublishError'));
     },
   });
 
@@ -77,26 +79,23 @@ export const UnpublishModal = ({
     <Modal isOpen={unpublishIsOpen} onClose={unpublishOnClose}>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader>Unpublish Listing?</ModalHeader>
+        <ModalHeader>{t('unpublishModal.title')}</ModalHeader>
         <ModalCloseButton />
         <ModalBody>
-          <Text color="brand.slate.500">
-            This listing will be hidden from the homepage once unpublished. Are
-            you sure you want to unpublish this listing?
-          </Text>
+          <Text color="brand.slate.500">{t('unpublishModal.description')}</Text>
         </ModalBody>
         <ModalFooter>
           <Button mr={4} onClick={unpublishOnClose} variant="ghost">
-            Close
+            {t('common.close')}
           </Button>
           <Button
             isLoading={updateMutation.isPending}
             leftIcon={<ViewOffIcon />}
-            loadingText="Unpublishing..."
+            loadingText={t('unpublishModal.unpublishing')}
             onClick={() => changeBountyStatus(false)}
             variant="solid"
           >
-            Unpublish
+            {t('unpublishModal.unpublish')}
           </Button>
         </ModalFooter>
       </ModalContent>

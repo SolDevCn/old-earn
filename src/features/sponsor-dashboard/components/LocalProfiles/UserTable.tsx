@@ -17,7 +17,9 @@ import {
   Tr,
   useDisclosure,
 } from '@chakra-ui/react';
+import { t } from 'i18next';
 import NextLink from 'next/link';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { skillMap } from '@/constants';
@@ -43,6 +45,8 @@ export const UserTable = ({
   currentSort,
   setSort,
 }: MembersTableProps) => {
+  const { t } = useTranslation();
+
   return (
     <TableContainer
       mb={8}
@@ -60,14 +64,14 @@ export const UserTable = ({
               pr={2}
               justify="center"
             >
-              # Rank
+              # {t('userTable.rank')}
             </SortableTH>
             <SortableTH
               column="user"
               currentSort={currentSort}
               setSort={setSort}
             >
-              User
+              {t('userTable.user')}
             </SortableTH>
             <SortableTH
               column="earned"
@@ -75,7 +79,7 @@ export const UserTable = ({
               setSort={setSort}
               px={1}
             >
-              $ Earned
+              $ {t('userTable.earned')}
             </SortableTH>
             <SortableTH
               column="submissions"
@@ -84,7 +88,7 @@ export const UserTable = ({
               px={0}
               justify="center"
             >
-              Submissions
+              {t('userTable.submissions')}
             </SortableTH>
             <SortableTH
               column="wins"
@@ -93,10 +97,10 @@ export const UserTable = ({
               px={1}
               justify="center"
             >
-              Wins
+              {t('userTable.wins')}
             </SortableTH>
-            <TH>Skills</TH>
-            <TH>Socials</TH>
+            <TH>{t('userTable.skills')}</TH>
+            <TH>{t('userTable.socials')}</TH>
             <Th />
           </Tr>
         </Thead>
@@ -268,7 +272,7 @@ const MemberRow = ({ user }: { user: LocalProfile }) => {
           rel="noopener noreferrer"
           target="_blank"
         >
-          View Profile <ArrowForwardIcon />
+          {t('userTable.viewProfile')} <ArrowForwardIcon />
         </Link>
       </Td>
     </Tr>

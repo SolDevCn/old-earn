@@ -12,6 +12,7 @@ import {
   Spinner,
   Text,
 } from '@chakra-ui/react';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 
 interface RejectModalProps {
@@ -30,6 +31,7 @@ export const RejectSubmissionModal = ({
   onRejectSubmission,
 }: RejectModalProps) => {
   const [loading, setLoading] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   const rejectGrant = async () => {
     if (!submissionId) return;
@@ -50,14 +52,13 @@ export const RejectSubmissionModal = ({
       <ModalOverlay />
       <ModalContent>
         <ModalHeader color={'brand.slate.500'} fontSize={'md'} fontWeight={600}>
-          Reject Application
+          {t('submissionRejectModal.modalTitle')}
         </ModalHeader>
         <ModalCloseButton />
         <Divider />
         <ModalBody fontSize={'0.95rem'} fontWeight={500}>
           <Text mt={3} color="brand.slate.500">
-            You are about to reject {applicantName}’s submission request. They
-            will be notified via email.
+            {t('submissionRejectModal.rejectMessage', { applicantName })}
           </Text>
           <br />
           <Button
@@ -76,10 +77,10 @@ export const RejectSubmissionModal = ({
                 </Circle>
               )
             }
-            loadingText="Rejecting"
+            loadingText={t('submissionRejectModal.rejectingStatus')}
             onClick={rejectGrant}
           >
-            Reject Application
+            {t('submissionRejectModal.rejectButton')}
           </Button>
         </ModalBody>
       </ModalContent>

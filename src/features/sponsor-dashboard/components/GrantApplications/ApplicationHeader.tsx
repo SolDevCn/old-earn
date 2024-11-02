@@ -26,6 +26,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import NextLink from 'next/link';
 import router from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { toast } from 'sonner';
 
@@ -45,6 +46,7 @@ interface Props {
 }
 
 export const ApplicationHeader = ({ grant }: Props) => {
+  const { t } = useTranslation('common');
   const listingPath = `grants/${grant?.slug}`;
   const { hasCopied, onCopy } = useClipboard(`${getURL()}${listingPath}`);
   const grantStatus = getListingStatus(grant, true);
@@ -62,11 +64,11 @@ export const ApplicationHeader = ({ grant }: Props) => {
     onSuccess: (data) => {
       const url = data?.url || '';
       window.open(url, '_blank');
-      toast.success('CSV exported successfully');
+      toast.success(t('applicationHeader.csvExportSuccess'));
     },
     onError: (error) => {
       console.error(error);
-      toast.error('Failed to export CSV. Please try again.');
+      toast.error(t('applicationHeader.csvExportError'));
     },
   });
 
@@ -83,7 +85,7 @@ export const ApplicationHeader = ({ grant }: Props) => {
               <BreadcrumbLink color="brand.slate.400">
                 <Flex align="center">
                   <ChevronLeftIcon mr={1} w={6} h={6} />
-                  All Listings
+                  {t('applicationHeader.allListings')}
                 </Flex>
               </BreadcrumbLink>
             </Link>
@@ -95,7 +97,11 @@ export const ApplicationHeader = ({ grant }: Props) => {
       </Box>
       <Flex align="center" justify={'space-between'} mb={4}>
         <Flex align="center" gap={2}>
-          <Image h={6} alt="" src={`/assets/icons/bank.svg`} />
+          <Image
+            h={6}
+            alt={t('applicationHeader.bankIconAlt')}
+            src={`/assets/icons/bank.svg`}
+          />
           <Text color="brand.slate.800" fontSize="xl" fontWeight="700">
             {grant?.title}
           </Text>
@@ -106,11 +112,11 @@ export const ApplicationHeader = ({ grant }: Props) => {
             _hover={{ bg: '#E0E7FF', color: '#6366F1' }}
             isLoading={exportMutation.isPending}
             leftIcon={<DownloadIcon />}
-            loadingText={'Exporting...'}
+            loadingText={t('applicationHeader.exporting')}
             onClick={handleExport}
             variant={'ghost'}
           >
-            Export CSV
+            {t('applicationHeader.exportCSV')}
           </Button>
           <Button
             color={'brand.slate.400'}
@@ -121,31 +127,33 @@ export const ApplicationHeader = ({ grant }: Props) => {
             }
             variant={'ghost'}
           >
-            View Grant
+            {t('applicationHeader.viewGrant')}
           </Button>
         </Flex>
       </Flex>
       <Divider />
       <Flex align="center" gap={12} mt={4} mb={8}>
         <Box>
-          <Text color="brand.slate.500">Applications</Text>
+          <Text color="brand.slate.500">
+            {t('applicationHeader.applications')}
+          </Text>
           <Text mt={3} color="brand.slate.600" fontWeight={600}>
             {grant?.totalApplications}
           </Text>
         </Box>
         <Box>
-          <Text color="brand.slate.500">Deadline</Text>
+          <Text color="brand.slate.500">{t('applicationHeader.deadline')}</Text>
           <Text
             mt={3}
             color="brand.slate.600"
             fontWeight={600}
             whiteSpace={'nowrap'}
           >
-            Rolling
+            {t('applicationHeader.rolling')}
           </Text>
         </Box>
         <Box>
-          <Text color="brand.slate.500">Status</Text>
+          <Text color="brand.slate.500">{t('applicationHeader.status')}</Text>
           <Tag
             mt={3}
             px={3}
@@ -161,12 +169,14 @@ export const ApplicationHeader = ({ grant }: Props) => {
           </Tag>
         </Box>
         <Box>
-          <Text color="brand.slate.500">Grant Size</Text>
+          <Text color="brand.slate.500">
+            {t('applicationHeader.grantSize')}
+          </Text>
           <Flex align={'center'} justify={'start'} gap={1} mt={3}>
             <Image
               w={5}
               h={5}
-              alt={'green dollar'}
+              alt={t('applicationHeader.tokenIconAlt')}
               rounded={'full'}
               src={
                 tokenList.filter((e) => e?.tokenSymbol === grant?.token)[0]
@@ -188,7 +198,7 @@ export const ApplicationHeader = ({ grant }: Props) => {
           </Flex>
         </Box>
         <Box>
-          <Text color="brand.slate.500">Share</Text>
+          <Text color="brand.slate.500">{t('applicationHeader.share')}</Text>
           <InputGroup mt={1} mb={-2}>
             <Input
               overflow="hidden"

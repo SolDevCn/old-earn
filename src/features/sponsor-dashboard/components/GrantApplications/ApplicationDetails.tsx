@@ -21,6 +21,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import dayjs from 'dayjs';
 import NextLink from 'next/link';
+import { useTranslation } from 'next-i18next';
 import React, { type Dispatch, type SetStateAction } from 'react';
 import { MdOutlineAccountBalanceWallet, MdOutlineMail } from 'react-icons/md';
 import { toast } from 'sonner';
@@ -304,6 +305,8 @@ export const ApplicationDetails = ({
     return null;
   };
 
+  const { t } = useTranslation();
+
   return (
     <Box
       w="150%"
@@ -364,7 +367,7 @@ export const ApplicationDetails = ({
                     fontWeight={500}
                     whiteSpace={'nowrap'}
                   >
-                    {`${selectedApplication?.user?.firstName}'s Application`}
+                    {`${selectedApplication?.user?.firstName}${t('applicationDetails.application')}`}
                   </Text>
                   <Link
                     as={NextLink}
@@ -376,7 +379,8 @@ export const ApplicationDetails = ({
                     href={`/t/${selectedApplication?.user?.username}`}
                     isExternal
                   >
-                    View Profile <ArrowForwardIcon mb="0.5" />
+                    {t('applicationDetails.viewProfile')}{' '}
+                    <ArrowForwardIcon mb="0.5" />
                   </Link>
                 </Box>
               </Flex>
@@ -401,7 +405,7 @@ export const ApplicationDetails = ({
                       }
                       onClick={approveOnOpen}
                     >
-                      Approve
+                      {t('applicationDetails.approve')}
                     </Button>
                     <Button
                       color="#E11D48"
@@ -415,7 +419,7 @@ export const ApplicationDetails = ({
                       }
                       onClick={rejectedOnOpen}
                     >
-                      Reject
+                      {t('applicationDetails.reject')}
                     </Button>
                   </>
                 )}
@@ -444,7 +448,7 @@ export const ApplicationDetails = ({
                     fontWeight={600}
                     whiteSpace={'nowrap'}
                   >
-                    APPROVED
+                    {t('applicationDetails.approved')}
                   </Text>
 
                   <Image
@@ -496,7 +500,7 @@ export const ApplicationDetails = ({
                         )}
                         %{' '}
                         <Text as="span" color="brand.slate.400">
-                          Paid
+                          {t('applicationDetails.paid')}
                         </Text>
                       </Text>
                     </Flex>
@@ -526,16 +530,20 @@ export const ApplicationDetails = ({
                   <MdOutlineAccountBalanceWallet color="#94A3B8" />
                   <Text color="brand.slate.400">
                     {truncatePublicKey(selectedApplication?.user?.publicKey, 3)}
-                    <Tooltip label="Copy Wallet ID" placement="right">
+                    <Tooltip
+                      label={t('applicationDetails.copyWallet')}
+                      placement="right"
+                    >
                       <CopyIcon
                         cursor="pointer"
                         ml={1}
                         color="brand.slate.400"
-                        onClick={() =>
+                        onClick={() => {
                           navigator.clipboard.writeText(
                             selectedApplication?.user?.publicKey || '',
-                          )
-                        }
+                          );
+                          toast.success(t('applicationDetails.walletCopied'));
+                        }}
                       />
                     </Tooltip>
                   </Text>
@@ -571,7 +579,7 @@ export const ApplicationDetails = ({
                   fontWeight={600}
                   textTransform={'uppercase'}
                 >
-                  ASK
+                  {t('applicationDetails.ask')}
                 </Text>
                 <Flex align={'center'} gap={0.5}>
                   <Image
@@ -604,7 +612,7 @@ export const ApplicationDetails = ({
                   fontWeight={600}
                   textTransform={'uppercase'}
                 >
-                  APPLICATION DATE
+                  {t('applicationDetails.applicationDate')}
                 </Text>
 
                 <Text
@@ -618,32 +626,35 @@ export const ApplicationDetails = ({
               </Box>
 
               <InfoBox
-                label="Project Title"
+                label={t('applicationDetails.projectTitle')}
                 content={selectedApplication?.projectTitle}
               />
               <InfoBox
-                label="One-Liner Description"
+                label={t('applicationDetails.oneLinerDescription')}
                 content={selectedApplication?.projectOneLiner}
               />
               <InfoBox
-                label="Project Details"
+                label={t('applicationDetails.projectDetails')}
                 content={selectedApplication?.projectDetails}
               />
-              <InfoBox label="Twitter" content={selectedApplication?.twitter} />
               <InfoBox
-                label="Deadline"
+                label={t('applicationDetails.twitter')}
+                content={selectedApplication?.twitter}
+              />
+              <InfoBox
+                label={t('applicationDetails.deadline')}
                 content={selectedApplication?.projectTimeline}
               />
               <InfoBox
-                label="Proof of Work"
+                label={t('applicationDetails.proofOfWork')}
                 content={selectedApplication?.proofOfWork}
               />
               <InfoBox
-                label="Goals and Milestones"
+                label={t('applicationDetails.goalsAndMilestones')}
                 content={selectedApplication?.milestones}
               />
               <InfoBox
-                label="Primary Key Performance Indicator"
+                label={t('applicationDetails.primaryKPI')}
                 content={selectedApplication?.kpi}
               />
               {Array.isArray(selectedApplication?.answers) &&

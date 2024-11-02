@@ -15,6 +15,7 @@ import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'sonner';
 
 import { ImagePicker } from '@/components/shared/ImagePicker';
@@ -46,6 +47,8 @@ export const SponsorInfoModal = ({
 
   const { setUsername, isInvalid, validationErrorMessage, username } =
     useUsernameValidation();
+
+  const { t } = useTranslation();
 
   const updateUserMutation = useMutation({
     mutationFn: async (data: any) => {
@@ -88,12 +91,14 @@ export const SponsorInfoModal = ({
       <ModalOverlay />
       <ModalContent px={6} py={5}>
         <Text mb={3} color="brand.slate.600" fontSize={'2xl'} fontWeight={600}>
-          Complete Your Profile
+          {t('sponsorInfoModal.completeProfile')}
         </Text>
         <form style={{ width: '100%' }} onSubmit={handleSubmit(onSubmit)}>
           <FormControl w="full" isRequired>
             <Box w={'full'} mb={'1.25rem'}>
-              <FormLabel color={'brand.slate.500'}>Username</FormLabel>
+              <FormLabel color={'brand.slate.500'}>
+                {t('sponsorInfoModal.username')}
+              </FormLabel>
               <Input
                 color={'gray.800'}
                 borderColor="brand.slate.300"
@@ -102,7 +107,7 @@ export const SponsorInfoModal = ({
                 }}
                 focusBorderColor="brand.purple"
                 id="username"
-                placeholder="Username"
+                placeholder={t('sponsorInfoModal.usernamePlaceholder')}
                 {...register('username', { required: true })}
                 isInvalid={isInvalid}
                 onChange={(e) => setUsername(e.target.value)}
@@ -117,7 +122,9 @@ export const SponsorInfoModal = ({
 
             <Flex justify="space-between" gap={8} w={'full'} mb={'1.25rem'}>
               <Box w="full">
-                <FormLabel color={'brand.slate.500'}>First Name</FormLabel>
+                <FormLabel color={'brand.slate.500'}>
+                  {t('sponsorInfoModal.firstName')}
+                </FormLabel>
                 <Input
                   color={'gray.800'}
                   borderColor="brand.slate.300"
@@ -126,12 +133,14 @@ export const SponsorInfoModal = ({
                   }}
                   focusBorderColor="brand.purple"
                   id="firstName"
-                  placeholder="First Name"
+                  placeholder={t('sponsorInfoModal.firstNamePlaceholder')}
                   {...register('firstName', { required: true })}
                 />
               </Box>
               <Box w="full">
-                <FormLabel color={'brand.slate.500'}>Last Name</FormLabel>
+                <FormLabel color={'brand.slate.500'}>
+                  {t('sponsorInfoModal.lastName')}
+                </FormLabel>
                 <Input
                   color={'gray.800'}
                   borderColor="brand.slate.300"
@@ -140,7 +149,7 @@ export const SponsorInfoModal = ({
                   }}
                   focusBorderColor="brand.purple"
                   id="lastName"
-                  placeholder="Last Name"
+                  placeholder={t('sponsorInfoModal.lastNamePlaceholder')}
                   {...register('lastName', { required: true })}
                 />
               </Box>
@@ -155,7 +164,7 @@ export const SponsorInfoModal = ({
                     color={'brand.slate.500'}
                     requiredIndicator={<></>}
                   >
-                    Profile Picture
+                    {t('sponsorInfoModal.profilePicture')}
                   </FormLabel>
                   <Box w="full" mt={1}>
                     <ImagePicker
@@ -182,7 +191,7 @@ export const SponsorInfoModal = ({
                     color={'brand.slate.500'}
                     requiredIndicator={<></>}
                   >
-                    Profile Picture
+                    {t('sponsorInfoModal.profilePicture')}
                   </FormLabel>
                   <ImagePicker
                     onChange={async (e) => {
@@ -203,11 +212,11 @@ export const SponsorInfoModal = ({
             <Button
               w={'full'}
               isLoading={uploading || updateUserMutation.isPending}
-              loadingText="Submitting"
+              loadingText={t('sponsorInfoModal.submitting')}
               spinnerPlacement="start"
               type="submit"
             >
-              Submit
+              {t('sponsorInfoModal.submit')}
             </Button>
           </FormControl>
         </form>

@@ -23,6 +23,7 @@ import {
 } from '@chakra-ui/react';
 import Image from 'next/image';
 import NextLink from 'next/link';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 
 import { skillMap } from '@/constants';
@@ -46,6 +47,7 @@ interface Props {
 }
 
 export function ScoutTable({ bountyId, scouts, setInvited }: Props) {
+  const { t } = useTranslation();
   const posthog = usePostHog();
   const invitedCount = scouts.filter((scout) => scout.invited).length;
   const MAX_INVITES = scouts.length;
@@ -73,7 +75,7 @@ export function ScoutTable({ bountyId, scouts, setInvited }: Props) {
               textAlign={'start'}
               textTransform={'none'}
             >
-              User
+              {t('scoutTable.user')}
             </Th>
             <Th
               px={{ base: 1, md: 2 }}
@@ -85,11 +87,8 @@ export function ScoutTable({ bountyId, scouts, setInvited }: Props) {
               textTransform={'none'}
             >
               <Flex align="center" justify={'center'} gap={2}>
-                $ Earned
-                <Tooltip
-                  fontSize="xs"
-                  label="$ Earned across all relevant skills for this listing."
-                >
+                {t('scoutTable.earned')}
+                <Tooltip fontSize="xs" label={t('scoutTable.earnedTooltip')}>
                   <InfoOutlineIcon
                     w={3}
                     h={3}
@@ -108,10 +107,10 @@ export function ScoutTable({ bountyId, scouts, setInvited }: Props) {
               textTransform={'none'}
             >
               <Flex align="center" justify={'center'} gap={2}>
-                Match Score
+                {t('scoutTable.matchScore')}
                 <Tooltip
                   fontSize="xs"
-                  label="An aggregate score based on multiple factors such as number of matched skills, $ earned, etc."
+                  label={t('scoutTable.matchScoreTooltip')}
                 >
                   <InfoOutlineIcon
                     w={3}
@@ -131,10 +130,10 @@ export function ScoutTable({ bountyId, scouts, setInvited }: Props) {
               textTransform={'none'}
             >
               <Flex align="center" gap={2}>
-                Matched Skills
+                {t('scoutTable.matchedSkills')}
                 <Tooltip
                   fontSize="xs"
-                  label="Matched Skills refer to the skills of the listings the users have previously won."
+                  label={t('scoutTable.matchedSkillsTooltip')}
                 >
                   <InfoOutlineIcon
                     w={3}
@@ -153,7 +152,10 @@ export function ScoutTable({ bountyId, scouts, setInvited }: Props) {
               textAlign={'start'}
               textTransform={'none'}
             >
-              Invites Left: {invitesLeft}/{MAX_INVITES}
+              {t('scoutTable.invitesLeft', {
+                count: invitesLeft,
+                total: MAX_INVITES,
+              })}
             </Th>
           </Tr>
         </Thead>
@@ -194,9 +196,9 @@ export function ScoutTable({ bountyId, scouts, setInvited }: Props) {
               </svg>
             </Center>
             <VStack gap={0} fontSize="base" fontWeight={600}>
-              <Text>No Profiles Found</Text>
+              <Text>{t('scoutTable.noProfilesFound')}</Text>
               <Text color="brand.slate.500" fontWeight={400}>
-                We couldn’t find any suitable matches for your listing
+                {t('scoutTable.noProfilesFoundDesc')}
               </Text>
             </VStack>
           </VStack>
@@ -361,7 +363,7 @@ export function ScoutTable({ bountyId, scouts, setInvited }: Props) {
                       target="_blank"
                     >
                       <Button h="full" fontSize="xs" variant="ghost">
-                        View Profile
+                        {t('scoutTable.viewProfile')}
                       </Button>
                     </Link>
                     <InviteButton
