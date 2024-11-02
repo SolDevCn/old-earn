@@ -1,6 +1,7 @@
 import { ExternalLinkIcon } from '@chakra-ui/icons';
 import { Box, Flex, HStack, Image, Link, Text, VStack } from '@chakra-ui/react';
 import Head from 'next/head';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import { useState } from 'react';
 
@@ -35,6 +36,7 @@ export function GrantPageLayout({
   const [grant] = useState<typeof initialGrant>(initialGrant);
   const encodedTitle = encodeURIComponent(initialGrant?.title || '');
   const posthog = usePostHog();
+  const { t } = useTranslation();
 
   const iterableSkills = initialGrant?.skills?.map((e) => e.skills) ?? [];
 
@@ -148,7 +150,7 @@ export function GrantPageLayout({
                           fontSize={'sm'}
                           fontWeight={500}
                         >
-                          Cheque Size
+                          {t('grantsLayout.chequeSize')}
                         </Text>
                       </Flex>
                       <Flex
@@ -180,7 +182,7 @@ export function GrantPageLayout({
                               fontWeight={500}
                               textTransform={'uppercase'}
                             >
-                              Avg. Response Time
+                              {t('grantsLayout.avgResponseTime')}
                             </Text>
                           </Flex>
                           <Flex direction={'column'} w="fit-content">
@@ -193,15 +195,15 @@ export function GrantPageLayout({
                               >
                                 {grant.totalApproved
                                   ? new Intl.NumberFormat('en-US', {
-                                    maximumFractionDigits: 0,
-                                    currency: 'USD',
-                                    style: 'currency',
-                                  }).format(
-                                    Math.round(
-                                      grant?.totalApproved /
-                                      grant?.totalApplications,
-                                    ),
-                                  )
+                                      maximumFractionDigits: 0,
+                                      currency: 'USD',
+                                      style: 'currency',
+                                    }).format(
+                                      Math.round(
+                                        grant?.totalApproved /
+                                          grant?.totalApplications,
+                                      ),
+                                    )
                                   : '—'}
                               </Text>
                             </Flex>
@@ -213,7 +215,7 @@ export function GrantPageLayout({
                               fontWeight={500}
                               textTransform={'uppercase'}
                             >
-                              Avg. Grant Size
+                              {t('grantsLayout.avgGrantSize')}
                             </Text>
                           </Flex>
                         </Flex>
@@ -242,7 +244,7 @@ export function GrantPageLayout({
                               fontWeight={500}
                               textTransform={'uppercase'}
                             >
-                              Approved So Far
+                              {t('grantsLayout.approvedSoFar')}
                             </Text>
                           </Flex>
                           <Flex direction={'column'}>
@@ -264,7 +266,7 @@ export function GrantPageLayout({
                               fontWeight={500}
                               textTransform={'uppercase'}
                             >
-                              Recipients
+                              {t('grantsLayout.recipients')}
                             </Text>
                           </Flex>
                         </Flex>
@@ -294,7 +296,7 @@ export function GrantPageLayout({
                             fontWeight={600}
                             textAlign="start"
                           >
-                            LIVE GRANTS
+                            {t('grantsLayout.liveGrants')}
                           </Text>
                         </LiveGrants>
                       </Box>
@@ -321,7 +323,7 @@ export function GrantPageLayout({
                       fontWeight={600}
                       textAlign="center"
                     >
-                      SKILLS NEEDED
+                      {t('grantsLayout.skillsNeeded')}
                     </Text>
                     <HStack flexWrap={'wrap'} gap={3}>
                       {iterableSkills?.map((skill) => (
@@ -354,7 +356,7 @@ export function GrantPageLayout({
                         fontWeight={600}
                         textAlign="center"
                       >
-                        CONTACT
+                        {t('grantsLayout.contact')}
                       </Text>
                       <Text>
                         <Link
@@ -365,7 +367,7 @@ export function GrantPageLayout({
                           isExternal
                           onClick={() => posthog.capture('reach out_listing')}
                         >
-                          Reach out
+                          {t('grantsLayout.reachOut')}
                           <ExternalLinkIcon
                             color={'#64768b'}
                             mb={1}
@@ -374,7 +376,7 @@ export function GrantPageLayout({
                           />
                         </Link>
                         <Text as="span" color={'brand.slate.500'}>
-                          if you have any questions about this listing
+                          {t('grantsLayout.questionsAboutListing')}
                         </Text>
                       </Text>
                     </VStack>

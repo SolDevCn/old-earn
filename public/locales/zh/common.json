@@ -1585,5 +1585,46 @@
     "invalidFormat": "用户名只能包含小写字母、数字、'_'和'-'",
     "unavailable": "用户名已被使用！请尝试其他用户名。",
     "error": "检查用户名可用性时发生错误。"
+  },
+  "grantsLayout": {
+    "chequeSize": "支票金额",
+    "avgResponseTime": "平均响应时间",
+    "avgGrantSize": "平均资助金额",
+    "approvedSoFar": "已批准金额",
+    "recipients": "接收者",
+    "liveGrants": "实时资助",
+    "skillsNeeded": "所需技能",
+    "contact": "联系方式",
+    "questionsAboutListing": "如果您对此列表有任何问题",
+    "reachOut": "联系我们"
+  },
+  "homeLayout": {
+    "metaTitle": "Solar Earn | 在加密货币领域工作赚钱",
+    "metaDescription": "探索 Solar Earn 上最新的悬赏任务,在设计、开发和内容领域提供加密货币空间的机会。"
+  },
+  "listingLayout": {
+    "apply": "申请",
+    "by": "来自",
+    "solarEarnListing": "Solar Earn 列表",
+    "listing": "列表",
+    "on": "在",
+    "isSeekingFreelancers": "正在寻找自由职业者和开发者",
+    "toWorkOn": "参与 {{title}}",
+    "applyHere": "| 在此申请",
+    "bountyNotAvailable": "抱歉！您要找的悬赏不可用。",
+    "skillsNeeded": "所需技能",
+    "contact": "联系方式",
+    "reachOut": "联系我们",
+    "questionsAboutListing": "如果您对此列表有任何问题"
+  },
+  "sponsorLayout": {
+    "mobileOptimization": "Earn 的赞助商仪表板尚未针对移动设备进行优化。请使用桌面设备查看赞助商仪表板",
+    "createNewListing": "创建新列表",
+    "createNewTrack": "创建新赛道",
+    "allTracks": "所有赛道",
+    "getHelp": "获取帮助",
+    "myListings": "我的列表",
+    "teamSettings": "团队设置",
+    "localProfiles": "本地档案"
   }
 }

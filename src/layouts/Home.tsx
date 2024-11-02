@@ -2,6 +2,7 @@ import { Box, Container, Flex, HStack } from '@chakra-ui/react';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 import React, { type ReactNode, useEffect, useState } from 'react';
 
 import { type Superteams } from '@/constants/Superteam';
@@ -49,14 +50,15 @@ export function Home({ children, type, st, isAuth }: HomeProps) {
   }, [router.asPath]);
 
   const { data: session, status } = useSession();
+  const { t } = useTranslation();
 
   return (
     <Default
       className="bg-white"
       meta={
         <Meta
-          title="Solar Earn | Work to Earn in Crypto"
-          description="Explore the latest bounties on Solar Earn, offering opportunities in the crypto space across Design, Development, and Content."
+          title={t('homeLayout.metaTitle')}
+          description={t('homeLayout.metaDescription')}
           canonical="https://earn.superteam.fun"
         />
       }

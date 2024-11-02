@@ -1585,5 +1585,46 @@
     "invalidFormat": "Username can only contain lowercase letters, numbers, '_', and '-'",
     "unavailable": "Username is unavailable! Please try another one.",
     "error": "An error occurred while checking username availability."
+  },
+  "grantsLayout": {
+    "chequeSize": "Cheque Size",
+    "avgResponseTime": "Avg. Response Time",
+    "avgGrantSize": "Avg. Grant Size",
+    "approvedSoFar": "Approved So Far",
+    "recipients": "Recipients",
+    "liveGrants": "LIVE GRANTS",
+    "skillsNeeded": "SKILLS NEEDED",
+    "contact": "CONTACT",
+    "questionsAboutListing": "if you have any questions about this listing",
+    "reachOut": "Reach out"
+  },
+  "homeLayout": {
+    "metaTitle": "Solar Earn | Work to Earn in Crypto",
+    "metaDescription": "Explore the latest bounties on Solar Earn, offering opportunities in the crypto space across Design, Development, and Content."
+  },
+  "listingLayout": {
+    "apply": "Apply",
+    "by": "by",
+    "solarEarnListing": "Solar Earn Listing",
+    "listing": "Listing",
+    "on": "on",
+    "isSeekingFreelancers": "is seeking freelancers and builders",
+    "toWorkOn": "to work on {{title}}",
+    "applyHere": "| Apply Here",
+    "bountyNotAvailable": "Sorry! The bounty you are looking for is not available.",
+    "skillsNeeded": "SKILLS NEEDED",
+    "contact": "CONTACT",
+    "reachOut": "Reach out",
+    "questionsAboutListing": "if you have any questions about this listing"
+  },
+  "sponsorLayout": {
+    "mobileOptimization": "The Sponsor Dashboard on Earn is not optimized for mobile yet. Please use a desktop to check out the Sponsor Dashboard",
+    "createNewListing": "Create New Listing",
+    "createNewTrack": "Create New Track",
+    "allTracks": "All Tracks",
+    "getHelp": "Get Help",
+    "myListings": "My Listings",
+    "teamSettings": "Team Settings",
+    "localProfiles": "Local Profiles"
   }
 }

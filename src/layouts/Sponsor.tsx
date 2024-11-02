@@ -1,6 +1,7 @@
 import { AddIcon } from '@chakra-ui/icons';
 import { Box, Button, Flex, Icon, Text, useDisclosure } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
+import { t } from 'i18next';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
@@ -165,37 +166,37 @@ export function SponsorLayout({
 
   const LinkItems: Array<LinkItemProps> = isHackathonRoute
     ? [
-      { name: 'All Tracks', link: `/hackathon`, icon: MdList },
-      {
-        name: 'Get Help',
-        link: PDTG,
-        icon: MdOutlineChatBubbleOutline,
-        posthog: 'get help_sponsor',
-      },
-    ]
+        { name: 'All Tracks', link: `/hackathon`, icon: MdList },
+        {
+          name: 'Get Help',
+          link: PDTG,
+          icon: MdOutlineChatBubbleOutline,
+          posthog: 'get help_sponsor',
+        },
+      ]
     : [
-      { name: 'My Listings', link: '/listings', icon: BiListUl },
-      {
-        name: 'Team Settings',
-        link: '/team-settings',
-        icon: RiUserSettingsLine,
-      },
-      ...(isLocalProfileVisible
-        ? [
-          {
-            name: 'Local Profiles',
-            link: '/local-profiles',
-            icon: LuUsers,
-          },
-        ]
-        : []),
-      {
-        name: 'Get Help',
-        link: PDTG,
-        icon: LuMessageSquare,
-        posthog: 'get help_sponsor',
-      },
-    ];
+        { name: 'My Listings', link: '/listings', icon: BiListUl },
+        {
+          name: 'Team Settings',
+          link: '/team-settings',
+          icon: RiUserSettingsLine,
+        },
+        ...(isLocalProfileVisible
+          ? [
+              {
+                name: 'Local Profiles',
+                link: '/local-profiles',
+                icon: LuUsers,
+              },
+            ]
+          : []),
+        {
+          name: 'Get Help',
+          link: PDTG,
+          icon: LuMessageSquare,
+          posthog: 'get help_sponsor',
+        },
+      ];
 
   const showLoading = !isHackathonRoute
     ? !user?.currentSponsor?.id
@@ -234,8 +235,7 @@ export function SponsorLayout({
           fontSize={'xl'}
           fontWeight={500}
         >
-          The Sponsor Dashboard on Earn is not optimized for mobile yet. Please
-          use a desktop to check out the Sponsor Dashboard
+          {t('sponsorLayout.mobileOptimization')}
         </Text>
       </Flex>
       <Flex justify="start" display={{ base: 'none', md: 'flex' }} minH="100vh">
@@ -274,8 +274,8 @@ export function SponsorLayout({
               <Tooltip
                 label={
                   isCreateListingAllowed !== undefined &&
-                    isCreateListingAllowed === false &&
-                    session?.user.role !== 'GOD'
+                  isCreateListingAllowed === false &&
+                  session?.user.role !== 'GOD'
                     ? 'Creating a new listing has been temporarily locked for you since you have 5 listings which are “Rolling” or “In Review”. Please announce the winners for such listings to create new listings.'
                     : ''
                 }
@@ -305,7 +305,7 @@ export function SponsorLayout({
                     opacity={isExpanded ? 1 : 0}
                     transition="all 0.2s ease-in-out"
                   >
-                    Create New Listing
+                    {t('sponsorLayout.createNewListing')}
                   </Text>
                   {isCreateListingAllowed !== undefined &&
                     isCreateListingAllowed === false &&
@@ -330,7 +330,7 @@ export function SponsorLayout({
                   opacity={isExpanded ? 1 : 0}
                   transition="opacity 0.2s ease-in-out"
                 >
-                  Create New Track
+                  {t('sponsorLayout.createNewTrack')}
                 </Text>
               </Button>
             )}

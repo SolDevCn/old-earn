@@ -13,6 +13,7 @@ import { useAtom } from 'jotai';
 import Head from 'next/head';
 import { usePostHog } from 'posthog-js/react';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { ErrorSection } from '@/components/shared/ErrorSection';
 import { Comments } from '@/features/comments';
@@ -44,6 +45,7 @@ export function ListingPageLayout({
 }: ListingPageProps) {
   const [, setBountySnackbar] = useAtom(bountySnackbarAtom);
   const posthog = usePostHog();
+  const { t } = useTranslation();
 
   const { data: submissionNumber = 0 } = useQuery(
     submissionCountQuery(initialBounty?.id ?? ''),
@@ -108,15 +110,18 @@ export function ListingPageLayout({
     <Default
       meta={
         <Head>
-          <title>{`${initialBounty?.title || 'Apply'
-            } by ${initialBounty?.sponsor?.name} | Solar Earn Listing`}</title>
+          <title>{`${
+            initialBounty?.title || t('listingLayout.apply')
+          } ${t('listingLayout.by')} ${initialBounty?.sponsor?.name} | ${t('listingLayout.solarEarnListing')}`}</title>
           <meta
             name="description"
-            content={`${getListingTypeLabel(initialBounty?.type ?? 'Listing')} on Solar Earn | ${initialBounty?.sponsor?.name
-              } is seeking freelancers and builders ${initialBounty?.title
-                ? `to work on ${initialBounty.title}`
-                : '| Apply Here'
-              }`}
+            content={`${getListingTypeLabel(initialBounty?.type ?? t('listingLayout.listing'))} ${t('listingLayout.on')} Solar Earn | ${
+              initialBounty?.sponsor?.name
+            } ${t('listingLayout.isSeekingFreelancers')} ${
+              initialBounty?.title
+                ? t('listingLayout.toWorkOn', { title: initialBounty.title })
+                : t('listingLayout.applyHere')
+            }`}
           />
           <link
             rel="canonical"
@@ -148,7 +153,7 @@ export function ListingPageLayout({
       <Box bg="white">
         {initialBounty === null && <ErrorSection />}
         {initialBounty !== null && !initialBounty?.id && (
-          <ErrorSection message="Sorry! The bounty you are looking for is not available." />
+          <ErrorSection message={t('listingLayout.bountyNotAvailable')} />
         )}
         {initialBounty !== null && !!initialBounty?.id && (
           <Box w="100%" mx="auto" px={{ base: '2', lg: 6 }}>
@@ -203,7 +208,7 @@ export function ListingPageLayout({
                       fontWeight={600}
                       textAlign="center"
                     >
-                      SKILLS NEEDED
+                      {t('listingLayout.skillsNeeded')}
                     </Text>
                     <HStack flexWrap={'wrap'} gap={3}>
                       {iterableSkills?.map((skill) => (
@@ -236,7 +241,7 @@ export function ListingPageLayout({
                         fontWeight={600}
                         textAlign="center"
                       >
-                        CONTACT
+                        {t('listingLayout.contact')}
                       </Text>
                       <Text>
                         <Link
@@ -247,7 +252,7 @@ export function ListingPageLayout({
                           isExternal
                           onClick={() => posthog.capture('reach out_listing')}
                         >
-                          Reach out
+                          {t('listingLayout.reachOut')}
                           <ExternalLinkIcon
                             color={'#64768b'}
                             mb={1}
@@ -256,7 +261,7 @@ export function ListingPageLayout({
                           />
                         </Link>
                         <Text as="span" color={'brand.slate.500'}>
-                          if you have any questions about this listing
+                          {t('listingLayout.questionsAboutListing')}
                         </Text>
                       </Text>
                     </VStack>
