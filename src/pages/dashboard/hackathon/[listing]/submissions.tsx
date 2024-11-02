@@ -21,6 +21,7 @@ import { useSetAtom } from 'jotai';
 import type { GetServerSideProps } from 'next';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import { useEffect, useMemo, useState } from 'react';
 
@@ -172,6 +173,8 @@ export default function BountySubmissions({ listing }: Props) {
 
   const isSponsorVerified = bounty?.sponsor?.isVerified;
 
+  const { t } = useTranslation();
+
   return (
     <SponsorLayout isCollapsible={true}>
       {isBountyLoading || isSubmissionsLoading ? (
@@ -286,8 +289,8 @@ export default function BountySubmissions({ listing }: Props) {
                               textAlign={'center'}
                             >
                               {filterLabel
-                                ? `Zero Results`
-                                : 'People are working!'}
+                                ? t('submissionsPage.zeroResults')
+                                : t('submissionsPage.peopleWorking')}
                             </Text>
                             <Text
                               mx="auto"
@@ -297,8 +300,8 @@ export default function BountySubmissions({ listing }: Props) {
                               textAlign={'center'}
                             >
                               {filterLabel
-                                ? `For the filters you have selected`
-                                : 'Submissions will start appearing here'}
+                                ? t('submissionsPage.forSelectedFilters')
+                                : t('submissionsPage.submissionsAppearHere')}
                             </Text>
                           </>
                         ) : (
@@ -317,13 +320,13 @@ export default function BountySubmissions({ listing }: Props) {
                   <Flex align="center" justify="start" gap={4} mt={4}>
                     {!!searchText || !!filterLabel ? (
                       <Text color="brand.slate.400" fontSize="sm">
-                        Found{' '}
+                        {t('submissionsPage.found')}{' '}
                         <Text as="span" fontWeight={700}>
                           {filteredSubmissions.length}
                         </Text>{' '}
                         {filteredSubmissions.length === 1
-                          ? 'result'
-                          : 'results'}
+                          ? t('submissionsPage.result')
+                          : t('submissionsPage.results')}
                       </Text>
                     ) : (
                       <>
@@ -336,7 +339,7 @@ export default function BountySubmissions({ listing }: Props) {
                           size="sm"
                           variant="outline"
                         >
-                          Previous
+                          {t('submissionsPage.previous')}
                         </Button>
                         <Text color="brand.slate.400" fontSize="sm">
                           <Text as="span" fontWeight={700}>
@@ -349,11 +352,11 @@ export default function BountySubmissions({ listing }: Props) {
                               filteredSubmissions.length,
                             )}
                           </Text>{' '}
-                          of{' '}
+                          {t('submissionsPage.of')}{' '}
                           <Text as="span" fontWeight={700}>
                             {filteredSubmissions.length}
                           </Text>{' '}
-                          Submissions
+                          {t('submissionsPage.submissions')}
                         </Text>
                         <Button
                           isDisabled={currentPage >= totalPages}
@@ -366,7 +369,7 @@ export default function BountySubmissions({ listing }: Props) {
                           size="sm"
                           variant="outline"
                         >
-                          Next
+                          {t('submissionsPage.next')}
                         </Button>
                       </>
                     )}

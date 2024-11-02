@@ -1,11 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
 import type { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect } from 'react';
 
 import { LoadingSection } from '@/components/shared/LoadingSection';
 import { CreateListing } from '@/features/listing-builder';
-import { sponsorDashboardListingQuery } from '@/features/sponsor-dashboard'; // Adjust the import path as needed
+import { sponsorDashboardListingQuery } from '@/features/sponsor-dashboard';
 import { SponsorLayout } from '@/layouts/Sponsor';
 import { useUser } from '@/store/user';
 
@@ -16,6 +17,7 @@ interface Props {
 export default function DuplicateBounty({ slug }: Props) {
   const router = useRouter();
   const { user } = useUser();
+  const { t } = useTranslation();
 
   const { data: bounty, isLoading } = useQuery({
     ...sponsorDashboardListingQuery(slug),
@@ -40,7 +42,7 @@ export default function DuplicateBounty({ slug }: Props) {
           type={bounty.type as 'bounty' | 'project' | 'hackathon'}
         />
       ) : (
-        <div>Error loading bounty details.</div>
+        <div>{t('duplicatePage.errorLoadingBounty')}</div>
       )}
     </SponsorLayout>
   );

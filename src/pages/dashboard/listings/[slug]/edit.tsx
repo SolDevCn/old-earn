@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import type { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import React, { useEffect, useState } from 'react';
 
 import { LoadingSection } from '@/components/shared/LoadingSection';
@@ -14,6 +15,7 @@ interface Props {
 }
 
 function EditBounty({ slug }: Props) {
+  const { t } = useTranslation();
   const router = useRouter();
   const { user } = useUser();
   const [prevStep, setPrevStep] = useState<number>(2);
@@ -77,7 +79,7 @@ function EditBounty({ slug }: Props) {
           type={bounty.type as 'bounty' | 'project' | 'hackathon'}
         />
       ) : (
-        <div>Error loading bounty details.</div>
+        <div>{t('editListing.errorLoadingBounty')}</div>
       )}
     </SponsorLayout>
   );

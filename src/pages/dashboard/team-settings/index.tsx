@@ -34,8 +34,10 @@ import {
 } from '@chakra-ui/react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
+import { t } from 'i18next';
 import { type Session } from 'next-auth';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import React, { useEffect, useRef, useState } from 'react';
 import { toast } from 'sonner';
@@ -72,6 +74,8 @@ const Index = () => {
 
   const { data: session } = useSession();
   const posthog = usePostHog();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     posthog.capture('members tab_sponsor');
@@ -113,11 +117,11 @@ const Index = () => {
       queryClient.invalidateQueries({
         queryKey: ['members', user?.currentSponsorId],
       });
-      toast.success('Member removed successfully');
+      toast.success(t('teamSettings.memberRemoved'));
     },
     onError: (error) => {
       console.error('Error removing member:', error);
-      toast.error('Failed to remove member. Please try again.');
+      toast.error(t('teamSettings.failedToRemove'));
     },
   });
 
@@ -133,16 +137,14 @@ const Index = () => {
       <Flex justify="space-between" mb={4}>
         <Flex align="center" gap={3}>
           <Text color="brand.slate.800" fontSize="lg" fontWeight={600}>
-            Team Members
+            {t('teamSettings.teamMembers')}
           </Text>
           <Divider
             h="60%"
             borderColor="brand.slate.200"
             orientation="vertical"
           />
-          <Text color="brand.slate.500">
-            Manage who gets access to your sponsor profile
-          </Text>
+          <Text color="brand.slate.500">{t('teamSettings.manageAccess')}</Text>
         </Flex>
         <Flex align="center" gap={3}>
           {(session?.user?.role === 'GOD' ||
@@ -163,7 +165,7 @@ const Index = () => {
               }}
               variant="solid"
             >
-              Invite Members
+              {t('teamSettings.inviteMembers')}
             </Button>
           )}
           <InputGroup w={52}>
@@ -177,7 +179,7 @@ const Index = () => {
               }}
               focusBorderColor="brand.purple"
               onChange={(e) => debouncedSetSearchText(e.target.value)}
-              placeholder="Search members..."
+              placeholder={t('teamSettings.searchMembers')}
               type="text"
             />
             <InputLeftElement pointerEvents="none">
@@ -203,39 +205,10 @@ const Index = () => {
           <Table variant="simple">
             <Thead>
               <Tr bg="brand.slate.100">
-                <Th
-                  color="brand.slate.400"
-                  fontSize="sm"
-                  fontWeight={500}
-                  letterSpacing={'-2%'}
-                  textTransform={'capitalize'}
-                >
-                  Member
-                </Th>
-                <Th
-                  color="brand.slate.400"
-                  fontSize="sm"
-                  fontWeight={500}
-                  letterSpacing={'-2%'}
-                  textTransform={'capitalize'}
-                >
-                  Role
-                </Th>
-                <Th
-                  color="brand.slate.400"
-                  fontSize="sm"
-                  fontWeight={500}
-                  letterSpacing={'-2%'}
-                  textTransform={'capitalize'}
-                >
-                  Email
-                </Th>
-                <Th
-                  color="brand.slate.400"
-                  fontSize="sm"
-                  fontWeight={500}
-                  textTransform={'capitalize'}
-                ></Th>
+                <Th>{t('teamSettings.member')}</Th>
+                <Th>{t('teamSettings.role')}</Th>
+                <Th>{t('teamSettings.email')}</Th>
+                <Th></Th>
               </Tr>
             </Thead>
             <Tbody>
@@ -309,18 +282,11 @@ const Index = () => {
       )}
       <Flex align="center" justify="end" mt={6}>
         <Text mr={4} color="brand.slate.400" fontSize="sm">
-          <Text as="span" fontWeight={700}>
-            {skip + 1}
-          </Text>{' '}
-          -{' '}
-          <Text as="span" fontWeight={700}>
-            {Math.min(skip + length, totalMembers)}
-          </Text>{' '}
-          of{' '}
-          <Text as="span" fontWeight={700}>
-            {totalMembers}
-          </Text>{' '}
-          Members
+          {t('teamSettings.paginationText', {
+            start: skip + 1,
+            end: Math.min(skip + length, totalMembers),
+            total: totalMembers,
+          })}
         </Text>
         <Button
           mr={4}
@@ -330,7 +296,7 @@ const Index = () => {
           size="sm"
           variant="outline"
         >
-          Previous
+          {t('teamSettings.previous')}
         </Button>
         <Button
           isDisabled={
@@ -341,7 +307,7 @@ const Index = () => {
           size="sm"
           variant="outline"
         >
-          Next
+          {t('teamSettings.next')}
         </Button>
       </Flex>
     </SponsorLayout>
@@ -381,7 +347,7 @@ const RemoveMemberModal = ({
             size="sm"
             variant="solid"
           >
-            Remove
+            {t('teamSettings.removeMember')}
           </Button>
         )}
       <Modal
@@ -393,17 +359,14 @@ const RemoveMemberModal = ({
         <ModalOverlay />
         <ModalContent py={2}>
           <ModalHeader color={'brand.slate.900'} fontSize="xl">
-            Remove Member?
+            {t('teamSettings.removeMember')}
           </ModalHeader>
           <ModalCloseButton mt={4} onClick={() => setIsOpen(false)} />
           <ModalBody>
             <Text>
-              Are you sure you want to remove{' '}
-              <Text as="span" fontWeight={600}>
-                {member.user?.email}
-              </Text>{' '}
-              from accessing your sponsor dashboard? You can invite them back
-              again later if needed.
+              {t('teamSettings.removeMemberDescription', {
+                email: member.user?.email,
+              })}
             </Text>
           </ModalBody>
           <ModalFooter justifyContent="flex-end" display="flex" mt={2}>
@@ -413,7 +376,7 @@ const RemoveMemberModal = ({
                 removeMember(member.userId);
               }}
             >
-              Remove Member
+              {t('teamSettings.remove')}
             </Button>
           </ModalFooter>
         </ModalContent>

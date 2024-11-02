@@ -25,6 +25,7 @@ import { useAtom, useSetAtom } from 'jotai';
 import type { GetServerSideProps } from 'next';
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -291,6 +292,8 @@ export default function BountySubmissions({ slug }: Props) {
 
   const isSponsorVerified = bounty?.sponsor?.isVerified;
 
+  const { t } = useTranslation();
+
   return (
     <SponsorLayout isCollapsible>
       {isBountyLoading || isSubmissionsLoading ? (
@@ -397,7 +400,7 @@ export default function BountySubmissions({ slug }: Props) {
                               w={32}
                               mx="auto"
                               mt={32}
-                              alt={'talent empty'}
+                              alt={t('listingSubmissionsPage.talentEmptyAlt')}
                               src="/assets/bg/talent-empty.svg"
                             />
                             <Text
@@ -409,8 +412,8 @@ export default function BountySubmissions({ slug }: Props) {
                               textAlign={'center'}
                             >
                               {filterLabel
-                                ? `Zero Results`
-                                : 'People are working!'}
+                                ? t('listingSubmissionsPage.zeroResults')
+                                : t('listingSubmissionsPage.peopleWorking')}
                             </Text>
                             <Text
                               mx="auto"
@@ -420,8 +423,10 @@ export default function BountySubmissions({ slug }: Props) {
                               textAlign={'center'}
                             >
                               {filterLabel
-                                ? `For the filters you have selected`
-                                : 'Submissions will start appearing here'}
+                                ? t('listingSubmissionsPage.forSelectedFilters')
+                                : t(
+                                    'listingSubmissionsPage.submissionsAppearHere',
+                                  )}
                             </Text>
                           </>
                         ) : (
@@ -441,13 +446,13 @@ export default function BountySubmissions({ slug }: Props) {
                   <Flex align="center" justify="start" gap={4} mt={4}>
                     {!!searchText || !!filterLabel ? (
                       <Text color="brand.slate.400" fontSize="sm">
-                        Found{' '}
+                        {t('listingSubmissionsPage.found')}{' '}
                         <Text as="span" fontWeight={700}>
                           {filteredSubmissions.length}
                         </Text>{' '}
                         {filteredSubmissions.length === 1
-                          ? 'result'
-                          : 'results'}
+                          ? t('listingSubmissionsPage.result')
+                          : t('listingSubmissionsPage.results')}
                       </Text>
                     ) : (
                       <>
@@ -460,7 +465,7 @@ export default function BountySubmissions({ slug }: Props) {
                           size="sm"
                           variant="outline"
                         >
-                          Previous
+                          {t('listingSubmissionsPage.previous')}
                         </Button>
                         <Text color="brand.slate.400" fontSize="sm">
                           <Text as="span" fontWeight={700}>
@@ -473,11 +478,11 @@ export default function BountySubmissions({ slug }: Props) {
                               filteredSubmissions.length,
                             )}
                           </Text>{' '}
-                          of{' '}
+                          {t('listingSubmissionsPage.of')}{' '}
                           <Text as="span" fontWeight={700}>
                             {filteredSubmissions.length}
                           </Text>{' '}
-                          Submissions
+                          {t('listingSubmissionsPage.submissions')}
                         </Text>
                         <Button
                           isDisabled={currentPage >= totalPages}
@@ -490,7 +495,7 @@ export default function BountySubmissions({ slug }: Props) {
                           size="sm"
                           variant="outline"
                         >
-                          Next
+                          {t('listingSubmissionsPage.next')}
                         </Button>
                       </>
                     )}

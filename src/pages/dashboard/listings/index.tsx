@@ -28,6 +28,7 @@ import {
 } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import debounce from 'lodash.debounce';
+import { useTranslation } from 'next-i18next';
 import React, {
   useCallback,
   useEffect,
@@ -170,13 +171,15 @@ export default function SponsorListings() {
     [hasGrants],
   );
 
+  const { t } = useTranslation();
+
   return (
     <SponsorLayout>
       <Banner stats={sponsorStats} isLoading={isStatsLoading} />
       <Flex justify="space-between" w="100%" mb={4}>
         <Flex align="center" gap={3}>
           <Text color="brand.slate.800" fontSize="lg" fontWeight={600}>
-            My Listings
+            {t('sponsorListings.myListings')}
           </Text>
           <Divider
             h="60%"
@@ -184,12 +187,12 @@ export default function SponsorListings() {
             orientation="vertical"
           />
           <Text color="brand.slate.500">
-            The one place to manage your listings
+            {t('sponsorListings.manageListingsDesc')}
           </Text>
         </Flex>
         <Flex align="center" gap={2}>
           <Text color="brand.slate.500" fontSize={'sm'} letterSpacing={'-1%'}>
-            Filter by status
+            {t('sponsorListings.filterByStatus')}
           </Text>
           <Menu>
             <MenuButton
@@ -222,7 +225,7 @@ export default function SponsorListings() {
                   textTransform={'capitalize'}
                   whiteSpace={'nowrap'}
                 >
-                  {selectedStatus || 'Everything'}
+                  {selectedStatus || t('sponsorListings.everything')}
                 </TagLabel>
               </Tag>
             </MenuButton>
@@ -246,7 +249,7 @@ export default function SponsorListings() {
                     textTransform={'capitalize'}
                     whiteSpace={'nowrap'}
                   >
-                    Everything
+                    {t('sponsorListings.everything')}
                   </TagLabel>
                 </Tag>
               </MenuItem>
@@ -288,7 +291,7 @@ export default function SponsorListings() {
               }}
               focusBorderColor="brand.purple"
               onChange={(e) => debouncedSetSearchText(e.target.value)}
-              placeholder="Search listing..."
+              placeholder={t('sponsorListings.searchListing')}
               type="text"
             />
             <InputLeftElement pointerEvents="none">
@@ -309,7 +312,7 @@ export default function SponsorListings() {
                 fontWeight={500}
                 _selected={selectedStyles}
               >
-                All
+                {t('sponsorListings.everything')}
               </Tab>
               <Tab
                 color="brand.slate.400"
@@ -317,7 +320,7 @@ export default function SponsorListings() {
                 fontWeight={500}
                 _selected={selectedStyles}
               >
-                Bounties
+                {t('sponsorListings.bounties')}
               </Tab>
               <Tab
                 color="brand.slate.400"
@@ -325,7 +328,7 @@ export default function SponsorListings() {
                 fontWeight={500}
                 _selected={selectedStyles}
               >
-                Projects
+                {t('sponsorListings.projects')}
               </Tab>
               {hasGrants && (
                 <Tab
@@ -334,7 +337,7 @@ export default function SponsorListings() {
                   fontWeight={500}
                   _selected={selectedStyles}
                 >
-                  Grants
+                  {t('sponsorListings.grants')}
                 </Tab>
               )}
             </TabList>
@@ -362,21 +365,14 @@ export default function SponsorListings() {
           {!!paginatedListings?.length && (
             <Flex align="center" justify="end" mt={6}>
               <Text mr={4} color="brand.slate.400" fontSize="sm">
-                <Text as="span" fontWeight={700}>
-                  {currentPage * listingsPerPage + 1}
-                </Text>{' '}
-                -{' '}
-                <Text as="span" fontWeight={700}>
-                  {Math.min(
+                {t('sponsorListings.listingStats', {
+                  start: currentPage * listingsPerPage + 1,
+                  end: Math.min(
                     (currentPage + 1) * listingsPerPage,
                     filteredListings.length,
-                  )}
-                </Text>{' '}
-                of{' '}
-                <Text as="span" fontWeight={700}>
-                  {filteredListings.length}
-                </Text>{' '}
-                Listings
+                  ),
+                  total: filteredListings.length,
+                })}
               </Text>
               <Button
                 mr={4}
@@ -386,7 +382,7 @@ export default function SponsorListings() {
                 size="sm"
                 variant="outline"
               >
-                Previous
+                {t('sponsorListings.previous')}
               </Button>
               <Button
                 isDisabled={
@@ -397,7 +393,7 @@ export default function SponsorListings() {
                 size="sm"
                 variant="outline"
               >
-                Next
+                {t('sponsorListings.next')}
               </Button>
             </Flex>
           )}
@@ -409,7 +405,7 @@ export default function SponsorListings() {
             w={32}
             mx="auto"
             mt={32}
-            alt={'talent empty'}
+            alt={t('sponsorListings.talentEmptyAlt')}
             src="/assets/bg/talent-empty.svg"
           />
           <Text
@@ -420,7 +416,7 @@ export default function SponsorListings() {
             fontWeight={600}
             textAlign={'center'}
           >
-            Create your first listing
+            {t('sponsorListings.createFirstListing')}
           </Text>
           <Text
             mx="auto"
@@ -428,7 +424,7 @@ export default function SponsorListings() {
             fontWeight={500}
             textAlign={'center'}
           >
-            and start getting contributions
+            {t('sponsorListings.startGettingContributions')}
           </Text>
           <Button
             display="block"
@@ -441,7 +437,7 @@ export default function SponsorListings() {
             onClick={onOpenCreateListing}
             variant="solid"
           >
-            Create New Listing
+            {t('sponsorListings.createNewListing')}
           </Button>
         </>
       )}
@@ -453,7 +449,7 @@ export default function SponsorListings() {
               w={32}
               mx="auto"
               mt={32}
-              alt={'talent empty'}
+              alt={t('sponsorListings.talentEmptyAlt')}
               src="/assets/bg/talent-empty.svg"
             />
             <Text
@@ -464,7 +460,7 @@ export default function SponsorListings() {
               fontWeight={600}
               textAlign={'center'}
             >
-              Zero Results
+              {t('sponsorListings.zeroResults')}
             </Text>
             <Text
               mx="auto"
@@ -472,7 +468,7 @@ export default function SponsorListings() {
               fontWeight={500}
               textAlign={'center'}
             >
-              No results matching the current filter
+              {t('sponsorListings.noMatchingResults')}
             </Text>
           </>
         )}

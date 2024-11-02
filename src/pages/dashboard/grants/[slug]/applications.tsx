@@ -26,6 +26,7 @@ import {
 import axios from 'axios';
 import type { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
+import { useTranslation } from 'next-i18next';
 import { useCallback, useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
@@ -253,6 +254,8 @@ function GrantApplications({ slug }: Props) {
     }
   }, [applications, searchText]);
 
+  const { t } = useTranslation();
+
   return (
     <SponsorLayout isCollapsible>
       {isGrantLoading ? (
@@ -273,7 +276,7 @@ function GrantApplications({ slug }: Props) {
                 fontWeight={500}
                 _selected={selectedStyles}
               >
-                Applications
+                {t('grantApplications.applications')}
               </Tab>
               <Tab
                 px={1}
@@ -305,7 +308,7 @@ function GrantApplications({ slug }: Props) {
                       fontWeight={600}
                       textAlign={'center'}
                     >
-                      You have not received any applications yet
+                      {t('grantApplications.noApplications')}
                     </Text>
                     <Text
                       mx="auto"
@@ -314,8 +317,7 @@ function GrantApplications({ slug }: Props) {
                       fontWeight={500}
                       textAlign={'center'}
                     >
-                      Once you start receiving applications, you will be able to
-                      review them here.
+                      {t('grantApplications.noApplicationsDesc')}
                     </Text>
                   </>
                 ) : (
@@ -345,11 +347,9 @@ function GrantApplications({ slug }: Props) {
                     <Flex align="center" justify="start" gap={4} mt={4}>
                       {!!searchText ? (
                         <Text color="brand.slate.400" fontSize="sm">
-                          Found{' '}
-                          <Text as="span" fontWeight={700}>
-                            {applications?.length || 0}
-                          </Text>{' '}
-                          {applications?.length === 1 ? 'result' : 'results'}
+                          {t('grantApplications.foundResults', {
+                            count: applications?.length || 0,
+                          })}
                         </Text>
                       ) : (
                         <>
@@ -364,7 +364,7 @@ function GrantApplications({ slug }: Props) {
                             size="sm"
                             variant="outline"
                           >
-                            Previous
+                            {t('grantApplications.previous')}
                           </Button>
                           <Text color="brand.slate.400" fontSize="sm">
                             <Text as="span" fontWeight={700}>
@@ -377,11 +377,11 @@ function GrantApplications({ slug }: Props) {
                                 grant?.totalApplications!,
                               )}
                             </Text>{' '}
-                            of{' '}
+                            {t('grantApplications.of')}
                             <Text as="span" fontWeight={700}>
                               {grant?.totalApplications}
                             </Text>{' '}
-                            Applications
+                            {t('grantApplications.applications')}
                           </Text>
                           <Button
                             isDisabled={
@@ -395,7 +395,7 @@ function GrantApplications({ slug }: Props) {
                             size="sm"
                             variant="outline"
                           >
-                            Next
+                            {t('grantApplications.next')}
                           </Button>
                         </>
                       )}
@@ -478,7 +478,7 @@ function GrantApplications({ slug }: Props) {
                         fill="#E11D48"
                       />
                     </svg>
-                    Reject All
+                    {t('grantApplications.rejectAllApplications')}
                   </Button>
                 </HStack>
               </PopoverBody>

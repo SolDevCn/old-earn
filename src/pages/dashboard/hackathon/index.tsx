@@ -45,6 +45,7 @@ import axios from 'axios';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/react';
+import { useTranslation } from 'next-i18next';
 import { useEffect, useRef, useState } from 'react';
 import { AiOutlineDelete } from 'react-icons/ai';
 import { FiMoreVertical } from 'react-icons/fi';
@@ -99,6 +100,8 @@ export default function Hackathon() {
   const debouncedSetSearchText = useRef(debounce(setSearchText, 300)).current;
 
   const { data: session } = useSession();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     return () => {
@@ -204,18 +207,17 @@ export default function Hackathon() {
       <Modal isOpen={unpublishIsOpen} onClose={unpublishOnClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Unpublish Listing?</ModalHeader>
+          <ModalHeader>{t('hackathonDashboard.unpublishTitle')}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Text color="brand.slate.500">
-              This listing will be hidden from the homepage once unpublished.
-              Are you sure you want to unpublish this listing?
+              {t('hackathonDashboard.unpublishDescription')}
             </Text>
           </ModalBody>
 
           <ModalFooter>
             <Button mr={4} onClick={unpublishOnClose} variant="ghost">
-              Close
+              {t('hackathonDashboard.close')}
             </Button>
             <Button
               isLoading={isChangingStatus}
@@ -224,7 +226,7 @@ export default function Hackathon() {
               onClick={() => changeBountyStatus(false)}
               variant="solid"
             >
-              Unpublish
+              {t('hackathonDashboard.unpublish')}
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -232,22 +234,21 @@ export default function Hackathon() {
       <Modal isOpen={deleteDraftIsOpen} onClose={deleteDraftOnClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>Delete Draft?</ModalHeader>
+          <ModalHeader>{t('hackathonDashboard.deleteDraftTitle')}</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <Text color="brand.slate.500">
-              Are you sure you want to delete this draft listing?
+              {t('hackathonDashboard.deleteDraftDescription')}
             </Text>
             <br />
             <Text color="brand.slate.500">
-              Note: If this was previously a published listing, all submissions
-              or applications received for this listing will also be deleted.
+              {t('hackathonDashboard.deleteDraftWarning')}
             </Text>
           </ModalBody>
 
           <ModalFooter>
             <Button mr={4} onClick={deleteDraftOnClose} variant="ghost">
-              Close
+              {t('hackathonDashboard.close')}
             </Button>
             <Button
               isLoading={isChangingStatus}
@@ -256,7 +257,7 @@ export default function Hackathon() {
               onClick={deleteSelectedDraft}
               variant="solid"
             >
-              Confirm
+              {t('hackathonDashboard.confirm')}
             </Button>
           </ModalFooter>
         </ModalContent>
@@ -265,7 +266,7 @@ export default function Hackathon() {
       <Flex justify="space-between" w="100%" mb={4}>
         <Flex align="center" gap={3}>
           <Text color="brand.slate.800" fontSize="lg" fontWeight={600}>
-            All Tracks
+            {t('hackathonDashboard.allTracks')}
           </Text>
           <Divider
             h="60%"
@@ -273,7 +274,7 @@ export default function Hackathon() {
             orientation="vertical"
           />
           <Text color="brand.slate.500">
-            Review hackathon tracks and submissions here
+            {t('hackathonDashboard.reviewTracks')}
           </Text>
         </Flex>
         <InputGroup w={64}>
@@ -287,7 +288,7 @@ export default function Hackathon() {
             }}
             focusBorderColor="brand.purple"
             onChange={(e) => debouncedSetSearchText(e.target.value)}
-            placeholder="Search listing..."
+            placeholder={t('hackathonDashboard.searchListing')}
             type="text"
           />
           <InputLeftElement pointerEvents="none">
@@ -317,7 +318,7 @@ export default function Hackathon() {
             fontWeight={600}
             textAlign={'center'}
           >
-            Create your first listing
+            {t('hackathonDashboard.createFirstListing')}
           </Text>
           <Text
             mx="auto"
@@ -325,7 +326,7 @@ export default function Hackathon() {
             fontWeight={500}
             textAlign={'center'}
           >
-            and start getting contributions
+            {t('hackathonDashboard.startGettingContributions')}
           </Text>
           <Button
             display="block"
@@ -338,7 +339,7 @@ export default function Hackathon() {
             onClick={() => onOpenCreateListing()}
             variant="solid"
           >
-            Create New Listing
+            {t('hackathonDashboard.createNewListing')}
           </Button>
         </>
       )}
@@ -360,7 +361,7 @@ export default function Hackathon() {
                     letterSpacing={'-2%'}
                     textTransform={'capitalize'}
                   >
-                    Track
+                    {t('hackathonDashboard.track')}
                   </Th>
                   <Th
                     color="brand.slate.400"
@@ -370,7 +371,7 @@ export default function Hackathon() {
                     textAlign="center"
                     textTransform={'capitalize'}
                   >
-                    Submissions
+                    {t('hackathonDashboard.submissions')}
                   </Th>
                   <Th
                     color="brand.slate.400"
@@ -379,7 +380,7 @@ export default function Hackathon() {
                     letterSpacing={'-2%'}
                     textTransform={'capitalize'}
                   >
-                    Deadline
+                    {t('hackathonDashboard.deadline')}
                   </Th>
                   <Th
                     color="brand.slate.400"
@@ -388,7 +389,7 @@ export default function Hackathon() {
                     letterSpacing={'-2%'}
                     textTransform={'capitalize'}
                   >
-                    Prize
+                    {t('hackathonDashboard.prize')}
                   </Th>
                   <Th
                     color="brand.slate.400"
@@ -397,7 +398,7 @@ export default function Hackathon() {
                     letterSpacing={'-2%'}
                     textTransform={'capitalize'}
                   >
-                    Status
+                    {t('hackathonDashboard.status')}
                   </Th>
                   <Th
                     color="brand.slate.400"
@@ -406,7 +407,7 @@ export default function Hackathon() {
                     letterSpacing={'-2%'}
                     textTransform={'capitalize'}
                   >
-                    Actions
+                    {t('hackathonDashboard.actions')}
                   </Th>
                   <Th pl={0} />
                 </Tr>
@@ -543,7 +544,7 @@ export default function Hackathon() {
                                 size="sm"
                                 variant="ghost"
                               >
-                                Submissions
+                                {t('hackathonDashboard.viewSubmissions')}
                               </Button>
                             </Tooltip>
                           )}
@@ -562,7 +563,7 @@ export default function Hackathon() {
                                 size="sm"
                                 variant="ghost"
                               >
-                                Edit
+                                {t('hackathonDashboard.edit')}
                               </Button>
                             </Link>
                           )}
@@ -592,7 +593,7 @@ export default function Hackathon() {
                                 )
                               }
                             >
-                              View Listing
+                              {t('hackathonDashboard.viewListing')}
                             </MenuItem>
                             {currentBounty.isPublished && (
                               <Link
@@ -607,7 +608,7 @@ export default function Hackathon() {
                                   fontWeight={500}
                                   icon={<Icon as={PiNotePencil} w={4} h={4} />}
                                 >
-                                  Edit Listing
+                                  {t('hackathonDashboard.editListing')}
                                 </MenuItem>
                               </Link>
                             )}
@@ -645,7 +646,7 @@ export default function Hackathon() {
                                     handleDeleteDraft(currentBounty)
                                   }
                                 >
-                                  Delete Draft
+                                  {t('hackathonDashboard.deleteDraft')}
                                 </MenuItem>
                               </>
                             )}
@@ -664,7 +665,7 @@ export default function Hackathon() {
                                   }
                                   onClick={() => handleUnpublish(currentBounty)}
                                 >
-                                  Unpublish
+                                  {t('hackathonDashboard.unpublishListing')}
                                 </MenuItem>
                               </>
                             )}
@@ -686,11 +687,11 @@ export default function Hackathon() {
               <Text as="span" fontWeight={700}>
                 {Math.min(skip + length, totalBounties)}
               </Text>{' '}
-              of{' '}
+              {t('hackathonDashboard.of')}
               <Text as="span" fontWeight={700}>
                 {totalBounties}
               </Text>{' '}
-              Listings
+              {t('hackathonDashboard.listings')}
             </Text>
             <Button
               mr={4}
@@ -702,7 +703,7 @@ export default function Hackathon() {
               size="sm"
               variant="outline"
             >
-              Previous
+              {t('hackathonDashboard.previous')}
             </Button>
             <Button
               isDisabled={
@@ -714,7 +715,7 @@ export default function Hackathon() {
               size="sm"
               variant="outline"
             >
-              Next
+              {t('hackathonDashboard.next')}
             </Button>
           </Flex>
         </>

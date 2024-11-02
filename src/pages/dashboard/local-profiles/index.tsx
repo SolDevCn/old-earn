@@ -1,6 +1,7 @@
 import { ChevronLeftIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { Button, Divider, Flex, Text } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import { usePostHog } from 'posthog-js/react';
 import React, { useEffect, useRef, useState } from 'react';
 
@@ -21,6 +22,8 @@ const debounce = require('lodash.debounce');
 const usersPerPage = 15;
 
 export default function LocalProfiles() {
+  const { t } = useTranslation();
+
   const [searchText, setSearchText] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [currentSort, setCurrentSort] = useState<{
@@ -117,7 +120,7 @@ export default function LocalProfiles() {
         <Flex align="center" gap={2}>
           {superteam?.code && <UserFlag location={superteam.code} isCode />}
           <Text color="brand.slate.800" fontSize="lg" fontWeight={600}>
-            Local Earn Profiles
+            {t('localProfiles.title')}
           </Text>
           <Divider
             h="60%"
@@ -126,7 +129,9 @@ export default function LocalProfiles() {
             orientation="vertical"
           />
           <Text color="brand.slate.500">
-            All profiles that are based in {superteam?.displayValue}
+            {t('localProfiles.description', {
+              region: superteam?.displayValue,
+            })}
           </Text>
         </Flex>
         <FilterSection
@@ -154,11 +159,11 @@ export default function LocalProfiles() {
             <Text as="span" fontWeight={700}>
               {Math.min(indexOfLastUser, filteredUsers?.length || 0)}
             </Text>{' '}
-            of{' '}
+            {t('localProfiles.of')}{' '}
             <Text as="span" fontWeight={700}>
               {filteredUsers?.length || 0}
             </Text>{' '}
-            Members
+            {t('localProfiles.members')}
           </Text>
           <Button
             mr={4}
@@ -168,7 +173,7 @@ export default function LocalProfiles() {
             size="sm"
             variant="outline"
           >
-            Previous
+            {t('localProfiles.previous')}
           </Button>
           <Button
             isDisabled={currentPage === totalPages}
@@ -177,7 +182,7 @@ export default function LocalProfiles() {
             size="sm"
             variant="outline"
           >
-            Next
+            {t('localProfiles.next')}
           </Button>
         </Flex>
       )}
