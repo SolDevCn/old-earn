@@ -1,33 +1,76 @@
 import { NextAdminOptions } from '@premieroctet/next-admin';
 
 export const options: NextAdminOptions = {
-  title: '⚡️ My Admin Page',
+  title: '⚡️ God Panel',
   model: {
-    /* Your model configuration here */
-  },
-  pages: {
-    '/custom': {
-      title: 'Custom page',
-      icon: 'AdjustmentsHorizontalIcon',
+    Sponsors: {
+      title: "Sponsors",
+      icon: "WalletIcon",
+      list: {
+        display: [
+          "name",
+          "slug",
+          "isActive",
+          "logo",
+          "url",
+          "industry",
+          "twitter",
+          "bio",
+          "createdAt",
+          "updatedAt",
+          "id",
+        ],
+        search: ["name", "email"],
+      },
+      permissions: [`edit`]
+    },
+    User: {
+      title: "Users",
+      icon: "UsersIcon",
+      list: {
+        display: [
+          "name",
+          "email",
+          "role",
+          "isActive",
+          "createdAt",
+          "updatedAt",
+          "id",
+        ],
+        search: ["name", "email"],
+      },
+      permissions: [`edit`]
+    },
+    Bounties: {
+      title: "Bounties",
+      icon: "DocumentIcon",
+      list: {
+        display: [
+          "title",
+          "slug",
+          "status",
+          "isPublished",
+          // "description",
+          "deadline",
+          "eligibility",
+          "token",
+          "rewardAmount",
+          "rewards",
+          "applicationLink",
+          "createdAt",
+          "updatedAt",
+          "id",
+          "sponsorId",
+        ],
+        search: ["title", "slug", "status"],
+      },
+      permissions: [`edit`]
     },
   },
   externalLinks: [
     {
-      label: 'App Router',
+      label: 'Back to Home',
       url: '/',
     },
   ],
-  sidebar: {
-    groups: [
-      {
-        title: 'Users',
-        className: ' bg-green-600 p-2 rounded-md', // group title extra classes. (optional)
-        models: ['User'],
-      },
-      {
-        title: 'Categories',
-        models: ['Category'],
-      },
-    ],
-  },
 };

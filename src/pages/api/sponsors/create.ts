@@ -24,7 +24,7 @@ async function user(req: NextApiRequestWithUser, res: NextApiResponse) {
     const { name, slug, logo, url, industry, twitter, bio, entityName } =
       req.body;
 
-    if (user.role === 'GOD') {
+    if (!user.currentSponsorId || user.role === 'GOD') {
       logger.info(`Creating new sponsor for user: ${userId}`);
 
       const result = await prisma.sponsors.create({
@@ -37,6 +37,7 @@ async function user(req: NextApiRequestWithUser, res: NextApiResponse) {
           twitter,
           bio,
           entityName,
+          isActive: user.role === 'GOD',
         },
       });
 

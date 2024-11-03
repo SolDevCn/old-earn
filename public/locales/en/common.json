@@ -12,7 +12,10 @@
     "content": "Content",
     "design": "Design",
     "development": "Development",
-    "other": "Other"
+    "other": "Other",
+    "features": "Features",
+    "customers": "Customers",
+    "faqs": "FAQs"
   },
   "entityNameModal": {
     "title": "Update Your Entity Name",
@@ -886,7 +889,9 @@
     "search": "Search",
     "becomeASponsor": "Become a Sponsor",
     "login": "Login",
-    "signUp": "Sign Up"
+    "signUp": "Sign Up",
+    "createListing": "Create a Listing",
+    "getStarted": "Get Started"
   },
   "footer": {
     "logoAlt": "Solar Earn",
@@ -944,7 +949,8 @@
     "createNewSponsor": "Create New Sponsor",
     "emailPreferences": "Email Preferences",
     "getHelp": "Get Help",
-    "logout": "Logout"
+    "logout": "Logout",
+    "bountyDashboard": "Bounty Dashboard"
   },
   "search": {
     "enterKeyword": "Enter a keyword to find what you need.",
@@ -1141,6 +1147,6 @@
   },
   "newSponsor": {
     "contactAdmin": "Send an email or IM to the administrator to enable the appropriate permissions.",
-    "contactAdminDetail": "Send an email to <1>{{godEmail}}</1>, or contact the administrator on Telegram <3>@{{godTelegram}}</3>"
+    "contactAdminDetail": "Send an email to <1>{{godEmail}}</1>, or contact the administrator on Telegram <3>@{{godTelegram}}</3> to activate the appropriate privileges."
   }
 }

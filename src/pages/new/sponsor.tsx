@@ -103,42 +103,6 @@ const CreateSponsor = () => {
     return <></>;
   }
 
-
-  if (!session || session.user.role !== 'GOD') {
-    // 从环境变量EARN_GOD_EMAIL 获取管理员邮件地址
-    const godEmail = process.env.NEXT_PUBLIC_EARN_GOD_EMAIL;
-    const godTelegram = process.env.NEXT_PUBLIC_EARN_GOD_TELEGRAM;
-    const godTelegramLink = `https://t.me/${godTelegram}`;
-
-    return (
-      <Default
-        meta={
-          <Meta
-            title="Create Sponsor | Superteam Earn"
-            description="Every Solana opportunity in one place!"
-            canonical="https://earn.superteam.fun/new/sponsor/"
-          />
-        }
-      >
-        <VStack w="full" pt={8} pb={24}>
-          <Heading color={'gray.700'} fontFamily={'var(--font-sans)'} fontSize={'24px'} fontWeight={700}>
-            {t('newSponsor.contactAdmin')}
-          </Heading>
-          <Text color={'gray.400'} fontFamily={'var(--font-sans)'} fontSize={'20px'} fontWeight={500}>
-            <Trans
-              i18nKey="newSponsor.contactAdminDetail"
-              values={{ godEmail, godTelegram }}
-              components={{
-                1: <Link href={`mailto:${godEmail}`} />,
-                3: <Link href={godTelegramLink} isExternal />,
-              }}
-            />
-          </Text>
-        </VStack>
-      </Default>
-    );
-  }
-
   return (
     <Default
       meta={

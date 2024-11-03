@@ -12,7 +12,10 @@
     "content": "内容",
     "design": "设计",
     "development": "开发",
-    "other": "其他"
+    "other": "其他",
+    "features": "特性",
+    "customers": "客户",
+    "faqs": "常见问题"
   },
   "entityNameModal": {
     "title": "更新您的实体名称",
@@ -886,7 +889,9 @@
     "search": "搜索",
     "becomeASponsor": "成为赞助商",
     "login": "登录",
-    "signUp": "注册"
+    "signUp": "注册",
+    "createListing": "创建列表",
+    "getStarted": "开始使用"
   },
   "footer": {
     "description": "在一个地方发现来自最佳 Solana 公司的高薪加密货币悬赏、项目和资助，并使用单一个人资料申请它们。",
@@ -943,7 +948,8 @@
     "createNewSponsor": "创建新赞助商",
     "emailPreferences": "电子邮件偏好",
     "getHelp": "获取帮助",
-    "logout": "退出登录"
+    "logout": "退出登录",
+    "bountyDashboard": "悬赏仪表板"
   },
   "search": {
     "enterKeyword": "输入关键词以查找所需内容。",
@@ -1140,6 +1146,6 @@
   },
   "newSponsor": {
     "contactAdmin": "向管理员发送邮件或者IM, 开通相应权限",
-    "contactAdminDetail": "发送邮件至 <1>{{godEmail}}</1>, 或者telegram <3>@{{godTelegram}}</3> 联系管理员"
+    "contactAdminDetail": "发送邮件至 <1>{{godEmail}}</1>, 或者telegram <3>@{{godTelegram}}</3> 联系管理员，开通相应权限"
   }
 }

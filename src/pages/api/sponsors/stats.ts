@@ -14,7 +14,7 @@ async function handler(req: NextApiRequestWithSponsor, res: NextApiResponse) {
 
     const sponsor = await prisma.sponsors.findUnique({
       where: { id: userSponsorId },
-      select: { createdAt: true },
+      select: { createdAt: true, isActive: true },
     });
 
     if (!sponsor) {

@@ -1,5 +1,5 @@
-import { AddIcon } from '@chakra-ui/icons';
-import { Box, Button, Flex, Icon, Text, useDisclosure } from '@chakra-ui/react';
+import { AddIcon, CheckIcon } from '@chakra-ui/icons';
+import { Box, Button, Flex, Icon, Link, Text, useDisclosure } from '@chakra-ui/react';
 import { useQuery } from '@tanstack/react-query';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -37,6 +37,8 @@ import {
 import { Default } from '@/layouts/Default';
 import { Meta } from '@/layouts/Meta';
 import { useUpdateUser, useUser } from '@/store/user';
+import { Trans } from 'react-i18next';
+import axios from 'axios';
 
 interface LinkItemProps {
   name: string;
@@ -56,6 +58,7 @@ export function SponsorLayout({
   const { user } = useUser();
   const updateUser = useUpdateUser();
   const { data: session, status } = useSession();
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const posthog = usePostHog();
@@ -90,9 +93,19 @@ export function SponsorLayout({
   }, [open]);
 
   const {
-    data: isCreateListingAllowed,
+    data: isCreateListingAllowedResponse,
     refetch: isCreateListingAllowedRefetch,
   } = useQuery(isCreateListingAllowedQuery);
+
+  const isCreateListingAllowed = isCreateListingAllowedResponse?.allowed;
+  const [isSponsorActive, setIsSponsorActive] = useState(false);
+  useEffect(() => {
+    if (isCreateListingAllowedResponse?.isActive === true) {
+      setIsSponsorActive(true);
+    } else {
+      setIsSponsorActive(false);
+    }
+  }, [isCreateListingAllowedResponse]);
 
   const {
     isOpen: isSponsorInfoModalOpen,
@@ -204,6 +217,31 @@ export function SponsorLayout({
   const showContent = isHackathonRoute
     ? user?.hackathonId || session?.user?.role === 'GOD'
     : user?.currentSponsor?.id;
+  // 从环境变量EARN_GOD_EMAIL 获取管理员邮件地址
+  const godEmail = process.env.NEXT_PUBLIC_EARN_GOD_EMAIL;
+  const godTelegram = process.env.NEXT_PUBLIC_EARN_GOD_TELEGRAM;
+  const godTelegramLink = `https://t.me/${godTelegram}`;
+
+  // activate sponsor
+  const activateSponsor = async () => {
+    setIsLoading(true);
+    try {
+      await axios.post('/api/sponsors/activate', {
+        userId: session?.user.id,
+        sponsorId: user?.currentSponsorId,
+      });
+      // isSponsorActive = true;
+      setIsSponsorActive(true);
+    } catch (error: any) {
+      console.error('Error activating sponsor:', error.message);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
+  const cannotCreateNewListing = isCreateListingAllowed !== undefined &&
+    isCreateListingAllowed === false &&
+    session?.user.role !== 'GOD';
 
   return (
     <Default
@@ -268,15 +306,22 @@ export function SponsorLayout({
               )}
             </Box>
           )}
-          <CreateListingModal isOpen={isOpen} onClose={onClose} />
+          <CreateListingModal isOpen={isOpen} onClose={onClose} cannotCreateNewListing={cannotCreateNewListing} />
           <Flex align="center" justify="space-between" px={4} pb={6}>
             {!isHackathonRoute ? (
               <Tooltip
                 label={
-                  isCreateListingAllowed !== undefined &&
-                    isCreateListingAllowed === false &&
-                    session?.user.role !== 'GOD'
-                    ? 'Creating a new listing has been temporarily locked for you since you have 5 listings which are “Rolling” or “In Review”. Please announce the winners for such listings to create new listings.'
+                  cannotCreateNewListing
+                    ? isSponsorActive
+                      ? 'Creating a new listing has been temporarily locked for you since you have 5 listings which are “Rolling” or “In Review”. Please announce the winners for such listings to create new listings.'
+                      : <Trans
+                        i18nKey="newSponsor.contactAdminDetail"
+                        values={{ godEmail, godTelegram }}
+                        components={{
+                          1: <Link href={`mailto:${godEmail}`} />,
+                          3: <Link href={godTelegramLink} isExternal />,
+                        }}
+                      />
                     : ''
                 }
               >
@@ -286,11 +331,7 @@ export function SponsorLayout({
                   w="full"
                   py={'22px'}
                   fontSize="md"
-                  isDisabled={
-                    isCreateListingAllowed !== undefined &&
-                    isCreateListingAllowed === false &&
-                    session?.user.role !== 'GOD'
-                  }
+                  isDisabled={cannotCreateNewListing}
                   onClick={() => {
                     posthog.capture('create new listing_sponsor');
                     onOpen();
@@ -307,9 +348,7 @@ export function SponsorLayout({
                   >
                     Create New Listing
                   </Text>
-                  {isCreateListingAllowed !== undefined &&
-                    isCreateListingAllowed === false &&
-                    session?.user.role !== 'GOD' && <Icon as={LuLock} />}
+                  {cannotCreateNewListing && <Icon as={LuLock} />}
                 </Button>
               </Tooltip>
             ) : (
@@ -335,6 +374,35 @@ export function SponsorLayout({
               </Button>
             )}
           </Flex>
+          {session?.user.role === 'GOD' && (
+            <Flex align="center" justify="space-between" px={4} pb={6}>
+              <Button
+                className="ph-no-capture"
+                gap={2}
+                w="full"
+                py={'22px'}
+                fontSize="md"
+                // onClick={() => alert('Activate Sponsor')}
+                onClick={activateSponsor}
+                isDisabled={isSponsorActive === true || isLoading}
+                isLoading={isLoading}
+                loadingText="Activating..."
+                variant="solid"
+              >
+                <CheckIcon w={3} h={3} />
+                <Text
+                  className="nav-item-text"
+                  pos={isExpanded ? 'static' : 'absolute'}
+                  ml={isExpanded ? 0 : '-9999px'}
+                  opacity={isExpanded ? 1 : 0}
+                  transition="all 0.2s ease-in-out"
+                >
+                  Activate Sponsor
+                </Text>
+              </Button>
+            </Flex>
+          )}
+
           {LinkItems.map((link) => (
             <NavItem
               onClick={() => {
