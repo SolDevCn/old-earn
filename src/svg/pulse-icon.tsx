@@ -1,4 +1,5 @@
-import { Center, keyframes } from '@chakra-ui/react';
+import { Center } from '@chakra-ui/react';
+import { keyframes } from '@emotion/react';
 import React from 'react';
 
 const createPulseKeyframes = (color: string) => keyframes`
@@ -6,7 +7,7 @@ const createPulseKeyframes = (color: string) => keyframes`
     transform: scale(0.75);
     box-shadow: 0 0 0 0 ${color};
   }
-  
+
   100% {
     transform: scale(1);
     box-shadow: 0 0 0 8px ${color}00;

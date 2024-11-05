@@ -15,7 +15,6 @@ import {
   HStack,
   IconButton,
   Image,
-  keyframes,
   Link,
   Modal,
   ModalBody,
@@ -28,6 +27,7 @@ import {
   useDisclosure,
   VStack,
 } from '@chakra-ui/react';
+import { keyframes } from '@emotion/react';
 import { type SubscribeHackathon } from '@prisma/client';
 import axios from 'axios';
 import type { GetServerSideProps } from 'next';
@@ -1334,24 +1334,24 @@ interface CountryLeader {
   location: string;
   submission_count: number;
 }
-export const getServerSideProps: GetServerSideProps = async ({}) => {
+export const getServerSideProps: GetServerSideProps = async ({ }) => {
   const countryLeaders = await prisma.$queryRaw<CountryLeader[]>`
-SELECT 
+SELECT
     u.location,
     COUNT(s.id) as submission_count
-FROM 
+FROM
     Hackathon h
-JOIN 
+JOIN
     Bounties b ON h.id = b.hackathonId
-JOIN 
+JOIN
     Submission s ON b.id = s.listingId
-JOIN 
+JOIN
     User u ON s.userId = u.id
-WHERE 
+WHERE
     h.slug = ${'talent-olympics'}
-GROUP BY 
+GROUP BY
     u.location
-ORDER BY 
+ORDER BY
     submission_count DESC
 LIMIT 10;
 `;
